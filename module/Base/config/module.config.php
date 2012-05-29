@@ -1,48 +1,38 @@
 <?php
+
 return array(
-    'di' => array(
-        'instance' => array(
-            'alias' => array(
-                'base' => 'Base\Controller\BaseController',
-            ),
-            'Zend\View\Resolver\TemplatePathStack' => array(
-                'parameters' => array(
-                    'paths'  => array(
-                        'base' => __DIR__ . '/../view',
+
+    // Controllers in this module
+    'controller' => array(
+        'classes' => array(
+            'base/base' => 'Base\Controller\BaseController',
+        ),
+    ),
+
+    // Routes for this module
+    'router' => array(
+        'routes' => array(
+            'base' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/base[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'base/base',
+                        'action'     => 'index',
                     ),
                 ),
             ),
-        		
-        	// Routes
-        	'Zend\Mvc\Router\RouteStack' => array(
-        		'parameters' => array(
-        			'routes' => array(
-        				'base' => array(
-        					'type' => 'Zend\Mvc\Router\Http\Literal',
-        					'options' => array(
-        						'route' => '/base',
-        						'defaults' => array(
-        							'controller' => 'Base\Controller\BaseController',
-        							'action'	 => 'index',
-        						),	
-        					),	
-        					'child_routes' => array(
-        						'index' => array(
-		        					'type' => 'Zend\Mvc\Router\Http\Literal',
-		        					'options' => array(
-		        						'route' => '/',
-		        						'defaults' => array(
-		        							'action' => 'index',	
-		        						),	
-		        					),
-		        				),
-        					),
-        				),
-        			),	
-        		),	
-        	),
-        	// End of Routes
-        		
+        ),
+    ),    
+
+    // View setup for this module
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'base' => __DIR__ . '/../view',
         ),
     ),
 );
