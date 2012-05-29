@@ -12,4 +12,9 @@ class UploaderController extends ActionController
 	{
 		return new ViewModel();
 	}
+	
+	public function uploadAction()
+	{
+		
+	}
 }
