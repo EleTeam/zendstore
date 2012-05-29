@@ -2,10 +2,9 @@
 return array(
     'modules' => array(
         'Application',
-    	'Base',
-    	//'Album',
+        'Album',
     ),
-    'module_listener_options' => array( 
+    'module_listener_options' => array(
         'config_glob_paths'    => array(
             'config/autoload/{,*.}{global,local}.php',
         ),

@@ -46,7 +46,7 @@ return array(
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
-            __DIR__ . '/../view',
+            'application' => __DIR__ . '/../view',
         ),
     ),
 );
