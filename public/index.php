@@ -1,4 +1,8 @@
 <?php
+// Error handling
+error_reporting(E_ALL | E_STRICT); 						// Development
+//error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE); 	// Production
+
 chdir(dirname(__DIR__));
 //require_once (getenv('ZF2_PATH') ?: 'vendor/ZendFramework/library') . '/Zend/Loader/AutoloaderFactory.php';
 require_once (getenv('ZF2_PATH') ?: __DIR__ . '/../../zf2/library') . '/Zend/Loader/AutoloaderFactory.php';
