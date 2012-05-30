@@ -1,5 +1,7 @@
-Media::Uploader::indexAction<br />
+<p>Media::Uploader::indexAction</p>
 
-<a href="<?php $this->url('uploader'); ?>">Upload a single image</a><br />
+<p><a href="<?php echo $this->url('uploader', array('action'=>'upload')); ?>">
+    Upload a single image</a></p>
 
-<a href="<?php $this->url('uploader/batchUpload'); ?>">Upload a batch of images</a>
+<p><a href="<?php echo $this->url('uploader', array('action'=>'batchUpload')); ?>">
+    Upload a batch of images</a></p>

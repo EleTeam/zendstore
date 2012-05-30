@@ -1,0 +1,21 @@
+<h2>Upload an image</h2>
+
+<?php 
+$form = $this->form;
+$form->setAttribute('action', $this->url('uploader', array('action' => 'upload')));
+echo $this->form()->openTag($form);
+?>
+<dl class="zend_form">
+	<?php echo $this->formInput($form->get('id')); ?>
+	<dt><?php echo $this->formLabel($form->get('file')); ?></dt>
+	<dd><?php 
+		echo $this->formInput($form->get('file'));
+		echo $this->formElementErrors($form->get('file')); ?>
+	</dd>
+	<dd>
+		<?php echo $this->formInput($form->get('submit')); ?>
+		&nbsp;&nbsp;
+		<?php echo $this->formInput($form->get('reset')); ?>
+	</dd>
+</dl>
+<?php $this->form()->closeTag($form); ?>
