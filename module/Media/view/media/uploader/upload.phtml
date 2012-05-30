@@ -6,11 +6,11 @@ $form->setAttribute('action', $this->url('uploader', array('action' => 'upload')
 echo $this->form()->openTag($form);
 ?>
 <dl class="zend_form">
-	<?php echo $this->formInput($form->get('id')); ?>
-	<dt><?php echo $this->formLabel($form->get('file')); ?></dt>
+	<?php echo $this->formInput($form->get('MAX_FILE_SIZE')); ?>
+	<dt><?php echo $this->formLabel($form->get('uploadedfile')); ?></dt>
 	<dd><?php 
-		echo $this->formInput($form->get('file'));
-		echo $this->formElementErrors($form->get('file')); ?>
+		echo $this->formInput($form->get('uploadedfile'));
+		echo $this->formElementErrors($form->get('uploadedfile')); ?>
 	</dd>
 	<dd>
 		<?php echo $this->formInput($form->get('submit')); ?>

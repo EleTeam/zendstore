@@ -12,16 +12,18 @@ class UploaderForm extends Form
 		
 		$this->setName('uploader');
 		$this->setAttribute('method', 'post');
+		$this->setAttribute('enctype', 'multipart/form-data');
 		
 		$this->add(array(
-			'name' => 'id',
+			'name' => 'MAX_FILE_SIZE',
 			'attributes' => array(
-				'type' => 'hidden',	
+				'type'  => 'hidden',	
+				'value' => '100000',
 			),		
 		));
 		
 		$this->add(array(
-			'name' => 'file',
+			'name' => 'uploadedfile',
 			'attributes' => array(
 				'type'  => 'file',
 				'label' => 'Image',	
@@ -32,8 +34,7 @@ class UploaderForm extends Form
 			'name' => 'submit',
 			'attributes' => array(
 				'type' 	=> 'submit',
-				'id'	=> 'submitbutton',
-				'value' => 'Submit',
+				'value' => 'Upload',
 			),	
 		));
 		
@@ -41,7 +42,6 @@ class UploaderForm extends Form
 			'name' => 'reset',
 			'attributes' => array(
 				'type'  => 'reset',
-				'id'    => 'resetbutton',
 				'value'	=> 'Reset', 
 			),		
 		));

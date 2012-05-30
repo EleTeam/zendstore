@@ -4,6 +4,7 @@ namespace Media\Controller;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
+	Zend\File\Transfer,
 	Media\Form\UploaderForm;
 
 class UploaderController extends ActionController
@@ -20,7 +21,12 @@ class UploaderController extends ActionController
 		$form = new UploaderForm();
 		
 		if ($request->isPost()) {
-			
+// 			$ft = new FileTransfer('Http', true);
+			$ft = new Transfer\Adapter\Http();
+			$ft->setDestination(ROOT_PATH . '/data/upload/images');
+			if (!$ft->receive()) {
+				var_dump($ft->getMessages());				
+			}
 		}
 		
 		return array(
