@@ -23,7 +23,8 @@ class UploaderController extends ActionController
 		if ($request->isPost()) {
 // 			$ft = new FileTransfer('Http', true);
 			$ft = new Transfer\Adapter\Http();
-			$ft->setDestination(ROOT_PATH . '/data/upload/images');
+			$ft->setDestination(ROOT_PATH . '/data/upload/images')
+			   ->addValidator('Size', false, array('max' => '512MB')) ;
 			if (!$ft->receive()) {
 				var_dump($ft->getMessages());				
 			}

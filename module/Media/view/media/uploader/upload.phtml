@@ -6,7 +6,7 @@ $form->setAttribute('action', $this->url('uploader', array('action' => 'upload')
 echo $this->form()->openTag($form);
 ?>
 <dl class="zend_form">
-	<?php echo $this->formInput($form->get('MAX_FILE_SIZE')); ?>
+	<?php /*echo $this->formInput($form->get('MAX_FILE_SIZE'));*/ ?>
 	<dt><?php echo $this->formLabel($form->get('uploadedfile')); ?></dt>
 	<dd><?php 
 		echo $this->formInput($form->get('uploadedfile'));

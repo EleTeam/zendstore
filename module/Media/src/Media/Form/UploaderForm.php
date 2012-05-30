@@ -14,13 +14,13 @@ class UploaderForm extends Form
 		$this->setAttribute('method', 'post');
 		$this->setAttribute('enctype', 'multipart/form-data');
 		
-		$this->add(array(
-			'name' => 'MAX_FILE_SIZE',
-			'attributes' => array(
-				'type'  => 'hidden',	
-				'value' => '100000',
-			),		
-		));
+// 		$this->add(array(
+// 			'name' => 'MAX_FILE_SIZE',
+// 			'attributes' => array(
+// 				'type'  => 'hidden',	
+// 				'value' => '100000',
+// 			),		
+// 		));
 		
 		$this->add(array(
 			'name' => 'uploadedfile',
