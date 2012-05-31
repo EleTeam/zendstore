@@ -5,6 +5,7 @@ return array(
         'Album',
     	'Base',
     	'Media',
+    	'Geograph',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
