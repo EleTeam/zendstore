@@ -5,7 +5,8 @@ return array(
         'Album',
     	'Base',
     	'Media',
-    	'Geograph',
+    	'Geography',
+    	'Payment',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sing_CS", "Sing_CS.csproj", "{085DA694-28EA-4E06-85EC-94427DF389E3}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{085DA694-28EA-4E06-85EC-94427DF389E3}.Debug.ActiveCfg = Debug|.NET
+		{085DA694-28EA-4E06-85EC-94427DF389E3}.Debug.Build.0 = Debug|.NET
+		{085DA694-28EA-4E06-85EC-94427DF389E3}.Release.ActiveCfg = Release|.NET
+		{085DA694-28EA-4E06-85EC-94427DF389E3}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
