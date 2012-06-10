@@ -19,6 +19,19 @@ class RegionController extends ActionController
 			'regions' => $this->getRegionTable()->getChildren(0),	
 		));
 	}
+
+	/**
+	 * List sub-regions
+	 * 
+	 * @method ajax
+	 */
+	public function listChildrenAction()
+	{
+		$id = $this->getEvent()->getRouteMatch()->getParam('id');
+		$request = $this->getRequest();
+		echo 'id = ' . $id;
+		exit;
+	}
 	
 	/**
 	 * @return \Geography\Model\RegionTable

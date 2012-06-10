@@ -37,8 +37,8 @@ function regionChange()
     if (this.value > 0)
     {
         var _self = this;
-        var url = SITE_URL + '/index.php?app=mlselection&type=region';
-        $.getJSON(url, {'pid':this.value}, function(data){
+        var url = $(this).parent().attr('jsurl') + "/" + $(this).val();
+        $.getJSON(url, function(data){
             if (data.done)
             {
                 if (data.retval.length > 0)
@@ -101,7 +101,7 @@ function gcategoryChange()
     {
         var _self = this;
         var url = SITE_URL + '/index.php?app=mlselection&type=gcategory';
-        $.getJSON(url, {'pid':this.value}, function(data){
+        $.getJSON(url, {'id':this.value}, function(data){
             if (data.done)
             {
                 if (data.retval.length > 0)

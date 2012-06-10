@@ -31,7 +31,7 @@ class RegionTable extends AbstractTableGateway
 		$this->initialize();
 	}
 	
-	public function getRegion($region_id)
+	public function getRegion($regionId)
 	{
 		
 	}
