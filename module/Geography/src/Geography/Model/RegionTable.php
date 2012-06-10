@@ -2,24 +2,44 @@
 
 namespace Geography\Model;
 
-use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\TableGateway\AbstractTableGateway,
+	Zend\Db\Adapter\Adapter,
+	Zend\Db\ResultSet\ResultSet;
 
 class RegionTable extends AbstractTableGateway
 {
 	/**
 	 * @var string
 	 */
-	protected $table = 'region';
-	
-	/**
-	 * @var 
-	 */
-	protected $adapter = '';
+	protected $table = 'geography_region';
 	
 	/**
 	 * @var array
 	 */
 	protected $columns = array();
 	
-	public function getRegion
+	/**
+	 * Constructor
+	 * 
+	 * @param $adapter
+	 */
+	public function __construct(Adapter $adapter)
+	{
+		$this->adapter = $adapter;
+		$this->resultSetPrototype = new ResultSet(new Region());
+		
+		$this->initialize();
+	}
+	
+	public function getRegion($region_id)
+	{
+		
+	}
+	
+	public function getChildren($regionId = 0)
+	{
+		$regionId = (int)$regionId;
+		$resultSet = $this->select("parent_id = $regionId");
+		return $resultSet;
+	}
 }
