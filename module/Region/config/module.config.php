@@ -5,23 +5,23 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'geography/region' => 'Geography\Controller\RegionController',
+            'geography/geography' => 'Geograph\Controller\GeographController',
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'region' => array(
+            'geography' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/region[/:action][/:id]',
+                    'route'    => '/geography[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'geography/region',
+                        'controller' => 'geography/geography',
                         'action'     => 'index',
                     ),
                 ),
@@ -32,7 +32,7 @@ return array(
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'region' => __DIR__ . '/../view',
+            'geography' => __DIR__ . '/../view',
         ),
     ),
 );
