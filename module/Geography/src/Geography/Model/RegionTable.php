@@ -36,6 +36,12 @@ class RegionTable extends AbstractTableGateway
 		
 	}
 	
+	/**
+	 * Get sub-regions
+	 * 
+	 * @param int $regionId
+	 * @return \Zend\Db\ResultSet\ResultSet
+	 */
 	public function getChildren($regionId = 0)
 	{
 		$regionId = (int)$regionId;

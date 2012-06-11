@@ -4,6 +4,7 @@ namespace Geography\Controller;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
+	Zend\Json\Json,
 	Geography\Model\RegionTable;
 
 class RegionController extends ActionController
@@ -29,7 +30,16 @@ class RegionController extends ActionController
 	{
 		$id = $this->getEvent()->getRouteMatch()->getParam('id');
 		$request = $this->getRequest();
-		echo 'id = ' . $id;
+		$regionTable = $this->getRegionTable();
+		$regions = $regionTable->getChildren($id);
+		
+		$result = new \stdClass();
+		$result->done = true;
+		$result->msg  = "";
+		$result->retval = $regions->toArray();
+		//var_dump($regions);exit;
+		
+		echo Json::encode($result);
 		exit;
 	}
 	

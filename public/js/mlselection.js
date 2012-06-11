@@ -43,7 +43,7 @@ function regionChange()
             {
                 if (data.retval.length > 0)
                 {
-                    $("<select><option>" + lang.select_pls + "</option></select>").change(regionChange).insertAfter(_self);
+                    $("<select><option>Please select...</option></select>").change(regionChange).insertAfter(_self);
                     var data  = data.retval;
                     for (i = 0; i < data.length; i++)
                     {
@@ -106,7 +106,7 @@ function gcategoryChange()
             {
                 if (data.retval.length > 0)
                 {
-                    $("<select><option>" + lang.select_pls + "</option></select>").change(gcategoryChange).insertAfter(_self);
+                    $("<select><option>Please select...</option></select>").change(gcategoryChange).insertAfter(_self);
                     var data  = data.retval;
                     for (i = 0; i < data.length; i++)
                     {

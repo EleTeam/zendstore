@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 4.0.0-dev
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 10, 2012 at 02:33 PM
--- Server version: 5.5.21
+-- Host: localhost
+-- Generation Time: Jun 11, 2012 at 10:03 AM
+-- Server version: 5.5.18-log
 -- PHP Version: 5.3.8-ZS5.5.0
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,10 +23,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `region`
+-- Table structure for table `album`
 --
 
-CREATE TABLE IF NOT EXISTS `region` (
+CREATE TABLE IF NOT EXISTS `album` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `artist` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `album`
+--
+
+INSERT INTO `album` (`id`, `artist`, `title`) VALUES
+(1, 'The Military Wives', 'In My Dreamsaaaaaaaaaaaaaaaa'),
+(2, 'Adele', '21'),
+(3, 'Bruce Springsteen', 'Wrecking Ball (Deluxe)'),
+(4, 'Lana Del Rey', 'Born To Die'),
+(5, 'Gotye', 'Making Mirrors'),
+(6, 'sdf', 'sdf'),
+(7, 'asdf', 'sdf'),
+(8, 'sdf', 'sadf'),
+(9, 'asdfasdfsdf', 'sdf'),
+(10, 'aaaaaaaaaaa', 'aa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `geography_region`
+--
+
+CREATE TABLE IF NOT EXISTS `geography_region` (
   `region_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `region_name` varchar(100) NOT NULL DEFAULT '',
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0',
@@ -41,10 +70,10 @@ CREATE TABLE IF NOT EXISTS `region` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3522 ;
 
 --
--- Dumping data for table `region`
+-- Dumping data for table `geography_region`
 --
 
-INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
+INSERT INTO `geography_region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
 (1, '中国', 0, '', 255, '', 0, '', ''),
 (2, '北京市', 1, '110000', 255, '', 1, 'BeiJingShi', 'bjs'),
 (3, '市辖区', 2, '110100', 255, '', 2, 'ShiXiaQu', 'sxq'),
@@ -786,7 +815,7 @@ INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `s
 (739, '泰来县', 728, '230224', 255, '', 3, 'TaiLaiXian', 'tlx'),
 (740, '甘南县', 728, '230225', 255, '', 3, 'GanNanXian', 'gnx'),
 (741, '富裕县', 728, '230227', 255, '', 3, 'FuYuXian', 'fyx');
-INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
+INSERT INTO `geography_region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
 (742, '克山县', 728, '230229', 255, '', 3, 'KeShanXian', 'ksx'),
 (743, '克东县', 728, '230230', 255, '', 3, 'KeDongXian', 'kdx'),
 (744, '拜泉县', 728, '230231', 255, '', 3, 'BaiQuanXian', 'bqx'),
@@ -1529,7 +1558,7 @@ INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `s
 (1481, '资溪县', 1471, '361028', 255, '', 3, 'ZiXiXian', 'zxx'),
 (1482, '东乡县', 1471, '361029', 255, '', 3, 'DongXiangXian', 'dxx'),
 (1483, '广昌县', 1471, '361030', 255, '', 3, 'GuangChangXian', 'gcx');
-INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
+INSERT INTO `geography_region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
 (1484, '上饶市', 1375, '361100', 255, '', 2, 'ShangRaoShi', 'srs'),
 (1485, '市辖区', 1484, '361101', 255, '', 3, 'ShiXiaQu', 'sxq'),
 (1486, '信州区', 1484, '361102', 255, '', 3, 'XinZhouQu', 'xzq'),
@@ -2258,7 +2287,7 @@ INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `s
 (2209, '台山市', 2204, '440781', 255, '', 3, 'TaiShanShi', 'tss'),
 (2210, '开平市', 2204, '440783', 255, '', 3, 'KaiPingShi', 'kps'),
 (2211, '鹤山市', 2204, '440784', 255, '', 3, 'HeShanShi', 'hss');
-INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
+INSERT INTO `geography_region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
 (2212, '恩平市', 2204, '440785', 255, '', 3, 'EnPingShi', 'eps'),
 (2213, '湛江市', 2148, '440800', 255, '', 2, 'ZhanJiangShi', 'zjs'),
 (2214, '市辖区', 2213, '440801', 255, '', 3, 'ShiXiaQu', 'sxq'),
@@ -2961,7 +2990,7 @@ INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `s
 (2911, '思茅区', 2909, '530802', 255, '', 3, 'SiMaoQu', 'smq'),
 (2912, '宁洱哈尼族彝族自治县', 2909, '530821', 255, '', 3, 'NingErHaNiZuYiZuZiZhiXian', 'nehnzyzzzx'),
 (2913, '墨江哈尼族自治县', 2909, '530822', 255, '', 3, 'MoJiangHaNiZuZiZhiXian', 'mjhnzzzx');
-INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
+INSERT INTO `geography_region` (`region_id`, `region_name`, `parent_id`, `region_code`, `sort_order`, `domain`, `scope`, `region_name_pinyin_full`, `region_name_pinyin_acronym`) VALUES
 (2914, '景东彝族自治县', 2909, '530823', 255, '', 3, 'JingDongYiZuZiZhiXian', 'jdyzzzx'),
 (2915, '景谷傣族彝族自治县', 2909, '530824', 255, '', 3, 'JingGuDaiZuYiZuZiZhiXian', 'jgdzyzzzx'),
 (2916, '镇沅彝族哈尼族拉祜族自治县', 2909, '530825', 255, '', 3, 'ZhenYuanYiZuHaNiZuLaHuZuZiZhiXian', 'zyyzhnzlhzzzx'),
@@ -3570,6 +3599,53 @@ INSERT INTO `region` (`region_id`, `region_name`, `parent_id`, `region_code`, `s
 (3519, '阿拉尔市', 3517, '659002', 255, '', 3, 'ALaErShi', 'ales'),
 (3520, '图木舒克市', 3517, '659003', 255, '', 3, 'TuMuShuKeShi', 'tmsks'),
 (3521, '五家渠市', 3517, '659004', 255, '', 3, 'WuJiaQuShi', 'wjqs');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `display_name` varchar(50) DEFAULT NULL,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `last_ip` int(11) DEFAULT NULL,
+  `register_time` datetime NOT NULL,
+  `register_ip` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_meta`
+--
+
+CREATE TABLE IF NOT EXISTS `user_meta` (
+  `meta_key` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `meta` longtext NOT NULL,
+  PRIMARY KEY (`meta_key`,`user_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `user_meta`
+--
+ALTER TABLE `user_meta`
+  ADD CONSTRAINT `user_meta_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

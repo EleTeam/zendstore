@@ -10,8 +10,8 @@ $(function(){
 
 <h5>Select region - Multi-level selection:</h5>
 <div id="region" jsurl="<?php echo $this->url('region', array('action' => 'listChildren')); ?>">
-   	<input type="hidden" name="region_id" id="region_id" class="mls_id" />
-	<input type="hidden" name="region_name" id="region_name" class="mls_names" />
+   	<input type="hidden" name="region_id" value="" id="region_id" class="mls_id" />
+	<input type="hidden" name="region_name" value="" id="region_name" class="mls_names" />
     <select>
     	<option>Please select...</option>
         <?php foreach ($regions as $region): ?>
