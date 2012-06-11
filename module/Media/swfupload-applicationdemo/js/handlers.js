@@ -72,12 +72,12 @@ function uploadSuccess(file, serverData) {
 		var progress = new FileProgress(file,  this.customSettings.upload_target);
 
 		if (serverData.substring(0, 7) === "FILEID:") {
-			addImage("/swfupload/getThumbnail/" + serverData.substring(7));
+			addImage("thumbnail.php?id=" + serverData.substring(7));
 
 			progress.setStatus("Upload Complete.");
 			progress.toggleCancel(false);
 		} else {
-			addImage("/images/swfupload/error.gif");
+			addImage("images/error.gif");
 			progress.setStatus("Error.");
 			progress.toggleCancel(false);
 			alert(serverData);

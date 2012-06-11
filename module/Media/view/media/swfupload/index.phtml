@@ -36,6 +36,7 @@
 </script><!-- /TinyMCE -->
 
 <!-- SWFUpload -->
+<link href="/css/swfupload.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/js/swfupload/swfupload.js"></script>
 <script type="text/javascript" src="/js/swfupload_handlers.js"></script>
 <script type="text/javascript">
@@ -43,11 +44,11 @@
 	window.onload = function () {
 		swfu = new SWFUpload({
 			// Backend Settings
-			upload_url: "<?php echo $this->url('uploader', array('action' => 'uploadImage')); ?>",
+			upload_url: "<?php echo $this->url('swfupload', array('action' => 'uploadImage')); ?>",
 			post_params: {"PHPSESSID": "<?php echo session_id(); ?>"},
 
 			// File Upload Settings
-			file_size_limit : "2 MB",	// 2MB
+			file_size_limit : "5 MB",
 			file_types : "*.jpg",
 			file_types_description : "JPG Images",
 			file_upload_limit : 0,
@@ -65,11 +66,11 @@
 			upload_complete_handler : uploadComplete,
 
 			// Button Settings
-			button_image_url : "images/SmallSpyGlassWithTransperancy_17x18.png",
+			button_image_url : "/images/swfupload/SmallSpyGlassWithTransperancy_17x18.png",
 			button_placeholder_id : "spanButtonPlaceholder",
 			button_width: 180,
 			button_height: 18,
-			button_text : '<span class="button">Select Images <span class="buttonSmall">(2 MB Max)</span></span>',
+			button_text : '<span class="button">Select Images <span class="buttonSmall">(5 MB Max)</span></span>',
 			button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
 			button_text_top_padding: 0,
 			button_text_left_padding: 18,
@@ -100,13 +101,34 @@
 		&lt;p&gt;This is the third paragraph.&lt;/p&gt;
 	</textarea>
 
-	<!-- SWFUpload -->
-	<br />
-	<div style="width: 180px; height: 18px; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
-		<span id="spanButtonPlaceholder"></span>
-	</div><!-- /SWFUpload -->
-
 	<br />
 	<input type="submit" name="save" value="Submit" />
 	<input type="reset" name="reset" value="Reset" />
 </form>
+
+<!-- SWFUpload -->
+<div id="content">
+	<h2>Application Demo</h2>
+	<p>This demo shows how SWFUpload can behave like an AJAX application.  Images are uploaded by SWFUpload and converted to thumbnails by the server.  Then some JavaScript is used to download and display the thumbnails without reloading the page.</p>
+	<?php
+	if( !function_exists("imagecopyresampled") ){
+		?>
+	<div class="message">
+		<h4><strong>Error:</strong> </h4>
+		<p>Application Demo requires GD Library to be installed on your system.</p>
+		<p>Usually you only have to uncomment <code>;extension=php_gd2.dll</code> by removing the semicolon <code>extension=php_gd2.dll</code> and making sure your extension_dir is pointing in the right place. <code>extension_dir = "c:\php\extensions"</code> in your php.ini file. For further reading please consult the <a href="http://ca3.php.net/manual/en/image.setup.php">PHP manual</a></p>
+	</div>
+	<?php
+	} else {
+	?>
+	<form>
+		<div style="width: 180px; height: 18px; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
+			<span id="spanButtonPlaceholder"></span>
+		</div>
+	</form>
+	<?php
+	}
+	?>
+	<div id="divFileProgressContainer" style="height: 75px;"></div>
+	<div id="thumbnails"></div>
+</div><!-- /SWFUpload -->
