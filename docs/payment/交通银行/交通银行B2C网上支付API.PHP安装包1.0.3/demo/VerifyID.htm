@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>持卡人身份验证(VIP商户)</title>
+
+        <meta http-equiv = "Content-Type" content = "text/html; charset=gb2312">
+    </head>
+
+    <body bgcolor = "#FFFFFF" text = "#000000">
+        <form name = "form1" method = "post" action = "VerifyID.php">
+            <p>
+                银行卡号* <input type = "text" name = "card" maxlength = '20' value = "">
+            </p>
+
+            <p>
+                客户姓名 可选 <input type = "text" name = "custName" value = ""> <BR>
+
+                <BR> 证件类型 可选 <INPUT type = "text" name = "certType" value = ""> <BR>
+
+                <BR>
+
+                15 居民身份证
+
+                <BR>
+
+                16 临时身份证
+
+                <BR>
+
+                17 军人身份证件
+
+                <BR>
+
+                18 武警身份证件
+
+                <BR>
+
+                19 港澳台居民通行证
+
+                <BR>
+
+                20 护照
+
+                <BR>
+
+                21 其他
+
+                <BR>
+
+                22 临时户口
+
+                <BR>
+
+                23 户口簿
+
+                <BR> 24 边境证
+            </p>
+
+            <p>
+                证件号码 可选 <input type = "text" name = "certNo" value = ""><BR>
+
+                <BR> 注：该功能为VIP商户提供；客户姓名和证件类型、号码至少二选一输入，也可同时输入
+            </p>
+
+            <p>
+                <input type = "submit" id = "Submit" value = "提交">
+            </p>
+        </form>
+    </body>
+</html>

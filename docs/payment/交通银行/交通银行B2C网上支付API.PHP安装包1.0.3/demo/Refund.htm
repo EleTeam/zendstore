@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>退款录入测试</title>
+
+        <meta http-equiv = "Content-Type" content = "text/html; charset=gb2312">
+    </head>
+
+    <body bgcolor = "#FFFFFF" text = "#000000">
+        <form name = "form1" method = "post" action = "Refund.php">
+            <p>
+                商户操作员号* <input type = "text" name = "operator" maxlength = '10' value = "">
+            </p>
+
+            <p>
+                订单号* <input type = "text" name = "order" value = "">
+            </p>
+
+            <p>
+                订单日期[yyyyMMdd]* <input type = "text" name = "date" maxlength = '8' value = "">
+            </p>
+
+            <p>
+                退款金额* <input type = "text" name = "amount" value = "">
+            </p>
+
+            <p>
+                退款备注(输入请不要超过50个字符) <input type = "text" name = "comment" size = "50" value = "">
+            </p>
+
+            <p>
+                <input type = "submit" id = "Submit" value = "提交">
+            </p>
+        </form>
+    </body>
+</html>

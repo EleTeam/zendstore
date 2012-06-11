@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>历史订单查询测试</title>
+
+        <meta http-equiv = "Content-Type" content = "text/html; charset=gb2312">
+        
+      
+    </head>
+
+    <body bgcolor = "#FFFFFF" text = "#000000">
+        <form name = "form1" method = "post" action = "Historyorderquery.php">
+            <p>
+                开始时间[yyyyMMddHHmmss]* <input type = "text" name = "begDate" maxlength = '14' value = "">
+            </p>
+
+            <p>
+                结束时间[yyyyMMddHHmmss]* <input type = "text" name = "endDate" maxlength = '14' value = "">
+            </p>
+
+            <p>
+                订单状态* 0 所有 1 已支付 2 已撤销 3 部分退货 4退货处理中 5 全部退货 <input type = "text" name = "flag" value = "">
+            </p>
+
+            <p>
+                排序字段1 订单号 2 金额 3 定单时间 <input type = "text" name = "sortField" maxlength = '1' value = "1">
+            </p>
+
+            <p>
+                排序方式1 降序 2 升序 <input type = "text" name = "sortOrder" maxlength = '1' value = "1">
+            </p>
+
+            <p>
+                起始索引号（用于翻页，每页20笔）,系统默认值为0 <input type = "text" name = "begIndex" maxlength = '3' value = "0">
+            </p>
+
+            <p>
+                起始订单号,非必输项，若输入，需和截止定单号关联使用 <input type = "text" name = "begOrder" value = "">
+            </p>
+
+            <p>
+                截至订单号,可不填 <input type = "text" name = "endOrder" value = "">
+            </p>
+
+            <p>
+                <input type = "submit" id = "Submit" value = "提交">
+                
+            </p>
+        </form>
+    </body>
+</html>

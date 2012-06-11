@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="gb2312"?>
+<BOCOMB2C>	
+	<ApiURL>https://ebanktest.95559.com.cn/corporbank/NsTrans</ApiURL>				<!--测试环境API请求URL,生产系统改为https://ebank.95559.com.cn/corporbank/NsTrans -->
+	<OrderURL>https://pbanktest.95559.com.cn/netpay/MerPayB2C</OrderURL>					<!--测试环境订单支付请求URL,生产系统改为https://pay.95559.com.cn/netpay/MerPayB2C-->
+	<!--商户可修改参数-->	
+	<EnableLog>true</EnableLog>														<!--日志开关（true:表示写日志,false: 表示不写日志）-->
+	<LogPath>C:\bocommjava\log\</LogPath>											<!--日志文件存放目录-->
+	<SettlementFilePath>C:\bocommjava\settlement\</SettlementFilePath>				<!--下载结算明细文件存放目录-->
+	<MerchantCertFile>C:\bocommjava\cert\301310063009501.PFX</MerchantCertFile>		<!--测试环境商户证书文件（绝对路径）,商户上线时该证书换为商户生产证书-->
+	<MerchantCertPassword>12345678</MerchantCertPassword> 							<!--测试环境商户证书私钥加密密码,商户上线时该密码换为商户生产证书密码-->
+	<RootCertFile>C:\bocommjava\cert\test_root.cer</RootCertFile>					<!--测试环境根证书文件,商户上线时该根证书换为交通银行生产根证书root.cer-->
+</BOCOMB2C>

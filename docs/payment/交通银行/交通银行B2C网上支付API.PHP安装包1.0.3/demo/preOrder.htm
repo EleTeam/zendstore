@@ -1,0 +1,267 @@
+<html>
+    <head>
+        <title>商户订单测试</title>
+
+        <meta http-equiv = "Content-Type" content = "text/html; charset=gb2312">
+<script language = "javascript">
+	function createOrderInfo(){
+		var tmpDate = new Date();
+		var day = tmpDate.getDate();
+		var month= tmpDate.getMonth() + 1 ;
+		var year= tmpDate.getYear();
+    	var hours = tmpDate.getHours()
+    	var minutes = tmpDate.getMinutes()
+    	var seconds = tmpDate.getSeconds()
+    	
+    	month = ((month < 10) ? "0" : "") + month;
+    	day = ((day < 10) ? "0" : "") + day;
+    	hours = ((hours < 10) ? "0" : "") + hours;
+    	minutes = ((minutes < 10) ? "0" : "") + minutes;
+    	seconds = ((seconds < 10) ? "0" : "") + seconds;
+    	
+    	document.all.orderid.value = year + month + day + hours + minutes + seconds;
+    	document.all.orderDate.value = year + month + day;
+    	document.all.orderTime.value = hours + minutes + seconds;
+    	document.all.period.value = year + month + day + hours + minutes + seconds;
+		
+	}
+</script>
+    </head>
+
+    <body bgcolor = "#FFFFFF" text = "#000000">
+        <form name = "form1" method = "post" action = "preOrder.php">
+            <p>
+                <input type = "hidden" name = "merCert" value = ""> 交通银行商户订单测试
+            </p>
+
+            <table width = "75%" border = "0" cellpadding = "0" cellspacing = "0">
+                <tr>
+                    <td width = "23%">
+                        消息版本号*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "interfaceVersion" value = "1.0.0.0">
+                        <input type = "submit" id = "Submit" value = "提交" name = "submit">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        订单号*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "orderid" maxlength = '20' value = "">
+                        <input type = "button" name = "createOrderId" value = "生成订单号和时间" onClick = "javascript:createOrderInfo();" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        商户订单日期*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "orderDate" value = ""> yyyyMMdd
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        商户订单时间*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "orderTime" value = ""> HHmmss
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        交易类别*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "tranType" value = "0" readOnly> 0:B2C
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        订单金额*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "amount" value = "1.00">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        交易币种*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "curType" value = "CNY">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        订单内容
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "orderContent" value = "">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        商家备注
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "orderMono" value = "">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td width = "23%">
+                        电话号码
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "phone" value = "">
+                    </td>
+                </tr>
+                
+                 <tr>
+                    <td width = "23%">
+                        订单有效时间*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "period" value = "">yyyyMMddHHmmss 14位长度数字，要大于当前日期时间
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        物流配送标志
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "phdFlag" value = "" readOnly>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        通知方式*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "notifyType" value = "0"> 0 不通知 1 通知 2 抓取页面
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        主动通知URL
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "merURL" value = "" size = "40">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        取货URL
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "goodsURL" value = "" size = "40">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        自动跳转时间
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "jumpSeconds" value = ""> （秒）
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        商户批次号
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "payBatchNo" value = ""> 商家对账使用
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        代理商家名称
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "proxyMerName" value = "">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        代理商家类型
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "proxyMerType" value = "">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        代理商家证件号码
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "proxyMerCredentials" value = "">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        渠道编号*
+                    </td>
+
+                    <td width = "77%">
+                        <input type = "text" name = "netType" value = "0" readOnly> 0:html渠道
+                        <input type = "hidden" name = "merSignMsg">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width = "23%">
+                        &nbsp;
+                    </td>
+
+                    <td width = "77%">
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                &nbsp;
+            </p>
+        </form>
+    </body>
+</html>
