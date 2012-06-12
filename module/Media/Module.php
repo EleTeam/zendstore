@@ -2,6 +2,8 @@
 
 namespace Media;
 
+use Media\Model\UploadedFileTable;
+
 class Module
 {
     public function getConfig()
@@ -20,6 +22,17 @@ class Module
   				__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
     			),
     		),
+    	);
+    }
+    
+    public function getServiceConfiguration()
+    {
+    	return array(
+    		'factories' => array(
+    			'UploadedFileTable' => function($sm) {
+    				return new UploadedFileTable($sm->get('db-adapter'));
+    			},	
+    		),	
     	);
     }
 }

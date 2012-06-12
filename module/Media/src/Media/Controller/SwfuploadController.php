@@ -3,10 +3,15 @@
 namespace Media\Controller;
 
 use Zend\Mvc\Controller\ActionController,
-	Zend\View\Model\ViewModel;
+	Zend\View\Model\ViewModel,
+	Media\Model\UploadedFileTable;
 
 class SwfuploadController extends ActionController
 {
+	/**
+	 * @var UploadedFileTable
+	 */
+	protected $uploadedFileTable;
 	
 	public function indexAction()
 	{
@@ -131,5 +136,14 @@ class SwfuploadController extends ActionController
 		header("Content-Length: ".strlen($_SESSION["file_info"][$image_id]));
 		echo $_SESSION["file_info"][$image_id];
 		exit(0);
+	}
+
+	protected function getUploadedFileTable()
+	{
+		if (is_null($this->uploadedFileTable)) {
+			$sm = $this->getServiceLocator();
+			$this->uploadedFileTable = $sm->get('UploadedFileTable');
+		}
+		return $this->uploadedFileTable;
 	}
 }
