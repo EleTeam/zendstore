@@ -9,6 +9,7 @@ class UserController extends ActionController
 {
 	public function indexAction()
 	{
+		exit('ok');
 		$message = $this->getRequest()->query()->get('message', 'Message Here');
 		return array('message' => $message);
 		//$this->flashMessenger()->addMessage('You are now logged in.');

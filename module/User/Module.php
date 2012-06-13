@@ -27,8 +27,8 @@ class Module
     {
     	return array(
     		'factories' => array(
-    			'CustomerTable' => function($sm) {
-    				return new CustomerTable($sm->get('db-adapter'));
+    			'UserTable' => function($sm) {
+    				return new UserTable($sm->get('db-adapter'));
     			},	
     		),	
     	);
