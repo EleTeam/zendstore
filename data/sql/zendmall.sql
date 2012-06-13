@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2012 at 10:03 AM
+-- Generation Time: Jun 13, 2012 at 10:04 AM
 -- Server version: 5.5.18-log
 -- PHP Version: 5.3.8-ZS5.5.0
 
@@ -3603,19 +3603,34 @@ INSERT INTO `geography_region` (`region_id`, `region_name`, `parent_id`, `region
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `media_uploaded_file`
+--
+
+CREATE TABLE IF NOT EXISTS `media_uploaded_file` (
+  `file_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(200) NOT NULL,
+  `file_type` tinyint(50) NOT NULL,
+  `file_size` int(10) unsigned NOT NULL COMMENT '1=1Byte',
+  PRIMARY KEY (`file_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `display_name` varchar(50) DEFAULT NULL,
-  `password` varchar(128) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `password_salt` varchar(32) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `real_name` varchar(50) DEFAULT NULL,
+  `register_date` datetime NOT NULL,
+  `register_ip` int(11) NOT NULL,
   `last_login` datetime DEFAULT NULL,
   `last_ip` int(11) DEFAULT NULL,
-  `register_time` datetime NOT NULL,
-  `register_ip` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`user_id`),
