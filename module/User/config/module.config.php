@@ -5,7 +5,7 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'user/user' => 'Geography\Controller\RegionController',
+            'user/user' => 'User\Controller\UserController',
         ),
     ),
 
@@ -32,7 +32,7 @@ return array(
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'user' => __DIR__ . '/../view',
+            'album' => __DIR__ . '/../view',
         ),
     ),
 );
