@@ -25,7 +25,7 @@ class AlbumController extends ActionController
     public function addAction()
     {
         $form = new AlbumForm();
-        $form->get('submit')->setAttribute('label', 'Add');
+        $form->get('submit')->setAttribute('value', 'Add');
 
         $request = $this->getRequest();
         if ($request->isPost()) {

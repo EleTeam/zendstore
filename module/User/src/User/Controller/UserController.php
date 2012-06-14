@@ -3,7 +3,8 @@
 namespace User\Controller;
 
 use Zend\Mvc\Controller\ActionController,
-	Zend\View\Model\ViewModel;
+	Zend\View\Model\ViewModel,
+	User\Form\UserForm;
 
 class UserController extends ActionController
 {
@@ -14,4 +15,20 @@ class UserController extends ActionController
         ));
     }
     
+    public function loginAction()
+    {
+    	
+    }
+    
+    public function registerAction()
+    {
+    	$form = new UserForm();
+    	
+    	$request = $this->getRequest();
+    	if ($request->isPost()) {
+    		
+    	}
+    	
+    	return array('form' => $form);
+    }
 }

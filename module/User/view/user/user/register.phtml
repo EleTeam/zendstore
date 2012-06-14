@@ -1,0 +1,20 @@
+<?php
+$this->headTitle('User Register');
+?>
+
+<h2>User registration form</h2>
+<?php 
+$form = $this->form;
+$form->setAttribute('action', $this->url('user', array('action' => 'register')));
+echo $this->form()->openTag($form);
+?>
+<dl>
+	<?php echo $this->formInput($form->get('user_id')); ?>
+	<dt><?php echo $this->formLabel($form->get('email')); ?></dt>
+	<dd><?php echo $this->formInput($form->get('email')); ?></dd>
+	<dt><?php echo $this->formLabel($form->get('password')); ?></dt>
+	<dd><?php echo $this->formInput($form->get('password')); ?></dd>
+	<dd><?php echo $this->formInput($form->get('submit')); ?>&nbsp;<?php echo $this->formInput($form->get('reset')); ?></dd>
+</dl>
+<?php echo $this->form()->closeTag($form); ?>
+
