@@ -1,6 +1,9 @@
 1，BOC - 中国银行深圳分行技术部陈经理 电话：2233 3327
 	测试地址：180.168.146.75：81
 	商户号：  104430149000002
-	email: 陈一凡 gdszdzchenyifan <0xLJB3C2D2BBB7B2zgdszdzchenyifan@mail.notes.bank-of-china.com>    	
+	email: 陈一凡 gdszdzchenyifan <0xLJB3C2D2BBB7B2zgdszdzchenyifan@mail.notes.bank-of-china.com>    
+	用户支付测试用户：
+		U3环境个人用户名：grp111111 密码：1111111a
+	 	证件号码：445221196308076877   证件类型：其他    账户姓名：郭锐藩   卡号：6013822000638295876	
 	
 2，交通银行联系方式看 - hi.huazai@gmail.com  
