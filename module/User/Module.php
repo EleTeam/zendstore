@@ -2,7 +2,8 @@
 
 namespace User;
 
-use Zend\Form\View\HelperLoader as FormHelperLoader;
+use Zend\Form\View\HelperLoader as FormHelperLoader,
+	User\Model\UserTable;
 
 class Module
 {
@@ -27,6 +28,14 @@ class Module
 
     public function getServiceConfiguration()
     {
+    	return array(
+    		'factories' => array(
+    			'user-table' => function($sm){
+    				$dbAdapter = $sm->get('db-adapter');
+    				return new UserTable($dbAdapter);
+    			}	
+    		),	
+    	);
     }
 
 }

@@ -13,7 +13,7 @@
 
 return array(
     'db' => array(
-        'driver' => 'Pdo',
+        'driver' 		 => 'Pdo',
         'dsn'            => 'mysql:dbname=zendmall;hostname=localhost',
         'username'       => 'zend',
         'password'       => '123456',
