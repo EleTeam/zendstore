@@ -43,14 +43,17 @@ class UserController extends ActionController
     	$request = $this->getRequest();
     	if ($request->isPost()) {
     		$user = new User();
-    		$form->setInputFilter();
+    		$form->setInputFilter($user->getInputFilter());
     		$form->setData($request->post());
     		if ($form->isValid()) {
     			$user->populate($form->getData());
-    			$this->getUserTable()->saveUser($user);    			
+    			$this->getUserTable()->saveUser($user);
+    			return $this->redirect()->toRoute('user', array('action' => 'login'));
+    		} else {
+    			echo '<pre>';
+    			print_r($form->getMessages());
+    			exit;
     		}
-    		
-    		return $this->redirect()->toRoute('user', array('action' => 'login'));
     	}
     	
     	return array('form' => $form);

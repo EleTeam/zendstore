@@ -38,6 +38,7 @@ class AlbumTable extends AbstractTableGateway
 
     public function saveAlbum(Album $album)
     {
+    	//echo '<pre>';print_r($album);exit;
         $data = array(
             'artist' => $album->artist,
             'title'  => $album->title,

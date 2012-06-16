@@ -1,0 +1,33 @@
+/****************** Running successful ***********************/
+mv JavaBridge.jar /usr/java/packages/lib/ext/JavaBridge.jar
+
+huangzhihua@huangzhihua-OptiPlex-390:~/www/website/green/includes/java$ java -jar JavaBridge.jar SERVLET:8081
+Jun 16 10:31:31 VMBridge INFO : VM                  : 1.6.0_29@http://java.sun.com/
+Jun 16 10:31:31 VMBridge INFO : VMBridge version             : 5.3.3
+Jun 16 10:31:31 VMBridge INFO : logFile             :
+Jun 16 10:31:31 VMBridge INFO : default logLevel    : 3
+Jun 16 10:31:31 VMBridge INFO : socket              : SERVLET:8081
+Jun 16 10:31:31 VMBridge INFO : java.ext.dirs       : /usr/local/jdk1.6.0_29/jre/lib/ext:/usr/java/packages/lib/ext
+Jun 16 10:31:31 VMBridge INFO : php.java.bridge.base: /home/huangzhihua
+Jun 16 10:31:31 VMBridge INFO : thread pool size    : 20
+Jun 16 10:31:31 VMBridge INFO : JavaBridgeRunner started on port INET:8081
+
+
+
+/****************** Running with exceptions *************************/
+[ecmall@test java]$ /usr/local/jdk/bin/java -jar JavaBridge.jar SERVLET:8081
+Jun 16 10:35:32 JavaBridge INFO : VM                  : 1.6.0_29@http://java.sun.com/
+Jun 16 10:35:32 JavaBridge INFO : JavaBridge version             : 6.2.1
+Jun 16 10:35:32 JavaBridge INFO : logFile             :
+Jun 16 10:35:32 JavaBridge INFO : default logLevel    : 3
+Jun 16 10:35:32 JavaBridge INFO : socket              : SERVLET:8081
+Jun 16 10:35:32 JavaBridge INFO : java.ext.dirs       : /usr/local/jdk1.6.0_29/jre/lib/ext:/usr/java/packages/lib/ext
+Jun 16 10:35:32 JavaBridge INFO : php.java.bridge.base: /home/ecmall
+Jun 16 10:35:32 JavaBridge INFO : thread pool size    : 20
+Jun 16 10:35:32 JavaBridge INFO : JavaBridgeRunner started on port INET:8081
+Jun 16 10:35:40 JavaBridge ERROR: An exception occured: java.lang.IllegalStateException: Please use a JEE server or servlet engine.
+java.lang.IllegalStateException: Please use a JEE server or servlet engine.
+at php.java.bridge.JavaBridgeRunner.doPut(JavaBridgeRunner.java:198)
+at php.java.bridge.http.HttpServer.service(HttpServer.java:289)
+at php.java.bridge.http.HttpServer$Runner.run(HttpServer.java:205)
+at php.java.bridge.ThreadPool$Delegate.run(ThreadPool.java:60)
