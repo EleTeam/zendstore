@@ -14,7 +14,7 @@
 return array(
     'db' => array(
         'driver' 		 => 'Pdo',
-        'dsn'            => 'mysql:dbname=zendmall;hostname=localhost',
+        'dsn'            => 'mysql:dbname=zendstore;hostname=localhost',
         'username'       => 'zend',
         'password'       => '123456',
         'driver_options' => array(
