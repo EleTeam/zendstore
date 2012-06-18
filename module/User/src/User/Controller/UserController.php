@@ -4,6 +4,7 @@ namespace User\Controller;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
+	Zend\Authentication\AuthenticationService,
 	User\Model\UserTable,
 	User\Model\User,
 	User\Form\UserForm;
@@ -30,7 +31,19 @@ class UserController extends ActionController
     	
     	$request = $this->getRequest();
     	if ($request->isPost()) {
-    		return $this->redirect()->toRoute('user');
+    		$user = new User();
+    		$form->setInputFilter($user->getInputFilter());
+    		$form->setData($request->post());
+    		
+    		if ($form->isValid()) {
+    			new AuthenticationService();
+    			//return $this->redirect()->toRoute('user');
+    		} else {
+    			echo '<h1>ERROR: Form data is invalid.</h1>';
+    			echo '<pre>';
+    			print_r($form->getMessages());
+    			exit;
+    		}
     	}
     	
     	return array('form' => $form);
