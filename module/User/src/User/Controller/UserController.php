@@ -5,6 +5,7 @@ namespace User\Controller;
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
 	Zend\Authentication\AuthenticationService,
+	Zend\Authentication\Adapter\DbTable as AuthenticationDbTable,
 	User\Model\UserTable,
 	User\Model\User,
 	User\Form\UserForm;
@@ -20,13 +21,59 @@ class UserController extends ActionController
     {
     	$user = $this->getUserTable()->getUser(1);
         
+    	$authService = new AuthenticationService();
+    	echo 'User logined?';
+        var_dump($authService->hasIdentity());
+        var_dump($authService->getIdentity());
+
         return new ViewModel(array(
             'user' => $user,
         ));
     }
     
+    public function registerAction()
+    {
+    	$authService = new AuthenticationService();
+    	if ($authService->hasIdentity()) {
+    		echo 'You have logined';
+    		exit;
+    	}
+    	 
+    	$form = new UserForm();
+    	 
+    	$request = $this->getRequest();
+    	if ($request->isPost()) {
+    		$user = new User();
+    		$form->setInputFilter($user->getInputFilter());
+    		$form->setData($request->post());
+    		if ($form->isValid()) {
+    			$data = $form->getData();
+    			$data['password_salt'] 	= microtime(true);
+    			$data['password'] 		= md5($data['password'] . $data['password_salt']);
+    			$data['register_date']	= date('Y-m-d H:i:s');
+    			$data['active']			= 1;
+    			
+    			$user->populate($data);
+    			$this->getUserTable()->saveUser($user);
+    			return $this->redirect()->toRoute('user', array('action' => 'login'));
+    		} else {
+    			echo '<pre>';
+    			print_r($form->getMessages());
+    			exit;
+    		}
+    	}
+    	 
+    	return array('form' => $form);
+    }
+    
     public function loginAction()
     {
+    	$authService = new AuthenticationService();
+    	if ($authService->hasIdentity()) {
+    		echo 'You have logined';
+    		exit;
+    	}
+    	
     	$form = new UserForm();
     	
     	$request = $this->getRequest();
@@ -36,8 +83,20 @@ class UserController extends ActionController
     		$form->setData($request->post());
     		
     		if ($form->isValid()) {
-    			new AuthenticationService();
-    			//return $this->redirect()->toRoute('user');
+    			$data = $form->getData();
+    			// Authentication
+    			$sm 		 = $this->getServiceLocator();
+		    	$db			 = $sm->get('db-adapter');
+		    	//$authDbTable = new AuthenticationDbTable($db, 'user', 'email', 'password', 'MD5(?)');
+		    	$authDbTable = new AuthenticationDbTable($db, 'user', 'email', 'password', 'MD5(CONCAT(?, password_salt))');
+		    	$authDbTable->setIdentity($data['email']);
+		    	$authDbTable->setCredential($data['password']);
+		    	$result 	 = $authService->authenticate($authDbTable);
+		    	if ($result->isValid()) {
+		    		return $this->redirect()->toRoute('user');
+		    	} else {
+		    		var_dump($result->getMessages());
+		    	}
     		} else {
     			echo '<h1>ERROR: Form data is invalid.</h1>';
     			echo '<pre>';
@@ -49,27 +108,11 @@ class UserController extends ActionController
     	return array('form' => $form);
     }
     
-    public function registerAction()
+    public function logoutAction()
     {
-    	$form = new UserForm();
-    	
-    	$request = $this->getRequest();
-    	if ($request->isPost()) {
-    		$user = new User();
-    		$form->setInputFilter($user->getInputFilter());
-    		$form->setData($request->post());
-    		if ($form->isValid()) {
-    			$user->populate($form->getData());
-    			$this->getUserTable()->saveUser($user);
-    			return $this->redirect()->toRoute('user', array('action' => 'login'));
-    		} else {
-    			echo '<pre>';
-    			print_r($form->getMessages());
-    			exit;
-    		}
-    	}
-    	
-    	return array('form' => $form);
+    	$authService = new AuthenticationService();
+    	$authService->clearIdentity();
+    	return $this->redirect()->toRoute('user');
     }
     
     /**
