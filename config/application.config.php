@@ -8,6 +8,7 @@ return array(
     	'Geography',
     	'Payment',
     	'User',
+    	'Catalog',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

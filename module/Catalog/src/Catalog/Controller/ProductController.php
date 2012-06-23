@@ -1,6 +1,6 @@
 <?php
 
-namespace Product\Controller;
+namespace Catalog\Controller;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
@@ -17,7 +17,7 @@ class ProductController extends ActionController
 	public function indexAction()
 	{
 		return new ViewModel(array(
-			'products' => $this->productTable->fetchAll()		
+			//'products' => $this->productTable->fetchAll()		
 		));
 	}	
 	

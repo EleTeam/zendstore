@@ -1,6 +1,6 @@
 <?php
 
-namespace Zendmall\Core;
+namespace Catalog;
 
 class Module
 {

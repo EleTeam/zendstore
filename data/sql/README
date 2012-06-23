@@ -1,0 +1,21 @@
+1, Principles for designing database:
+	1.1, Engine: InnoDB
+	1.2, Charset: utf8_general_ci
+	1.3, Fields: Lower case and under scope
+	1.4, Primary key: last_part_of_table_name_id INT UNSIGNED NOT NULL AUTO_INCREMENT
+	1.5, Field names: 
+		created_at/updated_at TIMESTAMP NULL DEFAULT NULL
+		
+2, Relationship:
+	A primary key has one or many foreign keys(in the related table)
+	A foreign belongs to a primary key(in the related table)	
+
+3, Table names:
+		Table							Pimary Key					Foreign Key	
+	catalog_category				category_id					
+	catalog_category_description	description_id						category_id
+	catalog_category_product		category_id,product_id	
+	catalog_product					product_id
+	catalog_product_description		description_id						product_id
+	catalog_product_image			image_id					product_id
+	catalog_product_link			link_id						product_id,linked_product_id
