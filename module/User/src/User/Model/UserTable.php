@@ -19,9 +19,9 @@ class UserTable extends AbstractTableGateway
 	 * @var array
 	 */
 	protected $columns = array(
-		'user_id', 'email', 'password', 'password_salt', 'username',
-		'real_name', 'register_date', 'register_ip', 'last_login',
-		'last_ip', 'active', 'enabled', 		
+		'user_id',		'email', 			'password', 		'password_salt', 	'username',
+		'real_name', 	'register_date',	'register_ip', 		'last_login',		'last_ip', 
+		'active', 		'enabled', 		
 	);
 	
 	public function __construct(Adapter $adapter)

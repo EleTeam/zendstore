@@ -18,7 +18,7 @@ class User extends Row
 	protected $inputFilter;
 	
 	/**
-	 * @see Zend\InputFilter.InputFilterAwareInterface::getInputFilter()
+	 * @see Zend\InputFilter\InputFilterAwareInterface::getInputFilter()
 	 */
 	public function getInputFilter() 
 	{
@@ -66,11 +66,9 @@ class User extends Row
 	}
 
 	/**
-	 * @see Zend\InputFilter.InputFilterAwareInterface::setInputFilter()
+	 * @see Zend\InputFilter\InputFilterAwareInterface::setInputFilter()
 	 */
 	public function setInputFilter(InputFilterInterface $inputFilter) 
-	{
-		
-	}
+	{}
 	
 }

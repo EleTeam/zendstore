@@ -13,10 +13,10 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'category' => array(
+            'catalog-category' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/category[/:action][/:id]',
+                    'route'    => '/catalog/category[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -27,17 +27,16 @@ return array(
                     ),
                 ),
             ),
-        	'product' => array(
+        	'catalog-product' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/product[/:action][/:id]',
+                    'route'    => '/catalog/product[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'catalog/product',
-                        'action'     => 'index',
                     ),
                 ),
             ),

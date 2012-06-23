@@ -4,8 +4,8 @@ namespace Catalog\Controller;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
-	Product\Model\ProductTable,
-	Product\Form\ProductForm;
+	Catalog\Model\ProductTable,
+	Catalog\Form\ProductForm;
 
 class ProductController extends ActionController
 {
@@ -14,7 +14,7 @@ class ProductController extends ActionController
 	 */
 	protected $productTable;
 	
-	public function indexAction()
+	public function viewAction()
 	{
 		return new ViewModel(array(
 			//'products' => $this->productTable->fetchAll()		
@@ -24,7 +24,6 @@ class ProductController extends ActionController
 	public function addAction()
 	{
 		$form = new ProductForm();
-		//$form->submit->setLabel('Add');
 		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
