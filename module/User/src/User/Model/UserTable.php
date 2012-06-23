@@ -41,9 +41,9 @@ class UserTable extends AbstractTableGateway
 	 */
 	public function getUser($userId)
 	{
-		$userId = (int)$userId;
-		$rowSet = $this->select(array('user_id' => $userId));
-		$row 	= $rowSet->current();
+		$userId    = (int)$userId;
+		$resultSet = $this->select(array('user_id' => $userId));
+		$row 	   = $resultSet->current();
 		if (!$row) {
 			throw new Exception\UnexpectedValueException("User $userId doesn't exist");
 		}
@@ -62,7 +62,7 @@ class UserTable extends AbstractTableGateway
 	
 	public function addUser(User $user)
 	{
-		$this->insert($user->getArrayCopy());
+		$this->insert($user->toArray());
 	}
 	
 	public function updateUser(User $user)

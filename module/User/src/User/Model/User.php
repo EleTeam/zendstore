@@ -2,14 +2,14 @@
 
 namespace User\Model;
 
-use Zend\Db\ResultSet\Row,
+use Zend\Db\RowGateway\AbstractRowGateway,
 	Zend\InputFilter\InputFilter,
 	Zend\InputFilter\InputFilterAwareInterface,
 	Zend\InputFilter\InputFilterInterface,
 	Zend\InputFilter\Factory as InputFactory;
 	
 
-class User extends Row
+class User extends AbstractRowGateway
 	implements InputFilterAwareInterface
 {
 	/**

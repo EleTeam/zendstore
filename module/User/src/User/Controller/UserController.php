@@ -6,6 +6,7 @@ use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel,
 	Zend\Authentication\AuthenticationService,
 	Zend\Authentication\Adapter\DbTable as AuthenticationDbTable,
+	Zend\Form\FormInterface,
 	User\Model\UserTable,
 	User\Model\User,
 	User\Form\UserForm;
@@ -19,7 +20,7 @@ class UserController extends ActionController
 	
     public function indexAction()
     {
-    	$user = $this->getUserTable()->getUser(1);
+    	$user = $this->getUserTable()->getUser(7);
         
     	$authService = new AuthenticationService();
     	echo 'User logined?';
@@ -39,21 +40,22 @@ class UserController extends ActionController
     		exit;
     	}
     	 
-    	$form = new UserForm();
-    	 
     	$request = $this->getRequest();
+    	$form = new UserForm();
+    	
     	if ($request->isPost()) {
     		$user = new User();
     		$form->setInputFilter($user->getInputFilter());
     		$form->setData($request->post());
+    		
     		if ($form->isValid()) {
-    			$data = $form->getData();
-    			$data['password_salt'] 	= microtime(true);
-    			$data['password'] 		= md5($data['password'] . $data['password_salt']);
-    			$data['register_date']	= date('Y-m-d H:i:s');
-    			$data['active']			= 1;
+    			$formData = $form->getData();
+    			$formData['password_salt'] 	= microtime(true);
+    			$formData['password'] 		= md5($formData['password'] . $formData['password_salt']);
+    			$formData['register_date']	= date('Y-m-d H:i:s');
+    			$formData['active']			= 1;
     			
-    			$user->populate($data);
+    			$user->populate($formData);
     			$this->getUserTable()->saveUser($user);
     			return $this->redirect()->toRoute('user', array('action' => 'login'));
     		} else {
