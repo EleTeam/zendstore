@@ -2,7 +2,7 @@
 
 namespace Catalog\Model;
 
-use Zend\Text\Table\Row,
+use Zend\Db\ResultSet\Row,
 	Zend\InputFilter\InputFilterAwareInterface,
 	Zend\InputFilter\InputFilterInterface,
 	Zend\InputFilter\InputFilter,
@@ -35,8 +35,10 @@ class Product extends Row
 			
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'product_name',
-				'required'	 => true					
+				'required'	 => true,					
 			)));
+			
+			$this->setInputFilter($inputFilter);
 		}	
 		
 		return $this->inputFilter;
@@ -46,5 +48,7 @@ class Product extends Row
 	 * @see \Zend\InputFilter\InputFilterAwareInterface::setInputFilter()
 	 */
 	public function setInputFilter(InputFilterInterface $inputFilter)
-	{}
+	{
+		$this->inputFilter = $inputFilter;
+	}
 }

@@ -12,22 +12,40 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formInput($form->get('product_id')); ?><dd>
 	<dt><?php echo $this->formLabel($form->get('product_name')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('product_name')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('product_name'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('price')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('price')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('price'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('market_price')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('market_price')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('market_price'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('brand')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('brand')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('brand'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('quantity')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('quantity')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('quantity'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('tags')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('tags')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('tags'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('on_shelf')); ?></dt>
 	<dt><?php echo $this->formRadio($form->get('on_shelf')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('on_shelf'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('category_id')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('category_id')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('category_id'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('link_id')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('link_id')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('link_id'));?></dt>
+	
 	<dt><?php echo $this->formInput($form->get('submit')); ?></dt>
 </dl>
 <?php ?>
