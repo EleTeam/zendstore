@@ -38,7 +38,9 @@ abstract class BaseActionController extends ActionController
 			// Change "Demo\Controller\Front\TestController::viewAction" to "demo/front/test/view"
 			$template = str_replace('\\', '/', $__METHOD__);
 			$template = str_replace(array('/Controller/', 'Controller::'), array('/', '/'), $template);
-			$template = strtolower(rtrim($template, 'Action'));
+			$template = substr($template, 0, strlen($template) - strlen('Action'));
+			$template = strtolower($template);
+
 			$viewModel->setTemplate($template);
 		}
 		

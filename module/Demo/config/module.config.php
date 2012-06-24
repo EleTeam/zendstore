@@ -39,7 +39,7 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'admin/demo/test',
-                    	'action'	 => 'view',
+                    	'action'	 => 'index',
                     ),
                 ),
             ),

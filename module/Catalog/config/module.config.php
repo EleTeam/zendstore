@@ -5,51 +5,67 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'catalog/category' 		=> 'Catalog\Controller\CategoryController',
-        	'catalog/product' 		=> 'Catalog\Controller\ProductController',
+            'admin/catalog/category' 	=> 'Catalog\Controller\Admin\CategoryController',
+        	'admin/catalog/product' 	=> 'Catalog\Controller\Admin\ProductController',
+        	'front/catalog/category' 	=> 'Catalog\Controller\Front\CategoryController',
+        	'front/catalog/product' 	=> 'Catalog\Controller\Front\ProductController',
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-        	'catalog-admin-product' => array(
+        	'admin-catalog-category' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/catalog/admin-product[/:action][/:id]',
+                    'route'		  => '/admin/catalog/category[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'catalog/product',
+                        'controller' => 'admin/catalog/category',
+                    	'action'	 => 'index',
                     ),
                 ),
             ),
-            'catalog-category' => array(
+        	'admin-catalog-product' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/catalog/category[/:action][/:id]',
+                    'route'		  => '/admin/catalog/product[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'catalog/category',
+                        'controller' => 'admin/catalog/product',
+                    ),
+                ),
+            ),
+            'front-catalog-category' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    	  => '/front/catalog/category[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]+',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'front/catalog/category',
                         'action'     => 'index',
                     ),
                 ),
             ),
-        	'catalog-product' => array(
+        	'front-catalog-product' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/catalog/product[/:action][/:id]',
+                    'route'       => 'front/catalog/product[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'catalog/product',
+                        'controller' => 'front/catalog/product',
                     ),
                 ),
             ),

@@ -1,18 +1,23 @@
 <?php
 
-namespace User\Controller;
+namespace User\Controller\Front;
 
-use Zend\Mvc\Controller\ActionController,
-	Zend\View\Model\ViewModel,
+use Base\Controller\BaseActionController,
 	Zend\Authentication\AuthenticationService,
-	Zend\Authentication\Adapter\DbTable as AuthenticationDbTable,
+	Zend\Authentication\Adapter\DbTable as AuthenticationAdapter,
+	Zend\Authentication\Storage\Session as AuthenticationStorage,
 	Zend\Form\FormInterface,
 	User\Model\UserTable,
 	User\Model\User,
 	User\Form\UserForm;
 
-class UserController extends ActionController
+class UserController extends BaseActionController
 {
+	/**
+	 * ZendStore front session namespace
+	 */
+	const NAMESPACE_ZENDSTORE_FRONT = 'ZendStore_Front';
+	
 	/**
 	 * @var UserTable
 	 */
@@ -20,21 +25,25 @@ class UserController extends ActionController
 	
     public function indexAction()
     {
-    	$user = $this->getUserTable()->getUser(7);
+    	$user = $this->getUserTable()->getUser(21);
         
-    	$authService = new AuthenticationService();
+    	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);
+    	$authService = new AuthenticationService($authStorage);
     	echo 'User logined?';
         var_dump($authService->hasIdentity());
         var_dump($authService->getIdentity());
 
-        return new ViewModel(array(
-            'user' => $user,
-        ));
+        $viewVars  = array('user' => $user);
+        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel->setVariables($viewVars);
+        
+        return $viewModel;
     }
     
     public function registerAction()
     {
-    	$authService = new AuthenticationService();
+		$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);
+    	$authService = new AuthenticationService($authStorage);
     	if ($authService->hasIdentity()) {
     		echo 'You have logined';
     		exit;
@@ -50,14 +59,14 @@ class UserController extends ActionController
     		
     		if ($form->isValid()) {
     			$formData = $form->getData();
-    			$formData['password_salt'] 	= microtime(true);
+    			$formData['password_salt'] 	= uniqid();
     			$formData['password'] 		= md5($formData['password'] . $formData['password_salt']);
     			$formData['register_date']	= date('Y-m-d H:i:s');
     			$formData['active']			= 1;
     			
     			$user->populate($formData);
     			$this->getUserTable()->saveUser($user);
-    			return $this->redirect()->toRoute('user', array('action' => 'login'));
+    			return $this->redirect()->toRoute('front-user-user', array('action' => 'login'));
     		} else {
     			echo '<pre>';
     			print_r($form->getMessages());
@@ -65,12 +74,17 @@ class UserController extends ActionController
     		}
     	}
     	 
-    	return array('form' => $form);
+    	$viewVars  = array('form' => $form);
+    	$viewModel = $this->getViewModel(__METHOD__);
+    	$viewModel->setVariables($viewVars);
+
+    	return $viewModel;
     }
     
     public function loginAction()
     {
-    	$authService = new AuthenticationService();
+    	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);
+    	$authService = new AuthenticationService($authStorage);
     	if ($authService->hasIdentity()) {
     		echo 'You have logined';
     		exit;
@@ -89,15 +103,16 @@ class UserController extends ActionController
     			// Authentication
     			$sm 		 = $this->getServiceLocator();
 		    	$db			 = $sm->get('db-adapter');
-		    	//$authDbTable = new AuthenticationDbTable($db, 'user', 'email', 'password', 'MD5(?)');
-		    	$authDbTable = new AuthenticationDbTable($db, 'user', 'email', 'password', 'MD5(CONCAT(?, password_salt))');
-		    	$authDbTable->setIdentity($data['email']);
-		    	$authDbTable->setCredential($data['password']);
-		    	$result 	 = $authService->authenticate($authDbTable);
+		    	//$authAdapter = new AuthenticationAdapter($db, 'user', 'email', 'password', 'MD5(?)');
+		    	$authAdapter = new AuthenticationAdapter($db, 'user', 'email', 'password', 'MD5(CONCAT(?, password_salt))');
+		    	$authAdapter->setIdentity($data['email']);
+		    	$authAdapter->setCredential($data['password']);
+		    	$result 	 = $authService->authenticate($authAdapter);
 		    	if ($result->isValid()) {
-		    		return $this->redirect()->toRoute('user');
+		    		return $this->redirect()->toRoute('front-user-user');
 		    	} else {
 		    		var_dump($result->getMessages());
+		    		exit;
 		    	}
     		} else {
     			echo '<h1>ERROR: Form data is invalid.</h1>';
@@ -107,18 +122,23 @@ class UserController extends ActionController
     		}
     	}
     	
-    	return array('form' => $form);
+    	$viewVars  = array('form' => $form);
+    	$viewModel = $this->getViewModel(__METHOD__);
+    	$viewModel->setVariables($viewVars);
+
+    	return $viewModel;
     }
     
     public function logoutAction()
     {
-    	$authService = new AuthenticationService();
+    	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);
+    	$authService = new AuthenticationService($authStorage);
     	$authService->clearIdentity();
-    	return $this->redirect()->toRoute('user');
+    	return $this->redirect()->toRoute('front-user-user');
     }
     
     /**
-     * Get an instance of UserTable
+     * Get UserTable
      * 
      * @return UserTable
      */

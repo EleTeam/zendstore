@@ -5,38 +5,38 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'user/user' 		=> 'User\Controller\UserController',
-        	'user/admin-user' 	=> 'User\Controller\AdminUserController',
+            'admin/user/user' 	=> 'User\Controller\Admin\UserController',
+        	'front/user/user' 	=> 'User\Controller\Front\UserController',
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'user' => array(
+            'admin-user-user' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/user[/:action][/:id]',
+                    'route'       => '/admin/user/user[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'user/user',
+                        'controller' => 'admin/user/user',
                         'action'     => 'index',
                     ),
                 ),
             ),
-        	'admin-user' => array(
+        	'front-user-user' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/user[/:action][/:id]',
+                    'route'       => '/front/user/user[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'user/admin-user',
+                        'controller' => 'front/user/user',
                         'action'     => 'index',
                     ),
                 ),

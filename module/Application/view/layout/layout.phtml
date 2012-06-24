@@ -51,15 +51,17 @@ echo $this->doctype();
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo $this->url('home') ?>">Home</a></li>
+              <li class="active"><a href="<?php echo $this->url('front-demo-test', array('action' => 'view')); ?>">FrontDemo</a></li>
+              <li class="active"><a href="<?php echo $this->url('admin-demo-test', array('action' => 'view')); ?>">AdminDemo</a></li>
               <li class="active"><a href="<?php echo $this->url('album') ?>">Album</a></li>
               <li class="active"><a href="<?php echo $this->url('base') ?>">Base</a></li>
               <li class="active"><a href="<?php echo $this->url('uploader') ?>">Media</a></li>
               <li class="active"><a href="<?php echo $this->url('region') ?>">Region</a></li>
               <li class="active"><a href="<?php echo $this->url('payment') ?>">Payment</a></li>
-              <li class="active"><a href="<?php echo $this->url('user') ?>">User</a></li>
-              <li class="active"><a href="<?php echo $this->url('admin-user') ?>">AdminUser</a></li>
-              <li class="active"><a href="<?php echo $this->url('catalog-category') ?>">Category</a></li>
-              <li class="active"><a href="<?php echo $this->url('catalog-product', array('action' => 'view', 'id' => 1)); ?>">Product</a></li>
+              <li class="active"><a href="<?php echo $this->url('front-user-user'); ?>">FrontUser</a></li>
+              <li class="active"><a href="<?php echo $this->url('admin-user-user'); ?>">AdminUser</a></li>
+              <li class="active"><a href="<?php echo $this->url('front-catalog-category'); ?>">FrontCategory</a></li>
+              <li class="active"><a href="<?php echo $this->url('admin-catalog-product', array('action' => 'add')); ?>">AdminProduct</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
