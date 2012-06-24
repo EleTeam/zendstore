@@ -2,8 +2,7 @@
 
 namespace Demo\Controller\Admin;
 
-use Zend\Mvc\Controller\ActionController,
-	Base\Controller\BaseActionController;
+use Base\Controller\BaseActionController;
 
 class DemoController extends BaseActionController
 {
