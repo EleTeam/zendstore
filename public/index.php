@@ -43,5 +43,5 @@ $serviceManager = new ServiceManager(new ServiceManagerConfiguration($configurat
 $serviceManager->setService('ApplicationConfiguration', $configuration);
 $serviceManager->get('ModuleManager')->loadModules();
 
-// Run application
+// Run Zend\Mvc\Application
 $serviceManager->get('Application')->bootstrap()->run()->send();

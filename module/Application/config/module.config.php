@@ -25,12 +25,23 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+            ),            
+        	'application-admin-index' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/admin',
+                    'defaults' => array(
+                        'controller' => 'admin-index',
+                        'action'     => 'index',
+                    ),
+                ),
             ),
         ),
     ),
     'controller' => array(
         'classes' => array(
-            'index' => 'Application\Controller\IndexController'
+            'index' 		=> 'Application\Controller\IndexController',
+        	'admin-index'	=> 'Application\Controller\AdminIndexController',
         ),
     ),
     'view_manager' => array(

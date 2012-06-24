@@ -13,6 +13,19 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
+        	'catalog-admin-product' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/catalog/admin-product[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'catalog/product',
+                    ),
+                ),
+            ),
             'catalog-category' => array(
                 'type'    => 'segment',
                 'options' => array(
