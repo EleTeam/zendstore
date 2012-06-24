@@ -2,7 +2,7 @@
 
 namespace User\Controller\Front;
 
-use Base\Controller\BaseActionController,
+use Base\Controller\Front\FrontActionController,
 	Zend\Authentication\AuthenticationService,
 	Zend\Authentication\Adapter\DbTable as AuthenticationAdapter,
 	Zend\Authentication\Storage\Session as AuthenticationStorage,
@@ -11,7 +11,7 @@ use Base\Controller\BaseActionController,
 	User\Model\User,
 	User\Form\UserForm;
 
-class UserController extends BaseActionController
+class UserController extends FrontActionController
 {
 	/**
 	 * ZendStore front session namespace
@@ -25,6 +25,8 @@ class UserController extends BaseActionController
 	
     public function indexAction()
     {
+    	$this->layout()->setTemplate('layout/front');
+    	
     	$user = $this->getUserTable()->getUser(21);
         
     	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);

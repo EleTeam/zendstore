@@ -2,9 +2,9 @@
 
 namespace Demo\Controller\Front;
 
-use Base\Controller\BaseActionController;
+use Base\Controller\Front\FrontActionController;
 
-class TestController extends BaseActionController
+class TestController extends FrontActionController
 {
 	public function indexAction()
 	{

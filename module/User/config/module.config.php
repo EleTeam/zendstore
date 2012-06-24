@@ -45,7 +45,7 @@ return array(
     ),    
 
     // View setup for this module
-    'view_manager' => array(
+    'view_manager' => array(        
         'template_path_stack' => array(
             'user' => __DIR__ . '/../view',
         ),

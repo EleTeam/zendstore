@@ -1,15 +1,29 @@
 <?php
 
-namespace Base\Controller;
+namespace Base\Controller\Admin;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel;
 
 /**
- * Base action controller
+ * Admin based action controller
  */
-abstract class BaseActionController extends ActionController
+abstract class AdminActionController extends ActionController
 {
+	const VIEW_LAYOUT = 'layout/admin';
+	
+	public function __construct()
+	{
+		$this->initialize();
+	}
+	
+	/**
+	 * Initialization for controllers which extend this controller
+	 */
+	public function initialize()
+	{
+		$this->layout()->setTemplate(self::VIEW_LAYOUT);
+	}
 	
 	/**
 	 * Get ViewModel

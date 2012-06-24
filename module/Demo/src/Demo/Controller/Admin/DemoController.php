@@ -2,9 +2,9 @@
 
 namespace Demo\Controller\Admin;
 
-use Base\Controller\BaseActionController;
+use Base\Controller\Admin\AdminActionController;
 
-class DemoController extends BaseActionController
+class DemoController extends AdminActionController
 {
 	public function indexAction()
 	{
