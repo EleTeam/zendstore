@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.0-dev
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 14, 2012 at 07:12 PM
--- Server version: 5.5.18-log
+-- Host: 127.0.0.1
+-- Generation Time: Jun 24, 2012 at 07:00 PM
+-- Server version: 5.5.21
 -- PHP Version: 5.3.8-ZS5.5.0
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `zendmall`
+-- Database: `zendstore`
 --
 
 -- --------------------------------------------------------
@@ -48,6 +48,113 @@ INSERT INTO `album` (`id`, `artist`, `title`) VALUES
 (8, 'sdf', 'sadf'),
 (9, 'asdfasdfsdf', 'sdf'),
 (10, 'aaaaaaaaaaa', 'aa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_category`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_category` (
+  `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) NOT NULL,
+  `parent_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `visibility` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `created_date` timestamp NULL DEFAULT NULL,
+  `updated_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_category_description`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_category_description` (
+  `description_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `description` text,
+  `category_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`description_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_category_product`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_category_product` (
+  `category_id` int(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`category_id`,`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_product`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_product` (
+  `product_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(255) NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `brand` varchar(255) DEFAULT NULL,
+  `price` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `market_price` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `tags` varchar(100) DEFAULT NULL,
+  `on_shelf` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `position` tinyint(3) unsigned NOT NULL,
+  `created_date` timestamp NULL DEFAULT NULL,
+  `updated_data` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_product_description`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_product_description` (
+  `description_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `description` text,
+  `product_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`description_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_product_image`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_product_image` (
+  `image_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(10) unsigned NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `thumbnail_path` varchar(255) NOT NULL,
+  `sort_order` tinyint(3) unsigned NOT NULL,
+  `file_id` int(10) unsigned NOT NULL COMMENT 'Reference to media_uploaded_file::file_id',
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_product_link`
+--
+
+CREATE TABLE IF NOT EXISTS `catalog_product_link` (
+  `link_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(10) unsigned NOT NULL,
+  `linked_product_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`link_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -3636,7 +3743,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `email`, `password`, `password_salt`, `username`, `real_name`, `register_date`, `register_ip`, `last_login`, `last_ip`, `active`, `enabled`) VALUES
+(21, 'test@test.com', '2b9444da44431d44f3047820741c0ac3', '4fe68322dfefb', NULL, NULL, '2012-06-24 11:01:54', 0, NULL, NULL, 1, 0),
+(22, 'test-1@test-1.com', 'ad9035138e6d73928ea308cfbe1ef654', '4fe6838419e7e', NULL, NULL, '2012-06-24 11:03:32', 0, NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
