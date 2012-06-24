@@ -2,9 +2,9 @@
 return array(
     'modules' => array(
         'Application',
+    	'Base',
     	'Demo',
         'Album',
-    	'Base',
     	'Media',
     	'Geography',
     	'Payment',
