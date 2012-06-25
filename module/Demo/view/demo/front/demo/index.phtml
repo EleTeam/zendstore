@@ -1,1 +1,16 @@
 <h2>/demo/front/demo/index</h2>
+
+<?php
+
+echo get_class($this->articlewidget());
+
+exit();
+$this->widget('demo', 'article');
+print_r(get_class($this)); // Zend\View\Renderer\PhpRenderer  
+echo '<br />';
+print_r(get_class($this->getEngine()));  // Zend\View\Renderer\PhpRenderer
+echo '<br />';
+print_r(get_class($this->getBroker()->load('widget', $options))); // $this->widget($module, $name, $params);
+
+//print_r($this->widget('module'));
+?>

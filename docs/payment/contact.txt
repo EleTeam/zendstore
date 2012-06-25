@@ -4,6 +4,7 @@
 	email: 陈一凡 gdszdzchenyifan <0xLJB3C2D2BBB7B2zgdszdzchenyifan@mail.notes.bank-of-china.com>    
 	用户支付测试用户：
 		U3环境个人用户名：grp111111   密码：1111111a
+		帐号查看：180.168.146.75:81/BocnetClient    个人客户
 	 	证件号码：445221196308076877   证件类型：其他    账户姓名：郭锐藩   卡号：6013822000638295876
 	 	输入手机交易码：123456     动态口令：123456	
 	

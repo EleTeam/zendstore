@@ -2,7 +2,7 @@
 
 namespace Demo\Controller\Front;
 
-use Base\Controller\Front\Front\ActionController;
+use Base\Controller\Front\FrontActionController;
 
 class DemoController extends FrontActionController
 {

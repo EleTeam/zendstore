@@ -2,6 +2,9 @@
 
 namespace Demo;
 
+use Catalog\Model\ProductTable,
+	Demo\Widget\Article\ArticleWidget;
+
 class Module
 {
     public function getConfig()
@@ -19,6 +22,21 @@ class Module
     			'namespaces' => array(
   				__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
     			),
+    		),
+    	);
+    }
+
+	public function getServiceConfiguration()
+    {
+    	return array(
+    		'factories' => array(
+    			'product-table' => function($sm) {
+	    			$dbAdapter = $sm->get('db-adapter');
+	    			return new ProductTable($dbAdapter);
+    			},
+    			'article-widget' => function($sm) {
+                    return new ArticleWidget();
+    			},
     		),
     	);
     }
