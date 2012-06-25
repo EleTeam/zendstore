@@ -2,6 +2,9 @@
 
 namespace Catalog;
 
+use //Zend\Form\View\HelperLoader as FormHelperLoader,
+	Catalog\Model\ProductTable;
+
 class Module
 {
     public function getConfig()
@@ -19,6 +22,18 @@ class Module
     			'namespaces' => array(
   				__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
     			),
+    		),
+    	);
+    }
+
+	public function getServiceConfiguration()
+    {
+    	return array(
+    		'factories' => array(
+    			'product-table' => function($sm){
+	    			$dbAdapter = $sm->get('db-adapter');
+	    			return new ProductTable($dbAdapter);
+    			}
     		),
     	);
     }

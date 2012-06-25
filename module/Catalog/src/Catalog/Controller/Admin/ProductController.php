@@ -2,12 +2,12 @@
 
 namespace Catalog\Controller\Admin;
 
-use Base\Controller\BaseActionController,
+use Base\Controller\Admin\AdminActionController,
 	Catalog\Model\ProductTable,
 	Catalog\Model\Product,
 	Catalog\Form\ProductForm;
 
-class ProductController extends BaseActionController
+class ProductController extends AdminActionController
 {
 	/**
 	 * @var ProductTable
@@ -32,12 +32,13 @@ class ProductController extends BaseActionController
 			$form->setData($request->post());
 			if ($form->isValid()) {
 				$formData = $form->getData();
-				$product->populate($$formData);
+				$product->populate($formData);
 				$this->getProductTable()->saveProduct($product);
 
-				return $this->redirect()->toRoute('catalog-product', array(
-					'action'	 => 'view',
-				));
+				exit('Added OK');
+// 				return $this->redirect()->toRoute('admin-catalog-product', array(
+// 					'action'	 => 'view',
+// 				));
 			}
 		}
 
@@ -55,10 +56,10 @@ class ProductController extends BaseActionController
 	 */
 	public function getProductTable()
 	{
-		if (!$this->ProductTable) {
+		if (!$this->productTable) {
 			$sm = $this->getServiceLocator();
-			$this->ProductTable = $sm->get('product-table');
+			$this->productTable = $sm->get('product-table');
 		}
-		return $this->ProductTable;
+		return $this->productTable;
 	}
 }
