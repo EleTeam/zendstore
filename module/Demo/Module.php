@@ -3,7 +3,7 @@
 namespace Demo;
 
 use Catalog\Model\ProductTable,
-	Demo\Widget\Article\ArticleWidget;
+	Demo\Widget\Demo\DemoWidget;
 
 class Module
 {
@@ -34,8 +34,8 @@ class Module
 	    			$dbAdapter = $sm->get('db-adapter');
 	    			return new ProductTable($dbAdapter);
     			},
-    			'article-widget' => function($sm) {
-                    return new ArticleWidget();
+    			'demo-widget' => function($sm) {
+                    return new DemoWidget();
     			},
     		),
     	);

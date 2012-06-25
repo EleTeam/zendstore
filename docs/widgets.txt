@@ -1,0 +1,17 @@
+General rules for developing widgets.
+	
+1, Widget folder structure
+	1.1, Each widget have to belong to one module.
+	1.2， Each widget consist of at least 5 files:
+
+- about.xml This file describe about widget
+
+- config.phtml Used to display when user configure widget
+
+- lang.en_US.ini (or something like lang.xx_YY.ini): Language file
+
+- show.phtml Output of widget
+
+- Widget.php The controller of widget 
+
+2, 
