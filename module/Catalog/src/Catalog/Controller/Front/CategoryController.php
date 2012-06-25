@@ -2,9 +2,9 @@
 
 namespace Catalog\Controller\Front;
 
-use Base\Controller\BaseActionController;
+use Base\Controller\Front\FrontActionController;
 
-class CategoryController extends BaseActionController
+class CategoryController extends FrontActionController
 {
 	public function indexAction()
 	{

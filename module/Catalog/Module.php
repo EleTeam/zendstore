@@ -2,8 +2,9 @@
 
 namespace Catalog;
 
-use //Zend\Form\View\HelperLoader as FormHelperLoader,
-	Catalog\Model\ProductTable;
+use Catalog\Widget\Product\ProductWidget;
+
+use	Catalog\Model\ProductTable;
 
 class Module
 {
@@ -30,10 +31,13 @@ class Module
     {
     	return array(
     		'factories' => array(
-    			'product-table' => function($sm){
+    			'product-table' => function($sm) {
 	    			$dbAdapter = $sm->get('db-adapter');
 	    			return new ProductTable($dbAdapter);
-    			}
+    			},
+    			'product-widget' => function($sm) {
+    				return new ProductWidget();
+    			},
     		),
     	);
     }
