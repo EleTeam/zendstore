@@ -2,9 +2,18 @@
 
 namespace Catalog\Widget\Product;
 
-use Base\Widget\AbstractWidget;
+use Zend\Http\Header\AbstractAccept;
+
+use ZendStore\Widget\AbstractWidget;
 
 class ProductWidget extends AbstractWidget
 {
-	
+	/**
+	 * @see AbstractWidget::_prepare()
+	 */
+	protected function _prepare()
+	{
+		
+	}
+
 }

@@ -8,7 +8,12 @@ use Zend\Loader\AutoloaderFactory,
 error_reporting(E_ALL | E_STRICT); 						// Development
 //error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE); 	// Production
 
-define('ROOT_PATH', dirname(__DIR__));
+define('PS', PATH_SEPARATOR);
+define('DS', DIRECTORY_SEPARATOR);
+
+define('ROOT_PATH', 	dirname(__DIR__));
+define('MODULE_PATH', 	ROOT_PATH . '/module');
+define('DATA_PATH', 	ROOT_PATH . '/data');
 
 chdir(dirname(__DIR__));
 

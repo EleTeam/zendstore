@@ -1,26 +1,26 @@
 <?php
 
-namespace Base\Controller\Front;
+namespace ZendStore\Controller;
 
 use Zend\Mvc\Controller\ActionController,
 	Zend\View\Model\ViewModel;
 
 /**
- * Front based action controller
+ * ZendStore admin platform based action controller
  */
-abstract class FrontActionController extends ActionController
+abstract class AdminActionController extends ActionController
 {
-	const VIEW_LAYOUT = 'layout/front';
+	const VIEW_LAYOUT = 'layout/admin';
 	
 	public function __construct()
 	{
-		$this->initialize();
+		$this->init();
 	}
 	
 	/**
 	 * Initialization for controllers which extend this controller
 	 */
-	public function initialize()
+	public function init()
 	{
 		$this->layout()->setTemplate(self::VIEW_LAYOUT);
 	}

@@ -2,7 +2,7 @@
 
 namespace Catalog\Controller\Front;
 
-use Base\Controller\Front\FrontActionController;
+use ZendStore\Controller\FrontActionController;
 
 class CategoryController extends FrontActionController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Widget;
+namespace ZendStore\Widget;
 
 interface WidgetInterface
 {

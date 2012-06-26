@@ -1,8 +1,8 @@
 <?php
 return array(
     'modules' => array(
+    	'ZendStore',
         'Application',
-    	'Base',
     	'Demo',
         'Album',
     	'Media',
