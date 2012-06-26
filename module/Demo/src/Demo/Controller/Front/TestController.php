@@ -2,7 +2,7 @@
 
 namespace Demo\Controller\Front;
 
-use Base\Controller\Front\FrontActionController;
+use ZendStore\Controller\FrontActionController;
 
 class TestController extends FrontActionController
 {

@@ -18,7 +18,7 @@ return array(
         	'admin-demo-demo' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/demo/demo[/:action][/:id]',
+                    'route'    => '/admin/demo[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
@@ -46,7 +46,7 @@ return array(
             'front-demo-demo' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/front/demo/demo[/:action][/:id]',
+                    'route'    => '/demo[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
@@ -60,7 +60,7 @@ return array(
         	'front-demo-test' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/front/demo/test[/:action][/:id]',
+                    'route'    => '/demo/test[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',

@@ -5,23 +5,23 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'album/album' => 'Album\Controller\AlbumController'
+            'front/album/album' => 'Album\Controller\Front\AlbumController'
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'album' => array(
+            'front-album-album' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'    => '/album[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'album/album',
+                        'controller' => 'front/album/album',
                         'action'     => 'index',
                     ),
                 ),

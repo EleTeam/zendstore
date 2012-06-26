@@ -1,14 +1,14 @@
 <?php
 
-namespace Album\Controller;
+namespace Album\Controller\Front;
 
-use Zend\Mvc\Controller\ActionController,
-    Zend\View\Model\ViewModel,
-    Album\Model\AlbumTable,
-    Album\Model\Album,
-    Album\Form\AlbumForm;
+use ZendStore\Controller\FrontActionController;
 
-class AlbumController extends ActionController
+use Album\Model\AlbumTable;
+use Album\Model\Album;
+use Album\Form\AlbumForm;
+
+class AlbumController extends FrontActionController
 {
     /**
      * @var \Album\Model\AlbumTable
@@ -17,9 +17,13 @@ class AlbumController extends ActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
-            'albums' => $this->getAlbumTable()->fetchAll(),
-        ));
+    	$viewModel = $this->getViewModel(__METHOD__);
+    	$viewVars  = array(
+    		'albums' => $this->getAlbumTable()->fetchAll(),
+    	);
+    	$viewModel->setVariables($viewVars);
+    	
+    	return $viewModel;
     }
 
     public function addAction()
@@ -38,20 +42,27 @@ class AlbumController extends ActionController
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('front-album-album');
 
             }
         }
-
-        return array('form' => $form);
+        
+        $viewVars = array(
+        	'form' => $form,
+        );
+        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel->setVariables($viewVars);
+        
+        return $viewModel;
     }
 
     public function editAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         if (!$id) {
-            return $this->redirect()->toRoute('album', array('action'=>'add'));
+            return $this->redirect()->toRoute('front-album-album', array('action'=>'add'));
         }
+        
         $album = $this->getAlbumTable()->getAlbum($id);
 
         $form = new AlbumForm();
@@ -67,21 +78,25 @@ class AlbumController extends ActionController
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('front-album-album');
             }
         }
 
-        return array(
-            'id' => $id,
-            'form' => $form,
+        $viewVars = array(
+        	'id' 	=> $id,
+        	'form'	=> $form,
         );
+        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel->setVariables($viewVars);
+        
+        return $viewModel;
     }
 
     public function deleteAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('front-album-album');
         }
 
         $request = $this->getRequest();
@@ -93,16 +108,17 @@ class AlbumController extends ActionController
             }
 
             // Redirect to list of albums
-            return $this->redirect()->toRoute('default', array(
-                'controller' => 'album',
-                'action'     => 'index',
-            ));
+            return $this->redirect()->toRoute('front-album-album');
         }
 
-        return array(
-            'id' => $id,
-            'album' => $this->getAlbumTable()->getAlbum($id)
+        $viewVars  = array(
+        	'id' 	=> $id,
+        	'album' => $this->getAlbumTable()->getAlbum($id),
         );
+        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel->setVariables($viewVars);
+        
+        return $viewModel;
     }
 
     public function setAlbumTable(AlbumTable $albumTable)

@@ -2,7 +2,7 @@
 
 namespace Demo\Controller\Admin;
 
-use Base\Controller\Admin\AdminActionController;
+use ZendStore\Controller\AdminActionController;
 
 class TestController extends AdminActionController
 {
