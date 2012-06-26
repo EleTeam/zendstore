@@ -13,7 +13,7 @@ class ProductWidget extends AbstractWidget
 	 */
 	protected function _prepare()
 	{
-		
+		$this->view->testVar = 'test value';
 	}
 
 }

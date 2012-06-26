@@ -73,7 +73,9 @@ return array(
     ),    
 
     // View setup for this module
-    'view_manager' => array(
+    'view_manager' => array('template_map' => array(
+			'widget/product' => __DIR__ . '/../src/Catalog/Widget/Product/template.phtml',
+		),
         'template_path_stack' => array(
             'catalog' => __DIR__ . '/../view',
         ),

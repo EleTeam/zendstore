@@ -33,15 +33,13 @@ abstract class AbstractWidget extends AbstractHelper
 	}
 	
 	/**
-	 * @see WidgetInterface::display()
+	 * @see WidgetInterface::render()
 	 */
-	public function display()
+	public function render()
 	{
-		$content = '<p>Default widget content</p>';
+		$this->_prepare();
 		
-// 		$this->view->render('/home/huangzhihua/www/website/zendstore/module/Catalog/src/Catalog/Widget/Product/template.phtml');
-// 		$this->view->render(new ViewModel(array('template' => '/home/huangzhihua/www/website/zendstore/module/Catalog/src/Catalog/Widget/Product/template.phtml')), array('template' => '/home/huangzhihua/www/website/zendstore/module/Catalog/src/Catalog/Widget/Product/template.phtml'));
-		return $content;
+		return $this->view->render($this->template);
 	}
 
 	public function getTemplate()
@@ -49,19 +47,46 @@ abstract class AbstractWidget extends AbstractHelper
 		return $this->template;
 	}
 	
+	/**
+	 * Set template which must exist in view_manager['template_map'] array in module.config.php file
+	 * 
+	 * @param string $template
+	 */
 	public function setTemplate($template)
 	{
 		$this->template = (string) $template;
 	}
 	
+	/**
+	 * Initialize template which should be exist in view_manager['template_map'] array in module.config.php file
+	 * 
+	 * @return void
+	 */
 	final protected function _initTemplate()
 	{
+		/**
+		 * Get current widget's class name, something
+		 * like "Catalog\Widget\Product\ProductWidget",
+		 * and template file located at "Catalog/Widget/Product/template.phtml",
+		 * and template aliase like "widget/product"
+		 */
+		$className = get_class($this);
+		$location  = str_replace('\\', '/', $className);
+		$parts 	   = explode('/Widget/', $location);
+		$template  = strtolower(substr($parts[1], 0, strpos($parts[1], '/')));
+		$template  = 'widget/' . $template;
+		$this->template = $template;
+		
+		/**************************************
+		 * Get absolute widget template file
+		 * 
 		$className = get_class($this);
 		$module    = substr($className, 0, strpos($className, '\\'));
 		$location  = str_replace('\\', '/', $className);
 		$location  = substr($location, 0, strrpos($location, '/'));
 		$template  = MODULE_PATH . DS . $module . DS . 'src' . DS . $location . DS . 'template.phtml';
 		$this->template = $template;
+		****************************************/
 	}
 	
 }

@@ -5,9 +5,9 @@ namespace ZendStore\Widget;
 interface WidgetInterface
 {
 	/**
-	 * Return widget content
+	 * Render and return widget content
 	 * 
 	 * @return string
 	 */
-	public function display();
+	public function render();
 }
