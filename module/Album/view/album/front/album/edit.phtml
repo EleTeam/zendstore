@@ -1,12 +1,14 @@
 <?php
-$title = 'Add new album';
+$title = 'Edit album';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escape($title); ?></h1>
 
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('album', array('action' => 'add')));
+$form->setAttribute('action', 
+    $this->url('front-album-album', array('action' => 'edit', 'id'=>$this->id)));
+
 echo $this->form()->openTag($form);
 ?>
 <dl class="zend_form">
@@ -24,7 +26,7 @@ echo $this->form()->openTag($form);
 
 <dd><?php 
     echo $this->formInput($form->get('submit'));
-    //echo $this->formElementErrors($form->get('submit'));
+    echo $this->formElementErrors($form->get('submit'));
 ?></dd>
 </dl>
 <?php echo $this->form()->closeTag($form); ?>

@@ -23,6 +23,14 @@ abstract class FrontActionController extends ActionController
 	public function init()
 	{
 		$this->layout()->setTemplate(self::VIEW_LAYOUT);
+		
+		$route = $this->getEvent();
+// 		$route = $this->getRequest();
+// 		$controller = $this->getEvent()->getRouteMatch()->getParam('controller');
+// 		$action = $this->getEvent()->getRouteMatch()->getParam('action');
+// 		echo $controller . '<br />';
+// 		echo $action . '<br />';
+		print_r($route); echo '<br />';
 	}
 	
 	/**

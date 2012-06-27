@@ -3,13 +3,13 @@ $title = 'Delete album';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escape($title); ?></h1>
-
+<?php print_r($album);?>
 <p>Are you sure that you want to delete 
-  '<?php echo $this->escape($album['title']); ?>' by 
-  '<?php echo $this->escape($album['artist']); ?>'?
+  '<?php echo $this->escape($album->title); ?>' by 
+  '<?php echo $this->escape($album->artist); ?>'?
 </p>
 <?php 
-$url = $this->url('album', array('action' => 'delete', 'id'=>$this->id)); ?>
+$url = $this->url('front-album-album', array('action' => 'delete', 'id'=>$this->id)); ?>
 <form action="<?php echo $url; ?>" method="post">
 <div>
   <input type="hidden" name="id" value="<?php echo (int)$album['id']; ?>" />

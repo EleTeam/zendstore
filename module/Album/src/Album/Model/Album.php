@@ -2,14 +2,15 @@
 
 namespace Album\Model;
 
-use Zend\Db\ResultSet\Row;
+use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
 
-class Album extends Row implements InputFilterAwareInterface
+class Album extends AbstractRowGateway
+	implements InputFilterAwareInterface
 {
     protected $inputFilter;
 
