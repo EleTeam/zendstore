@@ -8,7 +8,7 @@ class CategoryController extends FrontActionController
 {
 	public function indexAction()
 	{
-		$viewModel = $this->getViewModel(__METHOD__);
+		$viewModel = $this->getViewModel();
 		
 		return $viewModel;
 	}	

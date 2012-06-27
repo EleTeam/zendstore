@@ -16,7 +16,7 @@ class ProductController extends AdminActionController
 	
 	public function viewAction()
 	{
-		$viewModel = $this->getViewModel(__METHOD__);
+		$viewModel = $this->getViewModel();
 		
 		return $viewModel;
 	}	
@@ -43,7 +43,7 @@ class ProductController extends AdminActionController
 		}
 
 		$viewVars  = array('form' => $form);
-		$viewModel = $this->getViewModel(__METHOD__);
+		$viewModel = $this->getViewModel();
 		$viewModel->setVariables($viewVars);
 		
 		return $viewModel;

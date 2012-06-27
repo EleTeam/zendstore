@@ -36,7 +36,7 @@ class UserController extends AdminActionController
         var_dump($authService->getIdentity());
 
         $viewVars  = array('user' => $user);
-        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel = $this->getViewModel();
         $viewModel->setVariables($viewVars);
         
         return $viewModel;

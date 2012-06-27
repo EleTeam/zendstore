@@ -17,7 +17,7 @@ class AlbumController extends FrontActionController
 
     public function indexAction()
     {
-    	$viewModel = $this->getViewModel(__METHOD__);
+    	$viewModel = $this->getViewModel();
     	$viewVars  = array(
     		'albums' => $this->getAlbumTable()->fetchAll(),
     	);
@@ -50,7 +50,7 @@ class AlbumController extends FrontActionController
         $viewVars = array(
         	'form' => $form,
         );
-        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel = $this->getViewModel();
         $viewModel->setVariables($viewVars);
         
         return $viewModel;
@@ -86,7 +86,7 @@ class AlbumController extends FrontActionController
         	'id' 	=> $id,
         	'form'	=> $form,
         );
-        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel = $this->getViewModel();
         $viewModel->setVariables($viewVars);
         
         return $viewModel;
@@ -115,7 +115,7 @@ class AlbumController extends FrontActionController
         	'id' 	=> $id,
         	'album' => $this->getAlbumTable()->getAlbum($id),
         );
-        $viewModel = $this->getViewModel(__METHOD__);
+        $viewModel = $this->getViewModel();
         $viewModel->setVariables($viewVars);
         
         return $viewModel;
