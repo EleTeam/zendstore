@@ -2,13 +2,13 @@
 
 namespace Catalog\Model;
 
-use Zend\Db\ResultSet\Row,
+use Zend\Db\RowGateway\AbstractRowGateway,
 	Zend\InputFilter\InputFilterAwareInterface,
 	Zend\InputFilter\InputFilterInterface,
 	Zend\InputFilter\InputFilter,
 	Zend\InputFilter\Factory as InputFactory;
 
-class Product extends Row
+class Product extends AbstractRowGateway
 	implements InputFilterAwareInterface
 {
 	/**

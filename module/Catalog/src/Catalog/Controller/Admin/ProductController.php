@@ -2,7 +2,7 @@
 
 namespace Catalog\Controller\Admin;
 
-use Base\Controller\Admin\AdminActionController,
+use ZendStore\Controller\AdminActionController,
 	Catalog\Model\ProductTable,
 	Catalog\Model\Product,
 	Catalog\Form\ProductForm;
@@ -14,12 +14,10 @@ class ProductController extends AdminActionController
 	 */
 	protected $productTable;
 	
-	public function viewAction()
+	public function indexAction()
 	{
-		$viewModel = $this->getViewModel();
 		
-		return $viewModel;
-	}	
+	}
 	
 	public function addAction()
 	{
@@ -47,6 +45,43 @@ class ProductController extends AdminActionController
 		$viewModel->setVariables($viewVars);
 		
 		return $viewModel;
+	}
+	
+	public function editAction()
+	{
+		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+		if (!$id) {
+			exit('Product not exist');
+		}
+		
+		$form 	 = new ProductForm();		
+		$product = $this->getProductTable()->getProduct($id);
+		
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$product = new Product();
+			$form->setInputFilter($product->getInputFilter());
+			$form->setData($request->post());
+			if ($form->isValid()) {
+				$formData = $form->getData();
+				$product->populate($formData);
+				$this->getProductTable()->saveProduct($product);
+		
+				exit('Edit OK');
+				// 				return $this->redirect()->toRoute('admin-catalog-product', array(
+				// 					'action'	 => 'view',
+				// 				));
+			}
+		}
+		
+		$viewVars = array(
+			'form' 	  => $form,
+			'product' => $product,
+		);
+		$viewModel = $this->getViewModel();
+		$viewModel->setVariables($viewVars);
+		
+		return $viewModel;		
 	}
 	
 	/**

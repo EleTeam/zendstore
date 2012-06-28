@@ -37,13 +37,13 @@ class ProductTable extends AbstractTableGateway
 	 * @throws Exception\UnexpectedValueException
 	 * @return Product
 	 */
-	public function getProduct($productId)
+	public function getProduct($id)
 	{
-		$productId = (int) $productId;
-		$resultSet = $this->select(array('product_id' => $productId));
+		$id = (int) $id;
+		$resultSet = $this->select(array('product_id' => $id));
 		$row 	   = $resultSet->current();
 		if (! $row) {
-			throw new Exception\UnexpectedValueException("Product $productId doesn't exist");
+			throw new Exception\UnexpectedValueException("Product $id doesn't exist");
 		}
 		
 		return new Product($row->getArrayCopy());
@@ -72,7 +72,7 @@ class ProductTable extends AbstractTableGateway
 	 */
 	public function addProduct(Product $product)
 	{
-		return $this->insert($product->getArrayCopy());
+		return $this->insert($product->toArray());
 	}
 	
 	/**
@@ -83,6 +83,6 @@ class ProductTable extends AbstractTableGateway
 	 */
 	public function updateProduct(Product $product)
 	{
-		return $this->update($product->getArrayCopy(), $product->product_id);
+		return $this->update($product->toArray(), $product->product_id);
 	}
 }
