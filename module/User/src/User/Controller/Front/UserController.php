@@ -2,7 +2,7 @@
 
 namespace User\Controller\Front;
 
-use Base\Controller\Front\FrontActionController,
+use ZendStore\Controller\FrontActionController,
 	Zend\Authentication\AuthenticationService,
 	Zend\Authentication\Adapter\DbTable as AuthenticationAdapter,
 	Zend\Authentication\Storage\Session as AuthenticationStorage,
@@ -25,8 +25,6 @@ class UserController extends FrontActionController
 	
     public function indexAction()
     {
-    	$this->layout()->setTemplate('layout/front');
-    	
     	$user = $this->getUserTable()->getUser(21);
         
     	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);
@@ -68,7 +66,7 @@ class UserController extends FrontActionController
     			
     			$user->populate($formData);
     			$this->getUserTable()->saveUser($user);
-    			return $this->redirect()->toRoute('front-user-user', array('action' => 'login'));
+    			return $this->redirect()->toRoute('user-front-user', array('action' => 'login'));
     		} else {
     			echo '<pre>';
     			print_r($form->getMessages());
@@ -111,7 +109,7 @@ class UserController extends FrontActionController
 		    	$authAdapter->setCredential($data['password']);
 		    	$result 	 = $authService->authenticate($authAdapter);
 		    	if ($result->isValid()) {
-		    		return $this->redirect()->toRoute('front-user-user');
+		    		return $this->redirect()->toRoute('user-front-user');
 		    	} else {
 		    		var_dump($result->getMessages());
 		    		exit;
@@ -136,7 +134,7 @@ class UserController extends FrontActionController
     	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_FRONT);
     	$authService = new AuthenticationService($authStorage);
     	$authService->clearIdentity();
-    	return $this->redirect()->toRoute('front-user-user');
+    	return $this->redirect()->toRoute('user-front-user');
     }
     
     /**

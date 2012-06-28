@@ -2,7 +2,7 @@
 
 namespace User\Controller\Admin;
 
-use Base\Controller\Admin\AdminActionController,
+use ZendStore\Controller\AdminActionController,
 	Zend\Authentication\AuthenticationService,
 	Zend\Authentication\Adapter\DbTable as AuthenticationAdapter,
 	Zend\Authentication\Storage\Session as AuthenticationStorage,
@@ -25,8 +25,6 @@ class UserController extends AdminActionController
 	
     public function indexAction()
     {
-    	$this->layout()->setTemplate('layout/admin');
-    	
     	$user = $this->getUserTable()->getUser(21);
         
     	$authStorage = new AuthenticationStorage(self::NAMESPACE_ZENDSTORE_ADMIN);

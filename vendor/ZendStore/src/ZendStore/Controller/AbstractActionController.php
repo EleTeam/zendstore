@@ -62,13 +62,6 @@ abstract class AbstractActionController extends ActionController
 	 */	
 	public function getViewModel()
 	{
-		$this->layout()->setTemplate($this->layout);
-		
-		$viewModel = new ViewModel();
-		if ($viewModel->getTemplate()) {
-			return $viewModel;
-		}
-		
 		/* Set default template
 		 * Build template such as "demo/front/test/view" for viewModel,
 		 * controller should be as "/front/demo/test", action as "view"
@@ -77,8 +70,15 @@ abstract class AbstractActionController extends ActionController
 		$action     = $this->getEvent()->getRouteMatch()->getParam('action');
 		$route		= $this->getEvent()->getRouteMatch()->getMatchedRouteName();
 		$template   = str_replace('-', '/', $route) . '/' . $action;
-// 		print_r($template);exit;
+
+		// Set layout
+		$this->layout()->setTemplate($this->layout);
+		$this->layout()->setVariable('route', $route);
+
+		// Set ViewModel
+		$viewModel = new ViewModel();
 		$viewModel->setTemplate($template);
+		$viewModel->setVariable('route', $route);
 		
 		return $viewModel;
 	}

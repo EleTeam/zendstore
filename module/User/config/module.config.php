@@ -5,38 +5,38 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'admin/user/user' 	=> 'User\Controller\Admin\UserController',
-        	'front/user/user' 	=> 'User\Controller\Front\UserController',
+            'user/admin/user' 	=> 'User\Controller\Admin\UserController',
+        	'user/front/user' 	=> 'User\Controller\Front\UserController',
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'admin-user-user' => array(
+            'user-admin-user' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'       => '/admin/user/user[/:action][/:id]',
+                    'route'       => '/admin/user[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'admin/user/user',
+                        'controller' => 'user/admin/user',
                         'action'     => 'index',
                     ),
                 ),
             ),
-        	'front-user-user' => array(
+        	'user-front-user' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'       => '/front/user/user[/:action][/:id]',
+                    'route'       => '/user[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'front/user/user',
+                        'controller' => 'user/front/user',
                         'action'     => 'index',
                     ),
                 ),

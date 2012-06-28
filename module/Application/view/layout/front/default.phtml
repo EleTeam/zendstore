@@ -36,7 +36,7 @@ echo $this->doctype();
     <script type="text/javascript" src="/js/jquery.js"></script>
   </head>
 
-  <body>
+  <body class=" <?php echo $this->route; ?>">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -52,11 +52,10 @@ echo $this->doctype();
               <li class="active"><a href="<?php echo $this->url('application-front-index'); ?>">Home</a></li>
               <li class="active"><a href="<?php echo $this->url('demo-front-test', array('action' => 'view')); ?>">FrontDemo</a></li>
               <li class="active"><a href="<?php echo $this->url('album-front-album'); ?>">Album</a></li>
-              <li class="active"><a href="<?php echo $this->url('base') ?>">Base</a></li>
               <li class="active"><a href="<?php echo $this->url('uploader') ?>">Media</a></li>
               <li class="active"><a href="<?php echo $this->url('region') ?>">Region</a></li>
               <li class="active"><a href="<?php echo $this->url('payment') ?>">Payment</a></li>
-              <li class="active"><a href="<?php echo $this->url('front-user-user'); ?>">FrontUser</a></li>
+              <li class="active"><a href="<?php echo $this->url('user-front-user'); ?>">FrontUser</a></li>
               <li class="active"><a href="<?php echo $this->url('front-catalog-category'); ?>">FrontCategory</a></li>
             </ul>
           </div><!--/.nav-collapse -->

@@ -9,7 +9,7 @@ class IndexController extends FrontActionController
     public function indexAction()
     {
         $viewModel = $this->getViewModel();
-        
+
         return $viewModel;
     }
 }
