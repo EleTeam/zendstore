@@ -5,45 +5,17 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'admin/demo/demo'	=> 'Demo\Controller\Admin\DemoController',
-        	'admin/demo/test'	=> 'Demo\Controller\Admin\TestController',
-        	'front/demo/demo' 	=> 'Demo\Controller\Front\DemoController',
-        	'front/demo/test' 	=> 'Demo\Controller\Front\TestController',
+        	'demo/front/demo' 	=> 'Demo\Controller\Front\DemoController',
+        	'demo/front/test' 	=> 'Demo\Controller\Front\TestController',
+            'demo/admin/demo'	=> 'Demo\Controller\Admin\DemoController',
+        	'demo/admin/test'	=> 'Demo\Controller\Admin\TestController',
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-        	'admin-demo-demo' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/admin/demo[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z]+',
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'admin/demo/demo',
-                    	'action'	 => 'index',
-                    ),
-                ),
-            ),
-        	'admin-demo-test' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/admin/demo/test[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z]+',
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'admin/demo/test',
-                    	'action'	 => 'index',
-                    ),
-                ),
-            ),
-            'front-demo-demo' => array(
+            'demo-front-demo' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'    => '/demo[/:action][/:id]',
@@ -52,12 +24,12 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'front/demo/demo',
+                        'controller' => 'demo/front/demo',
                         'action'     => 'index',
                     ),
                 ),
             ),
-        	'front-demo-test' => array(
+        	'demo-front-test' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'    => '/demo/test[/:action][/:id]',
@@ -66,7 +38,35 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => '/front/demo/test',
+                        'controller' => '/demo/front/test',
+                    	'action'	 => 'index',
+                    ),
+                ),
+            ),
+        	'demo-admin-demo' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/demo[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]+',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'demo/admin/demo',
+                    	'action'	 => 'index',
+                    ),
+                ),
+            ),
+        	'demo-admin-test' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/demo/test[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z]+',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'demo/admin/test',
                     	'action'	 => 'index',
                     ),
                 ),

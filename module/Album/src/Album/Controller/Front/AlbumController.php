@@ -42,7 +42,7 @@ class AlbumController extends FrontActionController
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('front-album-album');
+                return $this->redirect()->toRoute('album-front-album');
 
             }
         }
@@ -58,9 +58,10 @@ class AlbumController extends FrontActionController
 
     public function editAction()
     {
+    	$viewModel = $this->getViewModel();
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         if (!$id) {
-            return $this->redirect()->toRoute('front-album-album', array('action'=>'add'));
+            return $this->redirect()->toRoute('album-front-album', array('action'=>'add'));
         }
         
         $album = $this->getAlbumTable()->getAlbum($id);
@@ -78,7 +79,7 @@ class AlbumController extends FrontActionController
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('front-album-album');
+                return $this->redirect()->toRoute('album-front-album');
             }
         }
 
@@ -86,7 +87,6 @@ class AlbumController extends FrontActionController
         	'id' 	=> $id,
         	'form'	=> $form,
         );
-        $viewModel = $this->getViewModel();
         $viewModel->setVariables($viewVars);
         
         return $viewModel;
@@ -96,7 +96,7 @@ class AlbumController extends FrontActionController
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         if (!$id) {
-            return $this->redirect()->toRoute('front-album-album');
+            return $this->redirect()->toRoute('album-front-album');
         }
 
         $request = $this->getRequest();
@@ -108,7 +108,7 @@ class AlbumController extends FrontActionController
             }
 
             // Redirect to list of albums
-            return $this->redirect()->toRoute('front-album-album');
+            return $this->redirect()->toRoute('album-front-album');
         }
 
         $viewVars  = array(

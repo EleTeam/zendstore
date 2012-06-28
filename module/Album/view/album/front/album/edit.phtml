@@ -7,7 +7,7 @@ $this->headTitle($title);
 <?php
 $form = $this->form;
 $form->setAttribute('action', 
-    $this->url('front-album-album', array('action' => 'edit', 'id'=>$this->id)));
+    $this->url('album-front-album', array('action' => 'edit', 'id'=>$this->id)));
 
 echo $this->form()->openTag($form);
 ?>

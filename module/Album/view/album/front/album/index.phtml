@@ -3,7 +3,7 @@ $title = 'My albums';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escape($title); ?></h1>
-<p><a href="<?php echo $this->url('front-album-album', array('action'=>'add'));?>">
+<p><a href="<?php echo $this->url('album-front-album', array('action'=>'add'));?>">
     Add new album</a></p>
 
 <table class="table">
@@ -17,10 +17,10 @@ $this->headTitle($title);
     <td><?php echo $this->escape($album->title);?></td>
     <td><?php echo $this->escape($album->artist);?></td>
     <td>
-        <a href="<?php echo $this->url('front-album-album',
-            array('action'=>'edit', 'id' => $album->id));?>">Edit</a>
-        <a href="<?php echo $this->url('front-album-album',
-            array('action'=>'delete', 'id' => $album->id));?>">Delete</a>
+        <a href="<?php echo $this->url('album-front-album', array('action'=>'edit', 'id' => $album->id));?>">
+        	Edit</a>
+        <a href="<?php echo $this->url('album-front-album', array('action'=>'delete', 'id' => $album->id));?>">
+        	Delete</a>
     </td>
 </tr>
 <?php endforeach; ?>

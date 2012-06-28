@@ -5,14 +5,14 @@ return array(
     // Controllers in this module
     'controller' => array(
         'classes' => array(
-            'front/album/album' => 'Album\Controller\Front\AlbumController'
+            'album/front/album' => 'Album\Controller\Front\AlbumController'
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'front-album-album' => array(
+            'album-front-album' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'    => '/album[/:action][/:id]',
@@ -21,7 +21,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'front/album/album',
+                        'controller' => 'album/front/album',
                         'action'     => 'index',
                     ),
                 ),
