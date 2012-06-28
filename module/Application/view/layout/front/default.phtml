@@ -38,7 +38,6 @@ echo $this->doctype();
 
   <body>
     <div class="navbar navbar-fixed-top">
-      <div>Front Layout</div>
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -47,21 +46,18 @@ echo $this->doctype();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?php echo $this->url('home') ?>">Tutorial</a>
+          <a class="brand" href="<?php echo $this->url('application-front-index') ?>">ZendStore</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('home') ?>">Home</a></li>
+              <li class="active"><a href="<?php echo $this->url('application-front-index'); ?>">Home</a></li>
               <li class="active"><a href="<?php echo $this->url('front-demo-test', array('action' => 'view')); ?>">FrontDemo</a></li>
-              <li class="active"><a href="<?php echo $this->url('admin-demo-test', array('action' => 'view')); ?>">AdminDemo</a></li>
-              <li class="active"><a href="<?php echo $this->url('album') ?>">Album</a></li>
+              <li class="active"><a href="<?php echo $this->url('front-album-album'); ?>">Album</a></li>
               <li class="active"><a href="<?php echo $this->url('base') ?>">Base</a></li>
               <li class="active"><a href="<?php echo $this->url('uploader') ?>">Media</a></li>
               <li class="active"><a href="<?php echo $this->url('region') ?>">Region</a></li>
               <li class="active"><a href="<?php echo $this->url('payment') ?>">Payment</a></li>
               <li class="active"><a href="<?php echo $this->url('front-user-user'); ?>">FrontUser</a></li>
-              <li class="active"><a href="<?php echo $this->url('admin-user-user'); ?>">AdminUser</a></li>
               <li class="active"><a href="<?php echo $this->url('front-catalog-category'); ?>">FrontCategory</a></li>
-              <li class="active"><a href="<?php echo $this->url('admin-catalog-product', array('action' => 'add')); ?>">AdminProduct</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -12,5 +12,5 @@ abstract class AdminActionController extends AbstractActionController
 	 *
 	 * @var string
 	 */
-	protected $layout = 'layout/admin';
+	protected $layout = 'layout/admin/default';
 }

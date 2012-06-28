@@ -1,11 +1,10 @@
 <?php
 
-namespace Application\Controller;
+namespace Application\Controller\Error;
 
-use Zend\Mvc\Controller\ActionController,
-    Zend\View\Model\ViewModel;
+use ZendStore\Controller\ErrorActionController;
 
-class ErrorController extends ActionController
+class ErrorController extends ErrorActionController
 {
     const ERROR_NO_ROUTE = 404;
     const ERROR_NO_CONTROLLER = 404;
@@ -29,6 +28,11 @@ class ErrorController extends ActionController
                 break;
         }
         
-        return new ViewModel(array('message' => $error['message']));
+        $viewVars  = array(
+        	'message' => $error['message'],
+        );
+        $viewModel = $this->getViewModel();
+        
+        return $viewModel;
     }
 }

@@ -18,40 +18,40 @@ abstract class AbstractActionController extends ActionController
 	 */
 	protected $layout = 'layout/layout';
 	
-	public function __construct()
-	{
-		$this->init();
-	}
+// 	public function __construct()
+// 	{
+// 		$this->init();
+// 	}
 	
-	/**
-	 * Initialization
-	 */
-	public function init()
-	{
-		$this->layout()->setTemplate($this->layout);
-	}
+// 	/**
+// 	 * Initialization
+// 	 */
+// 	public function init()
+// 	{
+//  		$this->layout()->setTemplate($this->layout);
+// 	}
 	
-	/**
-	 * Get layout template
-	 * 
-	 * @return string
-	 */
-	public function getLayout()
-	{
-		return $this->layout;
-	}
+// 	/**
+// 	 * Get layout template
+// 	 * 
+// 	 * @return string
+// 	 */
+// 	public function getLayout()
+// 	{
+// 		return $this->layout;
+// 	}
 	
-	/**
-	 * Set layout template which may be an alias etc. "layout/layout"
-	 * 
-	 * @param string $layout
-	 * @return Self $this
-	 */
-	public function setLayout($layout)
-	{
-		$this->layout = $layout;
-		return $this;
-	}
+// 	/**
+// 	 * Set layout template which may be an alias etc. "layout/layout"
+// 	 * 
+// 	 * @param string $layout
+// 	 * @return Self $this
+// 	 */
+// 	public function setLayout($layout)
+// 	{
+// 		$this->layout = $layout;
+// 		return $this;
+// 	}
 	
 	/**
 	 * Get ViewModel, should be invoked in controller's action function
@@ -62,6 +62,8 @@ abstract class AbstractActionController extends ActionController
 	 */	
 	public function getViewModel()
 	{
+		$this->layout()->setTemplate($this->layout);
+		
 		$viewModel = new ViewModel();
 		if ($viewModel->getTemplate()) {
 			return $viewModel;
@@ -73,11 +75,10 @@ abstract class AbstractActionController extends ActionController
 		 */
 		$controller = $this->getEvent()->getRouteMatch()->getParam('controller');
 		$action     = $this->getEvent()->getRouteMatch()->getParam('action');
-		$ctrlParts  = explode('/', trim($controller, '/'));
-		if (count($ctrlParts) >= 3) {
-			$template   = $ctrlParts[1] . '/' . $ctrlParts[0] . '/' . $ctrlParts[2] . '/' . $action;
-			$viewModel->setTemplate($template);
-		}
+		$route		= $this->getEvent()->getRouteMatch()->getMatchedRouteName();
+		$template   = str_replace('-', '/', $route) . '/' . $action;
+// 		print_r($template);exit;
+		$viewModel->setTemplate($template);
 		
 		return $viewModel;
 	}
