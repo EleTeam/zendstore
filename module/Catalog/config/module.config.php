@@ -15,7 +15,7 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
-        	'admin-catalog-category' => array(
+        	'catalog-admin-category' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'		  => '/admin/catalog/category[/:action][/:id]',
