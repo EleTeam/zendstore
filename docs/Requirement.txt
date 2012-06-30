@@ -1,0 +1,4 @@
+PHP, MySQL
+
+PHP:
+	Version >= PHP 5.3.0   // __invoke()  required 

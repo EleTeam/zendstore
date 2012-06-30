@@ -15,7 +15,14 @@ abstract class AbstractWidget extends AbstractHelper
 	 * 
 	 * @var string
 	 */
-	protected $template;
+	protected $_template;
+	
+	/**
+	 * Widget content
+	 * 
+	 * @var string
+	 */
+	protected $_content;
 	
 	/**
 	 * Prepare variables for view template
@@ -25,6 +32,26 @@ abstract class AbstractWidget extends AbstractHelper
 	public function __construct()
 	{
 		$this->init();
+	}
+
+	/**
+	 * Render and retrieve widget content and store in $this->_content
+	 * 
+	 * @return string
+	 */
+	public function __invoke()
+	{
+		$this->content = $this->render();
+		
+		return $this;
+	}
+	
+	/**
+	 * String representation of widget
+	 */
+	public function __toString()
+	{
+		return $this->content;
 	}
 	
 	public function init()
@@ -39,12 +66,12 @@ abstract class AbstractWidget extends AbstractHelper
 	{
 		$this->_prepare();
 		
-		return $this->view->render($this->template);
+		return $this->view->render($this->_template);
 	}
 
 	public function getTemplate()
 	{
-		return $this->template;
+		return $this->_template;
 	}
 	
 	/**
@@ -54,7 +81,7 @@ abstract class AbstractWidget extends AbstractHelper
 	 */
 	public function setTemplate($template)
 	{
-		$this->template = (string) $template;
+		$this->_template = (string) $template;
 	}
 	
 	/**
@@ -75,7 +102,7 @@ abstract class AbstractWidget extends AbstractHelper
 		$parts 	   = explode('/Widget/', $location);
 		$template  = strtolower(substr($parts[1], 0, strpos($parts[1], '/')));
 		$template  = 'widget/' . $template;
-		$this->template = $template;
+		$this->_template = $template;
 		
 		/**************************************
 		 * Get absolute widget template file
@@ -85,7 +112,7 @@ abstract class AbstractWidget extends AbstractHelper
 		$location  = str_replace('\\', '/', $className);
 		$location  = substr($location, 0, strrpos($location, '/'));
 		$template  = MODULE_PATH . DS . $module . DS . 'src' . DS . $location . DS . 'template.phtml';
-		$this->template = $template;
+		$this->_template = $template;
 		****************************************/
 	}
 	

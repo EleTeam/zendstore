@@ -3,9 +3,9 @@ $this->headTitle()->setSeparator(' - ')
                   ->setAutoEscape(false);
 
 $basePath = $this->basePath();
-$this->headLink()->appendStylesheet($basePath . '/css/bootstrap.min.css')
-                 ->appendStylesheet($basePath . '/css/style.css')
-                 ->appendStylesheet($basePath . '/css/bootstrap-responsive.min.css');
+$platform = 'admin';
+$this->headLink()->appendStylesheet("$basePath/$platform/reset.css")
+                 ->appendStylesheet("$basePath/$platform/boxes.css");
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -17,7 +17,7 @@ $this->headLink(array(
 $this->headScript()->appendFile($basePath . '/js/html5.js', 'text/javascript', 
     array('conditional' => 'lt IE9',));
 
-echo $this->doctype();
+echo $this->doctype('XHTML1_STRICT');
 ?>
 
 <html lang="en">
@@ -72,3 +72,5 @@ echo $this->doctype();
 
   </body>
 </html>
+
+
