@@ -4,8 +4,9 @@ $this->headTitle()->setSeparator(' - ')
 
 $basePath = $this->basePath();
 $platform = 'admin';
-$this->headLink()->appendStylesheet("$basePath/$platform/reset.css")
-                 ->appendStylesheet("$basePath/$platform/boxes.css");
+$this->headLink()->appendStylesheet("$basePath/css/$platform/reset.css")
+				 ->appendStylesheet("$basePath/css/$platform/menu.css")
+                 ->appendStylesheet("$basePath/css/$platform/boxes.css");
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -14,63 +15,83 @@ $this->headLink(array(
         ));
 
 // HTML5 shim, for IE6-8 support of HTML elements
-$this->headScript()->appendFile($basePath . '/js/html5.js', 'text/javascript', 
-    array('conditional' => 'lt IE9',));
+$this->headScript()->appendFile("$basePath/js/jquery.js", 'text/javascript')
+				   ->appendFile("$basePath/js/html5.js", 'text/javascript', array('conditional' => 'lt IE9',));
 
 echo $this->doctype('XHTML1_STRICT');
 ?>
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <?php echo $this->headTitle('ZF2 Tutorial') ?>
+<head>
+	<meta charset="utf-8">
+   	<?php echo $this->headTitle('ZF2 Tutorial') ?>
 
-    <?php echo $this->headMeta() ?>
+   	<?php echo $this->headMeta() ?>
 
-    <!-- Le styles -->
-    <?php echo $this->headLink() ?>
+   	<!-- Le styles -->
+   	<?php echo $this->headLink() ?>
     
-    <!-- Scripts -->
-    <?php echo $this->headScript() ?>
+   	<!-- Scripts -->
+   	<?php echo $this->headScript() ?>
+   	
+   	<script type="text/javascript">
+	/*$(function(){
+		$('#nav li').addClassName
+	});*/
+   	</script>
+</head>
 
-    <script type="text/javascript" src="/js/jquery.js"></script>
-  </head>
-
-  <body class=" <?php echo $this->route; ?>">
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<?php echo $this->url('application-admin-dashboard') ?>">ZendStore Admin</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('application-admin-dashboard') ?>">Dashboard</a></li>
-              <li class="active"><a href="<?php echo $this->url('demo-admin-test', array('action' => 'view')); ?>">AdminDemo</a></li>
-              <li class="active"><a href="<?php echo $this->url('user-admin-user'); ?>">AdminUser</a></li>
-              <li class="active"><a href="<?php echo $this->url('catalog-admin-category'); ?>">AdminCategory</a></li>
-              <li class="active"><a href="<?php echo $this->url('admin-catalog-product', array('action' => 'add')); ?>">AdminProduct</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    <div class="container">
-
+<body class=" <?php echo $this->route; ?>">
+	<div class="wrapper">
+		<div class="header">
+			<div class="header-top">
+				<a href="<?php echo $this->url('application-admin-dashboard'); ?>">
+					<img class="logo" alt="ZendStore Logo" src="/images/zf2-logo.png" />
+				</a>
+				<div class="header-right">
+					<p class="super">
+						Logged in as ???
+						<span class="separator"> | </span>
+						Logged in date
+						<span class="separator"> | </span>
+						<a class="link-logout">Log out</a>
+					</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="nav-bar">
+				<ul id="nav">
+					<li class="active level0">
+						<a href="<?php echo $this->url('application-admin-dashboard') ?>"><span>Dashboard</span></a>
+					</li>
+	              	<li class="parent level0">
+	              		<a onclick="javascript:return false;" href="#"><span>Catalog</span></a>
+	              		<ul>
+							<li class="level1">
+			              		<a href="<?php echo $this->url('catalog-admin-category'); ?>"><span>Category</span></a>
+			              	</li>
+			              	<li class="level1">
+			              		<a href="<?php echo $this->url('admin-catalog-product', array('action' => 'add')); ?>"><span>Product</span></a>
+			              	</li>	              		
+	              		</ul>
+	              	</li>
+	              	<li class="level0">
+	              		<a href="<?php echo $this->url('demo-admin-test', array('action' => 'view')); ?>"><span>AdminDemo</span></a>
+	              	</li>
+	              	<li class="level0">
+	              		<a href="<?php echo $this->url('user-admin-user'); ?>"><span>AdminUser</span></a>
+	              	</li>
+				</ul>
+			</div>	
+		</div>
+		
+		<div id="anchor-content" class="middle">
+    	
       <?php echo $this->content; ?>
+		</div>
 
-      <hr>
-
-      <footer>
-      </footer>
-
-    </div> <!-- /container -->
-
-  </body>
+		<div class="footer">
+		</div>
+	</div>    	
+</body>
 </html>
-
-
