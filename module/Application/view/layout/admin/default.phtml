@@ -35,9 +35,14 @@ echo $this->doctype('XHTML1_STRICT');
    	<?php echo $this->headScript() ?>
    	
    	<script type="text/javascript">
-	/*$(function(){
-		$('#nav li').addClassName
-	});*/
+	$(function(){
+		$('#nav li').mouseover(function(){
+			$(this).addClass('over');
+		});
+		$('#nav li').mouseout(function(){
+			$(this).removeClass('over');
+		});
+	});
    	</script>
 </head>
 
@@ -46,7 +51,7 @@ echo $this->doctype('XHTML1_STRICT');
 		<div class="header">
 			<div class="header-top">
 				<a href="<?php echo $this->url('application-admin-dashboard'); ?>">
-					<img class="logo" alt="ZendStore Logo" src="/images/zf2-logo.png" />
+					<img class="logo" alt="ZendStore Logo" src="/images/admin/logo.png" />
 				</a>
 				<div class="header-right">
 					<p class="super">
@@ -67,12 +72,12 @@ echo $this->doctype('XHTML1_STRICT');
 	              	<li class="parent level0">
 	              		<a onclick="javascript:return false;" href="#"><span>Catalog</span></a>
 	              		<ul>
-							<li class="level1">
-			              		<a href="<?php echo $this->url('catalog-admin-category'); ?>"><span>Category</span></a>
-			              	</li>
 			              	<li class="level1">
 			              		<a href="<?php echo $this->url('admin-catalog-product', array('action' => 'add')); ?>"><span>Product</span></a>
-			              	</li>	              		
+			              	</li>
+							<li class="level1">
+			              		<a href="<?php echo $this->url('catalog-admin-category'); ?>"><span>Category</span></a>
+			              	</li>              		
 	              		</ul>
 	              	</li>
 	              	<li class="level0">
@@ -86,8 +91,9 @@ echo $this->doctype('XHTML1_STRICT');
 		</div>
 		
 		<div id="anchor-content" class="middle">
-    	
-      <?php echo $this->content; ?>
+			<div id="page:main-container">
+				<?php echo $this->content; ?>
+			</div>
 		</div>
 
 		<div class="footer">
