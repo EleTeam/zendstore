@@ -3,9 +3,10 @@ $this->headTitle()->setSeparator(' - ')
                   ->setAutoEscape(false);
 
 $basePath = $this->basePath();
-$this->headLink()->appendStylesheet($basePath . '/css/bootstrap.min.css')
-                 ->appendStylesheet($basePath . '/css/style.css')
-                 ->appendStylesheet($basePath . '/css/bootstrap-responsive.min.css');
+$platform = 'admin';
+$this->headLink()->appendStylesheet("$basePath/css/$platform/reset.css")
+				 ->appendStylesheet("$basePath/css/$platform/menu.css")
+                 ->appendStylesheet("$basePath/css/$platform/boxes.css");
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -14,28 +15,88 @@ $this->headLink(array(
         ));
 
 // HTML5 shim, for IE6-8 support of HTML elements
-$this->headScript()->appendFile($basePath . '/js/html5.js', 'text/javascript', 
-    array('conditional' => 'lt IE9',));
+$this->headScript()->appendFile("$basePath/js/jquery.js", 'text/javascript')
+				   ->appendFile("$basePath/js/html5.js", 'text/javascript', array('conditional' => 'lt IE9',));
 
-echo $this->doctype();
+echo $this->doctype('XHTML1_STRICT');
 ?>
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <?php echo $this->headTitle('ZF2 Tutorial') ?>
+<head>
+	<meta charset="utf-8">
+   	<?php echo $this->headTitle('ZF2 Tutorial') ?>
 
-    <?php echo $this->headMeta() ?>
+   	<?php echo $this->headMeta() ?>
 
-    <!-- Le styles -->
-    <?php echo $this->headLink() ?>
+   	<!-- Le styles -->
+   	<?php echo $this->headLink() ?>
     
-    <!-- Scripts -->
-    <?php echo $this->headScript() ?>
+   	<!-- Scripts -->
+   	<?php echo $this->headScript() ?>
+   	
+   	<script type="text/javascript">
+	$(function(){
+		$('#nav li').mouseover(function(){
+			$(this).addClass('over');
+		});
+		$('#nav li').mouseout(function(){
+			$(this).removeClass('over');
+		});
+	});
+   	</script>
+</head>
 
-    <script type="text/javascript" src="/js/jquery.js"></script>
-  </head>
+<body class=" <?php echo $this->route; ?>">
+	<div class="wrapper">
+		<div class="header">
+			<div class="header-top">
+				<a href="<?php echo $this->url('application-admin-dashboard'); ?>">
+					<img class="logo" alt="ZendStore Logo" src="/images/admin/logo.png" />
+				</a>
+				<div class="header-right">
+					<p class="super">
+						Logged in as ???
+						<span class="separator"> | </span>
+						Logged in date
+						<span class="separator"> | </span>
+						<a class="link-logout">Log out</a>
+					</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="nav-bar">
+				<ul id="nav">
+					<li class="active level0">
+						<a href="<?php echo $this->url('application-admin-dashboard') ?>"><span>Dashboard</span></a>
+					</li>
+	              	<li class="parent level0">
+	              		<a onclick="javascript:return false;" href="#"><span>Catalog</span></a>
+	              		<ul>
+			              	<li class="level1">
+			              		<a href="<?php echo $this->url('admin-catalog-product', array('action' => 'add')); ?>"><span>Product</span></a>
+			              	</li>
+							<li class="level1">
+			              		<a href="<?php echo $this->url('catalog-admin-category'); ?>"><span>Category</span></a>
+			              	</li>              		
+	              		</ul>
+	              	</li>
+	              	<li class="level0">
+	              		<a href="<?php echo $this->url('demo-admin-test', array('action' => 'view')); ?>"><span>AdminDemo</span></a>
+	              	</li>
+	              	<li class="level0">
+	              		<a href="<?php echo $this->url('user-admin-user'); ?>"><span>AdminUser</span></a>
+	              	</li>
+				</ul>
+			</div>	
+		</div>
+		
+		<div id="anchor-content" class="middle">
+			<div id="page:main-container">
+				<?php echo $this->content; ?>
+			</div>
+		</div>
 
+<<<<<<< HEAD
   <body class=" <?php echo $this->route; ?>">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -70,4 +131,10 @@ echo $this->doctype();
     </div> <!-- /container -->
 
   </body>
+=======
+		<div class="footer">
+		</div>
+	</div>    	
+</body>
+>>>>>>> 5ede1f9dca808e50dcc8265a0f1fb676a041fe07
 </html>
