@@ -15,11 +15,7 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
-<<<<<<< HEAD
-            'catalog-front-category' => array(
-=======
         	'catalog-admin-category' => array(
->>>>>>> 5ede1f9dca808e50dcc8265a0f1fb676a041fe07
                 'type'    => 'segment',
                 'options' => array(
                     'route'    	  => '/catalog/front/category[/:action][/:id]',
