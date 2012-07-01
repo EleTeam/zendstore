@@ -15,20 +15,6 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
-        	'catalog-admin-category' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    	  => '/catalog/front/category[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z]+',
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'catalog/front/category',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
         	'catalog-front-product' => array(
                 'type'    => 'segment',
                 'options' => array(

@@ -35,6 +35,7 @@ echo $this->doctype('XHTML1_STRICT');
    	<?php echo $this->headScript() ?>
    	
    	<script type="text/javascript">
+    //<![CDATA[
 	$(function(){
 		$('#nav li').mouseover(function(){
 			$(this).addClass('over');
@@ -43,6 +44,7 @@ echo $this->doctype('XHTML1_STRICT');
 			$(this).removeClass('over');
 		});
 	});
+	//]]>
    	</script>
 </head>
 

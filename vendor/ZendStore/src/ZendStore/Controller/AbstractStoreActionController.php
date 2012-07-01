@@ -69,6 +69,9 @@ abstract class AbstractStoreActionController extends AbstractActionController
 		$controller = $this->getEvent()->getRouteMatch()->getParam('controller');
 		$action     = $this->getEvent()->getRouteMatch()->getParam('action');
 		$route		= $this->getEvent()->getRouteMatch()->getMatchedRouteName();
+		if ($forwardedRoute = $this->getEvent()->getRouteMatch()->getParam('forwardedRouteName')) {
+			$route = $forwardedRoute;
+		}
 		$template   = str_replace('-', '/', $route) . '/' . $action;
 
 		// Set layout
