@@ -2,9 +2,9 @@
 
 namespace Catalog\Controller\Admin;
 
-use ZendStore\Controller\AdminActionController;
+use ZendStore\Controller\AbstractAdminActionController;
 
-class CategoryController extends AdminActionController
+class CategoryController extends AbstractAdminActionController
 {
 	public function indexAction()
 	{

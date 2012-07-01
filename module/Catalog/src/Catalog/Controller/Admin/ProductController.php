@@ -2,12 +2,12 @@
 
 namespace Catalog\Controller\Admin;
 
-use ZendStore\Controller\AdminActionController,
-	Catalog\Model\ProductTable,
-	Catalog\Model\Product,
-	Catalog\Form\ProductForm;
+use ZendStore\Controller\AbstractAdminActionController;
+use	Catalog\Model\ProductTable;
+use	Catalog\Model\Product;
+use	Catalog\Form\ProductForm;
 
-class ProductController extends AdminActionController
+class ProductController extends AbstractAdminActionController
 {
 	/**
 	 * @var ProductTable

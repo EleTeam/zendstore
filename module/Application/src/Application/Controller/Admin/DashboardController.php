@@ -2,9 +2,9 @@
 
 namespace Application\Controller\Admin;
 
-use ZendStore\Controller\AdminActionController;
+use ZendStore\Controller\AbstractAdminActionController;
 
-class DashboardController extends AdminActionController
+class DashboardController extends AbstractAdminActionController
 {
     public function indexAction()
     {

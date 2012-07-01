@@ -2,9 +2,9 @@
 
 namespace Application\Controller\Front;
 
-use ZendStore\Controller\FrontActionController;
+use ZendStore\Controller\AbstractFrontActionController;
 
-class IndexController extends FrontActionController
+class IndexController extends AbstractFrontActionController
 {
     public function indexAction()
     {
