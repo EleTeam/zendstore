@@ -1,9 +1,69 @@
+<?php 
+$basePath = $this->basePath();
+$platform = 'admin';
+$this->headScript()->appendFile("$basePath/js/jquery.jstree/jstree.js", 'text/javascript'); 
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$("#demo-tree-holder").jstree({
+		"json_data": {
+			"data": [
+		         {
+					"data": "A node",
+					"state": "closed"
+		         },
+		         {
+					"attr": {"id": "li.node.id3"},
+					"data": {
+						"title": "Long format demo",
+						"attr": {"href": "#"}
+					}
+		         }
+			],
+			"ajax": {"url": "<?php echo $this->url('catalog-admin-category', array('action' => 'list')); ?>"}
+		},
+		"plugins": ["themes", "json_data"]
+	});
+});
+//]]>
+</script>
+
 <div class="colums">
 	<div id="page:left" class="side-col">
 		<div class="categories-side-col">
 			<div class="content-header">
 				<h3 class="icon-head head-categories">Categories</h3>
+				<button type="button" id="add_root_category_button" class="scalable add" title="Add Root Category" >
+					<span>Add Root Category</span>
+				</button>
+				<button type="button" id="add_subcategory_button" class="scalable add" title="Add Subcategory">
+					<span>Add Subcategory</span></button>
 			</div>
+			
+			<div class="tree-actions">
+            	<a href="#">Collapse All</a> <span class="separator">|</span> <a href="#">Expand All</a>
+            </div>
+            
+            <div class="tree-holder">
+        		<div style="width:100%; overflow:auto;" id="tree-div" class="x-tree">
+        			<ul class="x-tree-root-ct x-tree-lines" id="ext-gen5">
+        				<div class="x-tree-root-node">
+        					<li class="x-tree-node">
+        						<div class="x-tree-node-el folder active-category x-tree-node-expanded" id="extdd-1">
+        							<span class="x-tree-node-indent"></span>
+        							<img class="x-tree-ec-icon x-tree-elbow-minus" src="http://local.magento.com/js/spacer.gif" id="ext-gen20">
+        							<img unselectable="on" class="x-tree-node-icon" src="http://local.magento.com/js/spacer.gif" id="ext-gen17">
+        							<a tabindex="1" href="#" hidefocus="on" id="ext-gen14"><span unselectable="on" id="extdd-2">Root Catalog (0)</span></a>
+        						</div>
+        					</li>
+        				</div>
+        			</ul>
+        		</div>
+    		</div>
+    		
+    		<div id="demo-tree-holder"></div>
 		</div>
 	</div>
 	

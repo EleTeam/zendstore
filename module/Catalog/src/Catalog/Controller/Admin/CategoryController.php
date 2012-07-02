@@ -8,9 +8,9 @@ class CategoryController extends AbstractAdminActionController
 {
 	public function indexAction()
 	{
-		return $this->forward()->dispatch('catalog-admin-category', array(
-			'action' => 'edit',
-			'forwardedRouteName' => 'catalog-admin-category'));
+		$viewModel = $this->getViewModel();
+		
+		return $viewModel;
 	}	
 	
 	public function addAction()
