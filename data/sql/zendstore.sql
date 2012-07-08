@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2012 at 07:00 PM
+-- Generation Time: Jul 08, 2012 at 06:11 PM
 -- Server version: 5.5.21
 -- PHP Version: 5.3.8-ZS5.5.0
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `album` (
   `artist` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `album`
@@ -39,15 +39,13 @@ CREATE TABLE IF NOT EXISTS `album` (
 
 INSERT INTO `album` (`id`, `artist`, `title`) VALUES
 (1, 'The Military Wives', 'In My Dreamsaaaaaaaaaaaaaaaa'),
-(2, 'Adele', '21'),
 (3, 'Bruce Springsteen', 'Wrecking Ball (Deluxe)'),
 (4, 'Lana Del Rey', 'Born To Die'),
 (5, 'Gotye', 'Making Mirrors'),
 (6, 'sdf', 'sdf'),
-(7, 'asdf', 'sdf'),
-(8, 'sdf', 'sadf'),
 (9, 'asdfasdfsdf', 'sdf'),
-(10, 'aaaaaaaaaaa', 'aa');
+(11, 'abbbbb', 'aaaaaaaaaaa'),
+(12, '三地方斯蒂芬', '阿斯');
 
 -- --------------------------------------------------------
 
@@ -59,12 +57,23 @@ CREATE TABLE IF NOT EXISTS `catalog_category` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `category_name` varchar(255) NOT NULL,
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `visibility` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `is_active` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `type` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '1:folder',
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `catalog_category`
+--
+
+INSERT INTO `catalog_category` (`category_id`, `category_name`, `parent_id`, `is_active`, `sort_order`, `type`, `created_date`, `updated_date`) VALUES
+(1, 'ROOT', 0, 1, 255, 1, '2012-07-08 04:20:33', '2012-07-08 04:20:33'),
+(2, 'Shirt', 1, 1, 255, 1, '2012-07-08 04:26:25', '2012-07-08 04:26:25'),
+(3, 'Eletronic', 1, 1, 255, 1, '2012-07-08 09:50:16', '2012-07-08 09:50:16'),
+(4, 'Computer', 3, 1, 255, 1, '2012-07-08 09:50:54', '2012-07-08 09:50:54');
 
 -- --------------------------------------------------------
 
@@ -106,13 +115,20 @@ CREATE TABLE IF NOT EXISTS `catalog_product` (
   `price` decimal(12,4) NOT NULL DEFAULT '0.0000',
   `market_price` decimal(12,4) NOT NULL DEFAULT '0.0000',
   `tags` varchar(100) DEFAULT NULL,
-  `on_shelf` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `is_active` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `position` tinyint(3) unsigned NOT NULL,
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_data` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `catalog_product`
+--
+
+INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`, `brand`, `price`, `market_price`, `tags`, `is_active`, `sort_order`, `position`, `created_date`, `updated_data`) VALUES
+(1, 'aaaaaaaaaaaaa', 0, 0, NULL, '0.0000', '0.0000', NULL, 1, 255, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3743,7 +3759,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `user`
@@ -3751,7 +3767,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `email`, `password`, `password_salt`, `username`, `real_name`, `register_date`, `register_ip`, `last_login`, `last_ip`, `active`, `enabled`) VALUES
 (21, 'test@test.com', '2b9444da44431d44f3047820741c0ac3', '4fe68322dfefb', NULL, NULL, '2012-06-24 11:01:54', 0, NULL, NULL, 1, 0),
-(22, 'test-1@test-1.com', 'ad9035138e6d73928ea308cfbe1ef654', '4fe6838419e7e', NULL, NULL, '2012-06-24 11:03:32', 0, NULL, NULL, 1, 0);
+(22, 'test-1@test-1.com', 'ad9035138e6d73928ea308cfbe1ef654', '4fe6838419e7e', NULL, NULL, '2012-06-24 11:03:32', 0, NULL, NULL, 1, 0),
+(23, 'test-3@test-3.com', 'd82a6da6343030d23b7df36d7812efbd', '4fec7539cd91d', NULL, NULL, '2012-06-28 23:16:09', 0, NULL, NULL, 1, 0),
+(25, 'test123@test.com', '9002948d55066ff047834939c21a8393', '4fec75b04a190', NULL, NULL, '2012-06-28 23:18:08', 0, NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 

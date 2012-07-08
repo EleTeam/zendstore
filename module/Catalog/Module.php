@@ -2,9 +2,9 @@
 
 namespace Catalog;
 
-use Catalog\Widget\Product\ProductWidget;
-
+use Catalog\Model\CategoryTable;
 use	Catalog\Model\ProductTable;
+use Catalog\Widget\Product\ProductWidget;
 
 class Module
 {
@@ -30,7 +30,11 @@ class Module
 	public function getServiceConfiguration()
     {
     	return array(
-    		'factories' => array(
+    		'factories' => array(    			
+    			'category-table' => function($sm) {
+	    			$dbAdapter = $sm->get('db-adapter');
+	    			return new CategoryTable($dbAdapter);
+    			},
     			'product-table' => function($sm) {
 	    			$dbAdapter = $sm->get('db-adapter');
 	    			return new ProductTable($dbAdapter);
