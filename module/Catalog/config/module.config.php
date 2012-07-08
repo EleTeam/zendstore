@@ -1,14 +1,13 @@
 <?php
 
 return array(
-
     // Controllers in this module
-    'controller' => array(
-        'classes' => array(
-        	'catalog/front/category' 	=> 'Catalog\Controller\Front\CategoryController',
-        	'catalog/front/product' 	=> 'Catalog\Controller\Front\ProductController',
-            'catalog/admin/category' 	=> 'Catalog\Controller\Admin\CategoryController',
-        	'catalog/admin/product' 	=> 'Catalog\Controller\Admin\ProductController',
+    'controllers' => array(
+        'invokables' => array(
+        	'catalog\front\category' 	=> 'Catalog\Controller\Front\CategoryController',
+        	'catalog\front\product' 	=> 'Catalog\Controller\Front\ProductController',
+            'catalog\admin\category' 	=> 'Catalog\Controller\Admin\CategoryController',
+        	'catalog\admin\product' 	=> 'Catalog\Controller\Admin\ProductController',
         ),
     ),
 
@@ -24,7 +23,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'catalog/front/product',
+                        'controller' => 'catalog\front\product',
                     ),
                 ),
             ),
@@ -37,7 +36,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'catalog/admin/category',
+                        'controller' => 'catalog\admin\category',
                     	'action'	 => 'index',
                     ),
                 ),
@@ -45,13 +44,14 @@ return array(
         	'catalog-admin-product' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'		  => '/catalog/admin/product[/:action][/:id]',
+                    'route'		  => '/admin/catalog/product[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'catalog/admin/product',
+                        'controller' => 'catalog\admin\product',
+                    	'action'	 => 'index',
                     ),
                 ),
             ),

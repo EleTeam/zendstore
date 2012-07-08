@@ -72,8 +72,12 @@ abstract class AbstractStoreActionController extends AbstractActionController
 		if ($forwardedRoute = $this->getEvent()->getRouteMatch()->getParam('forwardedRouteName')) {
 			$route = $forwardedRoute;
 		}
-		$template   = str_replace('-', '/', $route) . '/' . $action;
-
+		if ($route == 'home') {
+			$template = 'application/front/index/index';
+		} else {
+	 		$template = str_replace('-', '/', $route) . '/' . $action;
+		}
+		
 		// Set layout
 		$this->layout()->setTemplate($this->layout);
 		$this->layout()->setVariable('route', $route);

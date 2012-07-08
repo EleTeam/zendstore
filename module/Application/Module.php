@@ -2,22 +2,16 @@
 
 namespace Application;
 
-use Zend\Db\Adapter\Adapter as DbAdapter;
+use Zend\Mvc\ModuleRouteListener;
 
 class Module
 {
-    public function getAutoloaderConfig()
+    public function onBootstrap($e)
     {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+        $e->getApplication()->getServiceManager()->get('translator');
+        $eventManager        = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
     }
 
     public function getConfig()
@@ -25,16 +19,13 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getServiceConfiguration()
+    public function getAutoloaderConfig()
     {
         return array(
-            'factories' => array(
-                'db-adapter' =>  function($sm) {
-                    $config = $sm->get('config');
-                    $config = $config['db'];
-                    $dbAdapter = new DbAdapter($config);
-                    return $dbAdapter;
-                },
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
             ),
         );
     }

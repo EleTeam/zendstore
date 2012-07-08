@@ -48,7 +48,7 @@ echo $this->doctype('XHTML1_STRICT');
    	</script>
 </head>
 
-<body class=" <?php echo $this->route; ?>">
+<body class="<?php echo $this->route; ?>">
 	<div class="wrapper">
 		<div class="header">
 			<div class="header-top">
@@ -82,12 +82,14 @@ echo $this->doctype('XHTML1_STRICT');
 			              	</li>              		
 	              		</ul>
 	              	</li>
-	              	<li class="level0 <?php if ($this->route == 'demo-admin-test'): echo 'active'; endif; ?>">
-	              		<a href="<?php echo $this->url('demo-admin-test', array('action' => 'view')); ?>"><span>Demo</span></a>
-	              	</li>
+	              	<?php /*?>
 	              	<li class="level0 <?php if ($this->route == 'user-admin-user'): echo 'active'; endif; ?>">
 	              		<a href="<?php echo $this->url('user-admin-user'); ?>"><span>User</span></a>
 	              	</li>
+	              	<li class="level0 <?php if ($this->route == 'demo-admin-test'): echo 'active'; endif; ?>">
+	              		<a href="<?php echo $this->url('demo-admin-test', array('action' => 'view')); ?>"><span>Demo</span></a>
+	              	</li>
+	              	*/ ?>
 				</ul>
 			</div>	
 		</div>

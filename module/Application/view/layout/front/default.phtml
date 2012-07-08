@@ -36,7 +36,7 @@ echo $this->doctype();
     <script type="text/javascript" src="/js/jquery.js"></script>
   </head>
 
-  <body class=" <?php echo $this->route; ?>">
+  <body class="<?php echo $this->route; ?>">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -46,16 +46,16 @@ echo $this->doctype();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?php echo $this->url('application-front-index') ?>">ZendStore</a>
+          <a class="brand" href="<?php echo $this->url('home') ?>">ZendStore</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('application-front-index'); ?>">Home</a></li>
-              <li class="active"><a href="<?php echo $this->url('demo-front-test', array('action' => 'view')); ?>">FrontDemo</a></li>
-              <li class="active"><a href="<?php echo $this->url('album-front-album'); ?>">Album</a></li>
-              <li class="active"><a href="<?php echo $this->url('uploader') ?>">Media</a></li>
-              <li class="active"><a href="<?php echo $this->url('region') ?>">Region</a></li>
-              <li class="active"><a href="<?php echo $this->url('payment') ?>">Payment</a></li>
-              <li class="active"><a href="<?php echo $this->url('user-front-user'); ?>">FrontUser</a></li>
+              <li class="active"><a href="<?php echo $this->url('home'); ?>">Home</a></li>
+              <li class="active"><a href="<?php echo $this->url('application-front-index'); ?>">FrontDemo</a></li>
+              <li class="active"><a href="<?php echo $this->url('home'); ?>">Album</a></li>
+              <li class="active"><a href="<?php echo $this->url('home') ?>">Media</a></li>
+              <li class="active"><a href="<?php echo $this->url('home') ?>">Region</a></li>
+              <li class="active"><a href="<?php echo $this->url('home') ?>">Payment</a></li>
+              <li class="active"><a href="<?php echo $this->url('home'); ?>">FrontUser</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

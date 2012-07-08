@@ -3,12 +3,12 @@
 return array(
 
     // Controllers in this module
-    'controller' => array(
-        'classes' => array(
-            'user/admin/user' 	=> 'User\Controller\Admin\UserController',
-        	'user/front/user' 	=> 'User\Controller\Front\UserController',
-        ),
-    ),
+//     'controllers' => array(
+//         'invokables' => array(
+//             'user/admin/user' 	=> 'User\Controller\Admin\UserController',
+//         	'user/front/user' 	=> 'User\Controller\Front\UserController',
+//         ),
+//     ),
 
     // Routes for this module
     'router' => array(
@@ -22,7 +22,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'user/admin/user',
+                        'controller' => 'user\admin\user',
                         'action'     => 'index',
                     ),
                 ),
@@ -44,6 +44,13 @@ return array(
         ),
     ),    
 
+		'controllers' => array(
+				'invokables' => array(
+						'user\admin\user' 		=> 'User\Controller\Admin\UserController',
+						'application\admin\dashboard' 	=> 'Application\Controller\Admin\DashboardController',
+				),
+		),
+		
     // View setup for this module
     'view_manager' => array(        
         'template_path_stack' => array(
