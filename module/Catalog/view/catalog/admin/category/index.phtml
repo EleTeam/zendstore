@@ -9,6 +9,7 @@ $this->headScript()->appendFile("$basePath/js/jquery.jstree/jquery.jstree.js", '
 <script type="text/javascript">
 //<![CDATA[
 $(function(){
+	// jstree holder
 	$("#tree-holder")
 		.jstree({
 			"plugins": [
@@ -32,6 +33,7 @@ $(function(){
 						}
 					},
 					"folder": {
+						//"valid_children" : [ "folder" ],
 						"icon": {
 							"image": "/images/admin/tree_icons/folder.png"
 						}
@@ -43,6 +45,32 @@ $(function(){
 					}
 				}
 			}
+		})
+		.bind("create.jstree", function(e, data){
+			console.log(e);console.log(data);
+			data.rslt.obj.each(function(){
+				$.ajax({
+					async: false,
+					type: "post",
+					url: "<?php echo $this->url('catalog-admin-category', array('action' => 'add')); ?>",
+					data: {
+						"id": this.id.replace("node_", "")
+					},
+					success: function(){
+						if(!r.status){
+							data.inst.refresh();
+						}
+					}
+				});
+			});
+		});
+
+	// create categories actions
+	$('#add_root_category_button').click(function(){
+		$("#tree-holder").jstree("create", null, "last", { "attr" : { "rel" : "folder" } });
+	});
+	$('#add_subcategory_button').click(function(){
+
 	});
 });
 //]]>
