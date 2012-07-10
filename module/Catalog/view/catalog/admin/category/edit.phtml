@@ -1,23 +1,40 @@
-<div class="colums">
-	<div id="page:left" class="side-col">
-		<div class="categories-side-col">
-			<div class="content-header">
-				<h3 class="icon-head head-categories">Categories</h3>
-				<button type="button" id="add_root_category_button" class="scalable add" title="Add Root Category" >
-					<span>Add Root Category</span>
-				</button>
-			</div>
-		</div>
-	</div>
-	
-	<div id="content" class="main-col">
-		<div class="main-col-inner">
-			<div id="messages"></div>
-			<div id="category-edit-container" class="category-content">
-				<div class="content-header">
-					<h3 class="icon-head head-categories">New Root Category</h3>
-				</div>			
-			</div>
-		</div>
-	</div>
+<div class="content-header">
+	<h3 class="icon-head head-categories">New Root Category</h3>
 </div>
+
+<ul id="category_info_tabs" class="tabs-horiz">
+	<li>
+		<a id="category_info_tabs_group_7" class="tab-item-link active" title="General Information" href="#">
+			<span>General Information</span>
+		</a>
+	</li>
+	<li>
+		<a id="category_info_tabs_products" class="tab-item-link" title="Category Products" href="#">
+			<span>Category Products</span>
+		</a>
+	</li>
+</ul>
+
+<form id="category_edit_form" enctype="multipart/form-data" method="post" action="???/edit/0">
+	<div class="no-display"></div>
+	<div id="category_tab_content">
+		<div id="category_info_tabs_group_7_content" style="">
+			<div class="entry-edit">
+				<div class="entry-edit-head">
+					<h4 class="icon-head head-edit-form fieldset-legend">General Information</h4>
+				</div>
+				<div id="group_7fieldset_group7" class="fieldset fieldset-wide">
+					<div class="hor-scroll">
+						<table class="form-list" cellspacing="0">
+							<tbody>
+								<tr>
+									<td class="label"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

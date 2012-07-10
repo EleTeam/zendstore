@@ -47,7 +47,7 @@ $(function(){
 			}
 		})
 		.bind("create.jstree", function(e, data){
-			console.log(e);console.log(data);
+			//console.log(e);console.log(data);
 			data.rslt.obj.each(function(){
 				$.ajax({
 					async: false,
@@ -62,6 +62,16 @@ $(function(){
 						}
 					}
 				});
+			});
+		})
+		.bind("select_node.jstree", function(e, data){
+			var selectedObj = data.rslt.obj;
+			var nodeId  	= selectedObj.attr("id");
+			var categoryId	= nodeId.replace("node_", "");
+			var url	= "<?php echo $this->url('catalog-admin-category', array('action' => 'edit')); ?>";
+			url += "/" + categoryId;
+			$.get(url, function(data){
+				$("#category-edit-container").html(data);
 			});
 		});
 
@@ -94,16 +104,14 @@ $(function(){
             
             <div id="tree-holder"></div>
 		</div>
-	</div>
+	</div><!-- /side-col -->
 	
 	<div id="content" class="main-col">
 		<div class="main-col-inner">
 			<div id="messages"></div>
 			<div id="category-edit-container" class="category-content">
-				<div class="content-header">
-					<h3 class="icon-head head-categories">New Root Category</h3>
-				</div>			
+				<!-- Content retrieved by ajax -->			
 			</div>
 		</div>
-	</div>
+	</div><!-- /main-col -->
 </div>
