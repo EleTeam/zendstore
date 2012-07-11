@@ -3,6 +3,7 @@ return array(
     'modules' => array(
         'ZendStore',
     	'Application',
+    	'Demo',
     	'Catalog',
     ),
     'module_listener_options' => array(

@@ -1,14 +1,13 @@
 <?php
 
 return array(
-
     // Controllers in this module
-    'controller' => array(
-        'classes' => array(
-        	'demo/front/demo' 	=> 'Demo\Controller\Front\DemoController',
-        	'demo/front/test' 	=> 'Demo\Controller\Front\TestController',
-            'demo/admin/demo'	=> 'Demo\Controller\Admin\DemoController',
-        	'demo/admin/test'	=> 'Demo\Controller\Admin\TestController',
+    'controllers' => array(
+        'invokables' => array(
+        	'demo\front\demo' 	=> 'Demo\Controller\Front\DemoController',
+        	'demo\front\test' 	=> 'Demo\Controller\Front\TestController',
+            'demo\admin\demo'	=> 'Demo\Controller\Admin\DemoController',
+        	'demo\admin\test'	=> 'Demo\Controller\Admin\TestController',
         ),
     ),
 
@@ -24,7 +23,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'demo/front/demo',
+                        'controller' => 'demo\front\demo',
                         'action'     => 'index',
                     ),
                 ),
@@ -38,7 +37,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => '/demo/front/test',
+                        'controller' => '/demo\front\test',
                     	'action'	 => 'index',
                     ),
                 ),
@@ -52,7 +51,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'demo/admin/demo',
+                        'controller' => 'demo\admin\demo',
                     	'action'	 => 'index',
                     ),
                 ),
@@ -66,7 +65,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'demo/admin/test',
+                        'controller' => 'demo\admin\test',
                     	'action'	 => 'index',
                     ),
                 ),

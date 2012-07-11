@@ -1,17 +1,11 @@
 <h2>/demo/front/demo/index</h2>
 
-<?php
-
-// echo $this->demoWidget()->display();
-
-
-// exit();
-// $this->widget('demo', 'article');
-// print_r(get_class($this)); // Zend\View\Renderer\PhpRenderer  
-// echo '<br />';
-// print_r(get_class($this->getEngine()));  // Zend\View\Renderer\PhpRenderer
-// echo '<br />';
-// print_r(get_class($this->getBroker()->load('widget', $options))); // $this->widget($module, $name, $params);
-
-//print_r($this->widget('module'));
-?>
+<!-- 
+dl: Definition list
+dt: Definition term
+dd:	Definition description
+-->
+<dl>
+	<dt><a href="<?php echo $this->url('demo-front-demo'); ?>">Index</a></dt>
+	<dt><a href="<?php echo $this->url('demo-front-demo', array('action' => 'disableView')); ?>">Disable view, good for dealling with ajax.</a></dt>
+</dl>
