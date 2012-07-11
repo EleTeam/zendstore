@@ -29,7 +29,7 @@ class CategoryController extends AbstractAdminActionController
 	public function editAction()
 	{
 		$viewModel = $this->getViewModel();
-		
+		$viewModel->setTerminal(true);
 		return $viewModel;		
 	}
 	
