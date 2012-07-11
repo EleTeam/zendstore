@@ -10,8 +10,11 @@ class CategoryForm extends Form
 	{
 		parent::__construct();
 		
-		$this->setName('category_edit_form');
-		$this->setAttribute('method', 'post');
+		$this->setName('category_form');
+		$this->setAttributes(array(
+			'method'  => 'post',
+			'enctype' => 'multipart/form-data',		
+		));
 		
 		// category_id
 		$this->add(array(
@@ -34,7 +37,11 @@ class CategoryForm extends Form
 			'name'		 => 'category_name',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label'	=> 'Category Name',	
+				'id'	=> 'category_name',
+				'class' => 'input-text required-entry',
+			),
+			'options' => array(
+				'label'	=> 'Category Name',
 			),		
 		));	
 
@@ -42,17 +49,24 @@ class CategoryForm extends Form
 		$this->add(array(
 			'name'		 => 'is_active',
 			'attributes' => array(
+				'id'	=> 'is_active',
 				'type'	=> 'input',
-				'label'	=> 'Is Active',	
+			),
+			'options' => array(
+				'label'	=> 'Is Active',
 			),		
 		));
 
-		// discription
+		// description
 		$this->add(array(
-			'name'		 => 'discription',
+			'name'		 => 'description',
 			'attributes' => array(
-				'type'	=> 'input',
-				'label'	=> 'Discription',	
+				'type'	=> 'textarea',
+				'id'	=> 'description',
+				'class' => 'textarea',
+			),
+			'options' => array(
+				'label'	=> 'Description',
 			),		
 		));
 		

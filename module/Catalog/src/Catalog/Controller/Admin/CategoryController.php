@@ -4,6 +4,7 @@ namespace Catalog\Controller\Admin;
 
 use ZendStore\Controller\AbstractAdminActionController;
 use Catalog\Model\CategoryTable;
+use Catalog\Form\CategoryForm;
 
 class CategoryController extends AbstractAdminActionController
 {	
@@ -30,6 +31,14 @@ class CategoryController extends AbstractAdminActionController
 	{
 		$viewModel = $this->getViewModel();
 		$viewModel->setTerminal(true);
+		
+		$form = new CategoryForm();
+		
+		$viewVars = array(
+			'form' => $form,	
+		);	
+		$viewModel->setVariables($viewVars);
+			
 		return $viewModel;		
 	}
 	
@@ -81,15 +90,4 @@ class CategoryController extends AbstractAdminActionController
 		return $this->categoryTable;
 	}
 
-	/**
-	 * To disable the view completely, from within a controller action,
-	 * you should return a Response object
-	 */
-	public function testNoHtmlAction()
-	{
-		$response = $this->getResponse();
-		//$response->setStatusCode(200);
-		$response->setContent("Hello world");
-		return $response;
-	}
 }

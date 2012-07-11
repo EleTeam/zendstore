@@ -1,3 +1,27 @@
+<?php 
+$title = 'Edit category';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	// Submit category form by ajax 
+	$('#save-category').click(function(e){
+		e.preventDefault();
+		var url = $('#category_form').attr('action');
+		var params = {
+			'category_name': $('#category_name').val(),
+			'description':   $('#description').val() 
+		};
+		$.post(url, params, function(data){
+			//alert(data);
+		});
+	});
+});
+//]]>
+</script>
+
 <div class="content-header">
 	<h3 class="icon-head head-categories">New Root Category</h3>
 </div>
@@ -15,7 +39,16 @@
 	</li>
 </ul>
 
-<form id="category_edit_form" enctype="multipart/form-data" method="post" action="???/edit/0">
+<!-- Category edit form -->
+<?php 
+$form = $this->form;
+$form->setAttribute('action', $this->url('catalog-admin-category', array('action' => 'edit')));
+$form->prepare();
+?>
+<?php 
+echo $this->form()->openTag($form); 
+echo $this->formHidden($form->get('category_id'));
+?>
 	<div class="no-display"></div>
 	<div id="category_tab_content">
 		<div id="category_info_tabs_group_7_content" style="">
@@ -28,7 +61,12 @@
 						<table class="form-list" cellspacing="0">
 							<tbody>
 								<tr>
-									<td class="label"></td>
+									<td class="label"><?php echo $this->formLabel($form->get('category_name')); ?></td>
+									<td class="value"><?php echo $this->formInput($form->get('category_name')); ?></td>
+								</tr>
+								<tr>
+									<td class="label"><?php echo $this->formLabel($form->get('description')); ?></td>
+									<td class="value"><?php echo $this->formTextarea($form->get('description')); ?></td>
 								</tr>
 							</tbody>
 						</table>
@@ -37,4 +75,13 @@
 			</div>
 		</div>
 	</div>
-</form>
+	<div class="content-buttons form-buttons">
+		<button id="save-category" class="scalable save" type="submit" title="Save">
+			<span>Save</span>
+		</button>
+		<button id="reset-category" class="scalable" type="reset" title="Reset">
+			<span>Reset</span>
+		</button>
+	</div>
+<?php echo $this->form()->closeTag($form); ?>
+<!-- /Category edit form -->
