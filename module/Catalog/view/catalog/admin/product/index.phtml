@@ -1,5 +1,72 @@
-category::index
-
-<?php 
-echo $this->productWidget()->render();
-?>
+<div id="messages"></div>
+<div class="content-header">
+	<table>
+		<tr>
+			<td style="width: 50%"><h3 class="icon-head head-products">Manage Products</h3></td>
+			<td class="a-right">
+				<a href="<?php echo $this->url('catalog-admin-product', array('action' => 'add')); ?>">
+					<button id="" class="scalable add" type="button" title="Add Product"><span>Add Product</span></button>
+				</a>
+			</td>
+		</tr>
+	</table>
+</div>
+<div id="productGrid">
+	<table class="actions" cellspacing="0">
+	</table>
+	<div id="productGrid_massaction"></div>
+	<div class="grid">
+		<div class="hor-scroll">
+			<table id="productGrid_table" class="data" cellspacing="0">
+				<colgroup>
+					<col width="20" class="a-center">
+	                <col width="50">
+	                <col>
+	                <col width="60">
+	                <col width="100">
+	                <col width="80">
+	                <col width="100">
+	                <col width="100">
+	                <col width="70">
+	                <col width="70">
+	                <col width="100">
+	                <col width="50">
+				</colgroup>
+				<thead>
+                	<tr class="headings">
+                    	<th><span class="nobr">&nbsp;</span></th>
+                        <th><span class="nobr"><a class="sort-arrow-desc" title="asc" name="entity_id" href="#"><span class="sort-title">ID</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="name" href="#"><span class="sort-title">Name</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="type" href="#"><span class="sort-title">Type</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="set_name" href="#"><span class="sort-title">Attrib. Set Name</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="sku" href="#"><span class="sort-title">SKU</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="price" href="#"><span class="sort-title">Price</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="qty" href="#"><span class="sort-title">Qty</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="visibility" href="#"><span class="sort-title">Visibility</span></a></span></th>
+                        <th><span class="nobr"><a class="not-sort" title="asc" name="status" href="#"><span class="sort-title">Status</span></a></span></th>
+                        <th class=" no-link"><span class="nobr">Websites</span></th>
+                        <th class=" no-link last"><span class="nobr">Action</span></th>
+                	</tr>
+                    <tr class="filter">
+                   		<th><span class="head-massaction"><select class="no-changes" id="productGrid_product_filter_massaction" name="massaction"><option value="">Any</option><option value="1">Yes</option><option value="0">No</option></select></span></th>
+                        <th><div class="range"><div class="range-line"><span class="label">From:</span> <input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_entity_id_from" name="entity_id[from]"></div><div class="range-line"><span class="label">To : </span><input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_entity_id_to" name="entity_id[to]"></div></div></th>
+                        <th><div class="field-100"><input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_name" name="name"></div></th>
+                        <th><select class="no-changes" id="productGrid_product_filter_type" name="type"><option value=""></option><option value="simple">Simple Product</option><option value="grouped">Grouped Product</option><option value="configurable">Configurable Product</option><option value="virtual">Virtual Product</option><option value="bundle">Bundle Product</option><option value="downloadable">Downloadable Product</option></select></th>
+                        <th><select class="no-changes" id="productGrid_product_filter_set_name" name="set_name"><option value=""></option><option value="44">Cameras</option><option value="38">Cell Phones</option><option value="39">Computer</option><option value="60">CPU</option><option value="9">Default</option><option value="42">Furniture</option><option value="62">Hard Drive</option><option value="61">Monitors</option><option value="58">RAM</option><option value="46">Shirts (General)</option><option value="45">Shirts Other</option><option value="41">Shirts T</option><option value="40">Shoes</option><option value="59">Warranties</option></select></th>
+                        <th><div class="field-100"><input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_sku" name="sku"></div></th>
+                        <th><div class="range"><div class="range-line"><span class="label">From:</span> <input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_price_from" name="price[from]"></div><div class="range-line"><span class="label">To : </span><input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_price_to" name="price[to]"></div><div class="range-line"><span class="label">In : </span><select id="productGrid_product_filter_price_currency" name="price[currency]"><option selected="selected" value="USD">USD</option></select></div></div></th>
+                        <th><div class="range"><div class="range-line"><span class="label">From:</span> <input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_qty_from" name="qty[from]"></div><div class="range-line"><span class="label">To : </span><input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_qty_to" name="qty[to]"></div></div></th>
+                        <th><select class="no-changes" id="productGrid_product_filter_visibility" name="visibility"><option value=""></option><option value="1">Not Visible Individually</option><option value="2">Catalog</option><option value="3">Search</option><option value="4">Catalog, Search</option></select></th>
+                        <th><select class="no-changes" id="productGrid_product_filter_status" name="status"><option value=""></option><option value="1">Enabled</option><option value="2">Disabled</option></select></th>
+                        <th class=" no-link"><select class="no-changes" id="productGrid_product_filter_websites" name="websites"><option value=""></option><option value="1">Main Website</option></select></th>
+                        <th class=" no-link last">&nbsp;</th>
+                   	</tr>
+            	</thead>
+            	<tbody>
+            		<tr class="even pointer">
+            		</tr>
+            	</tbody>
+			</table>
+		</div>
+	</div>
+</div>

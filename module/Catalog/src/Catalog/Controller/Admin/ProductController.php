@@ -16,7 +16,13 @@ class ProductController extends AbstractAdminActionController
 	
 	public function indexAction()
 	{
+		$viewModel = $this->getViewModel();
+
 		
+		$viewVars = array();
+		$viewModel->setVariables($viewVars);
+		
+		return $viewModel;
 	}
 	
 	public function addAction()
