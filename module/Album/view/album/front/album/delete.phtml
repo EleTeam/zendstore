@@ -2,11 +2,11 @@
 $title = 'Delete album';
 $this->headTitle($title);
 ?>
-<h1><?php echo $this->escape($title); ?></h1>
+<h1><?php echo $title; ?></h1>
 <?php print_r($album);?>
 <p>Are you sure that you want to delete 
-  '<?php echo $this->escape($album->title); ?>' by 
-  '<?php echo $this->escape($album->artist); ?>'?
+  '<?php echo $album->title; ?>' by 
+  '<?php echo $album->artist; ?>'?
 </p>
 <?php 
 $url = $this->url('album-front-album', array('action' => 'delete', 'id'=>$this->id)); ?>

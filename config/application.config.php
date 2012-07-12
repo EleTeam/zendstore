@@ -4,6 +4,7 @@ return array(
         'ZendStore',
     	'Application',
     	'Demo',
+    	'Album',
     	'Catalog',
     ),
     'module_listener_options' => array(

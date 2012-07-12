@@ -32,10 +32,16 @@ class CategoryController extends AbstractAdminActionController
 		$viewModel = $this->getViewModel();
 		$viewModel->setTerminal(true);
 		
+		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+		
 		$form = new CategoryForm();
+		$categoryTable = $this->getCategoryTable();
+		$category = $categoryTable->getCategory($id);
+		$form->bindOnValidate(false);
+		$form->bind($category);
 		
 		$viewVars = array(
-			'form' => $form,	
+			'form'		=> $form,	
 		);	
 		$viewModel->setVariables($viewVars);
 			

@@ -3,9 +3,9 @@
 return array(
 
     // Controllers in this module
-    'controller' => array(
-        'classes' => array(
-            'album/front/album' => 'Album\Controller\Front\AlbumController'
+    'controllers' => array(
+        'invokables' => array(
+            'album\front\album' => 'Album\Controller\Front\AlbumController'
         ),
     ),
 
@@ -21,7 +21,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'album/front/album',
+                        'controller' => 'album\front\album',
                         'action'     => 'index',
                     ),
                 ),

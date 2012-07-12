@@ -2,13 +2,13 @@
 
 namespace Album\Controller\Front;
 
-use ZendStore\Controller\FrontActionController;
+use ZendStore\Controller\AbstractFrontActionController;
 
 use Album\Model\AlbumTable;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
 
-class AlbumController extends FrontActionController
+class AlbumController extends AbstractFrontActionController
 {
     /**
      * @var \Album\Model\AlbumTable
