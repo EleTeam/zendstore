@@ -26,7 +26,9 @@ class ProductForm extends Form
 			'name'		 => 'product_name',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label'	=> 'Product',	
+			),
+			'options' => array(
+				'label'	=> 'Product Name',
 			),		
 		));		
 			
@@ -35,7 +37,9 @@ class ProductForm extends Form
 			'name'		 => 'price',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label'	=> 'Price',	
+			),
+			'options' => array(
+				'label'	=> 'Price',
 			),		
 		));
 
@@ -44,7 +48,9 @@ class ProductForm extends Form
 			'name'		 => 'market_price',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label'	=> 'Market_price',	
+			),
+			'options' => array(
+				'label'	=> 'Market_price',
 			),		
 		));
 
@@ -53,7 +59,9 @@ class ProductForm extends Form
 			'name'		 => 'brand',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label'	=> 'Brand',	
+			),
+			'options' => array(
+				'label'	=> 'Brand',
 			),		
 		));
 
@@ -62,6 +70,8 @@ class ProductForm extends Form
 			'name'		 => 'quantity',
 			'attributes' => array(
 				'type'	=> 'input',
+			),
+			'options' => array(
 				'label'	=> 'Quantity',
 			),		
 		));
@@ -71,7 +81,9 @@ class ProductForm extends Form
 			'name'		 => 'tags',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label'	=> 'Tags',	
+			),
+			'options' => array(
+				'label'	=> 'Tags',
 			),		
 		));
 
@@ -81,10 +93,12 @@ class ProductForm extends Form
 			'attributes' => array(
 				'type'	=> 'radio',
 				'label'	=> 'On/Off shelf',
+			),
+			'options' => array(
 				'options' => array(
 					'On' => '1', 'Off' => 0,
-				),	
-			),		
+				),
+			)		
 		));
 
 		// category_id
@@ -92,7 +106,9 @@ class ProductForm extends Form
 			'name'		 => 'category_id',
 			'attributes' => array(
 				'type'	=> 'input',
-				'label' => 'Category_id ???',	
+			),
+			'options' => array(
+				'label' => 'Category_id ???',
 			),		
 		));
 		
@@ -101,6 +117,8 @@ class ProductForm extends Form
 			'name'		 => 'link_id',
 			'attributes' => array(
 				'type'	=> 'input',
+			),
+			'options' => array(
 				'label'	=> 'Link_id ???',
 			),	
 		));
