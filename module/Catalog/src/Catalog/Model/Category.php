@@ -51,4 +51,15 @@ class Category extends AbstractRowGateway
 	{
 		$this->inputFilter = $inputFilter;
 	}
+	
+	/**
+	 * To array
+	 * 
+	 * @return array
+	 * @todo Working with $form->bind($row);
+	 */
+	public function getArrayCopy()
+	{
+		return $this->toArray();
+	}
 }

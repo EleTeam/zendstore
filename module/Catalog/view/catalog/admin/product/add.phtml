@@ -3,7 +3,7 @@ $title = 'New product';
 $this->headTitle($title);
 ?>
 
-<div class="colums">
+<div class="columns">
 	<div id="page:left" class="side-col">
 		<h3>Product Information</h3>
 		<ul id="product_info_tabs" class="tabs">
@@ -13,52 +13,60 @@ $this->headTitle($title);
 				</a>
 			</li>
 			<li>
-		        <a name="group_95" id="product_info_tabs_group_95" class="tab-item-link active" href="#" title="Description">
+		        <a name="group_95" id="product_info_tabs_group_95" class="tab-item-link" href="#" title="Description">
 		            <span>Description</span>
 		        </a>
 		    </li>
 		</ul>		
 	</div>
 	<div id="content" class="main-col">
-	
+		<div class="main-col-inner">
+			<div id="messages"></div>
+			<div class="content-header">
+				<h3 class="icon-head head-products">New Product (Default)</h3>
+			</div>
+			<!-- Product form -->
+			<?php
+				$form = $this->form;
+				echo $this->form()->openTag($form);
+			?>
+			<div id="product_info_tabs_group7_content">
+				<div class="entry-edit">
+					<div class="entry-edit-head">
+						<h4 class="icon-head head-edit-form fieldset-legend">General</h4>
+					</div>
+					<div id="group_fields7" class="fieldset fieldset-wide">
+						<div class="hor-scroll">
+							<table class="form-list" cellspacing="0"><tbody>
+								<tr>
+									<td class="label">
+										<?php echo $this->formLabel($form->get('product_name'), 'Product Name <span class="required">*</span>'); ?></span>
+									</td>
+									<td class="value">
+							        	<input id="product_name" class="required-entry input-text" name="product_name" value="" type="text">
+							        </td>
+								</tr>
+								<tr>
+									<td class="label">
+										<?php echo $this->formLabel($form->get('description')); ?>
+									</td>
+									<td class="value">
+										<textarea id="description" class="required-entry textarea" name="description"></textarea>
+									</td>
+								</tr>
+							</tbody></table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content-buttons-placeholder">
+				<p class="content-buttons form-buttons">
+					<button id="" class="scalable reset" type="reset" title="Reset"><span>Reset</span></button>
+					<button id="" class="scalable save" type="submit" title="Save"><span>Save</span></button>
+				</p>
+			</div>
+			<?php echo $this->form()->closeTag($form); ?>
+			<!-- /Product form -->
+		</div>
 	</div>	
 </div>
-
-
-
-
-<h1>Add Product</h1>
-<?php
-$form = $this->form;
-echo $this->form()->openTag($form);
-?>
-<dl>
-	<dt><?php echo $this->formInput($form->get('product_name')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('product_name'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('price')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('price'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('market_price')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('market_price'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('brand')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('brand'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('quantity')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('quantity'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('tags')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('tags'));?></dt>
-	
-	<dt><?php /*echo $this->formRadio($form->get('on_shelf')); */?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('on_shelf'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('category_id')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('category_id'));?></dt>
-
-	<dt><?php echo $this->formInput($form->get('link_id')); ?></dt>
-	<dt><?php echo $this->formElementErrors($form->get('link_id'));?></dt>
-	
-	<dt><?php echo $this->formInput($form->get('submit')); ?></dt>
-</dl>

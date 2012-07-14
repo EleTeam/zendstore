@@ -11,7 +11,10 @@ class ProductForm extends Form
 		parent::__construct();
 		
 		$this->setName('product_form');
-		$this->setAttribute('method', 'post');
+		$this->setAttributes(array(
+			'method'  => 'post',
+			'enctype' => 'multipart/form-data',
+		));
 		
 		// product_id
 		$this->add(array(
@@ -32,14 +35,25 @@ class ProductForm extends Form
 			),		
 		));		
 			
-		// price
+		// description
 		$this->add(array(
-			'name'		 => 'price',
+			'name'		 => 'description',
+			'attributes' => array(
+				'type'	=> 'textarea',
+			),
+			'options' => array(
+				'label'	=> 'Description',
+			),		
+		));		
+			
+		// store_price
+		$this->add(array(
+			'name'		 => 'store_price',
 			'attributes' => array(
 				'type'	=> 'input',
 			),
 			'options' => array(
-				'label'	=> 'Price',
+				'label'	=> 'Store Price',
 			),		
 		));
 

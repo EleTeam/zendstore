@@ -11,11 +11,12 @@ $(function(){
 		e.preventDefault();
 		var url = $('#category_form').attr('action');
 		var params = {
+			'category_id':	 $('#category_id').val(),
 			'category_name': $('#category_name').val(),
 			'description':   $('#description').val() 
 		};
 		$.post(url, params, function(data){
-			//alert(data);
+			$("#category-edit-container").html(data);
 		});
 	});
 });
@@ -42,7 +43,8 @@ $(function(){
 <!-- Category edit form -->
 <?php 
 $form = $this->form;
-$form->setAttribute('action', $this->url('catalog-admin-category', array('action' => 'edit')));
+$form->setAttribute('action', 
+	$this->url('catalog-admin-category', array('action' => 'edit', 'id' => $form->get('category_id')->getAttribute('value'))));
 $form->prepare();
 ?>
 <?php 

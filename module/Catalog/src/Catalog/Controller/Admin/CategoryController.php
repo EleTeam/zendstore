@@ -2,6 +2,9 @@
 
 namespace Catalog\Controller\Admin;
 
+use Catalog\Model\Category;
+
+use Zend\Form\FormInterface;
 use ZendStore\Controller\AbstractAdminActionController;
 use Catalog\Model\CategoryTable;
 use Catalog\Form\CategoryForm;
@@ -34,16 +37,23 @@ class CategoryController extends AbstractAdminActionController
 		
 		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
 		
-		$form = new CategoryForm();
 		$categoryTable = $this->getCategoryTable();
 		$category = $categoryTable->getCategory($id);
-		$form->bindOnValidate(false);
+		$form = new CategoryForm();
 		$form->bind($category);
 		
-		$viewVars = array(
-			'form'		=> $form,	
-		);	
-		$viewModel->setVariables($viewVars);
+		if ($this->request->isPost()) {
+			$form->setInputFilter($category->getInputFilter())
+				 ->setData($this->request->getPost());
+			if ($form->isValid()) {
+				//$category->populate($form->getData());
+				$categoryTable->saveCategory($category);
+			}
+		}
+		
+		$viewModel->setVariables(array(
+			'form' => $form,	
+		));
 			
 		return $viewModel;		
 	}

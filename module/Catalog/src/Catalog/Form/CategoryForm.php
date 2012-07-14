@@ -20,6 +20,7 @@ class CategoryForm extends Form
 		$this->add(array(
 			'name'		 => 'category_id',
 			'attributes' => array(
+				'id'	=> 'category_id',
 				'type'	=> 'hidden',	
 			),		
 		));	
@@ -36,9 +37,9 @@ class CategoryForm extends Form
 		$this->add(array(
 			'name'		 => 'category_name',
 			'attributes' => array(
-				'type'	=> 'input',
 				'id'	=> 'category_name',
 				'class' => 'input-text required-entry',
+				'type'	=> 'input',
 			),
 			'options' => array(
 				'label'	=> 'Category Name',
@@ -61,9 +62,9 @@ class CategoryForm extends Form
 		$this->add(array(
 			'name'		 => 'description',
 			'attributes' => array(
-				'type'	=> 'textarea',
 				'id'	=> 'description',
 				'class' => 'textarea',
+				'type'	=> 'textarea',
 			),
 			'options' => array(
 				'label'	=> 'Description',

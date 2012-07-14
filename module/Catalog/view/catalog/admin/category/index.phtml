@@ -20,7 +20,7 @@ $(function(){
 					"url": "<?php echo $this->url('catalog-admin-category', array('action' => 'list')); ?>",
 					"data": function(node){
 						return {
-							"id": node.attr ? node.attr("id").replace("node_", "") : 1
+							"id": node.attr ? node.attr("id").replace("node_", "") : 0
 						};
 					}
 				}
