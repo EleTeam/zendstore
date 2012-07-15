@@ -36,19 +36,20 @@ class CategoryController extends AbstractAdminActionController
 		$viewModel->setTerminal(true);
 		
 		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-		
 		$categoryTable = $this->getCategoryTable();
-		$category = $categoryTable->getCategory($id);
 		$form = new CategoryForm();
-		$form->bind($category);
 		
 		if ($this->request->isPost()) {
+			$category = new Category();
 			$form->setInputFilter($category->getInputFilter())
 				 ->setData($this->request->getPost());
 			if ($form->isValid()) {
-				//$category->populate($form->getData());
+				$category->exchangeArray($form->getData());
 				$categoryTable->saveCategory($category);
 			}
+		} else {
+			$category = $categoryTable->getCategory($id);
+			$form->bind($category);			
 		}
 		
 		$viewModel->setVariables(array(
