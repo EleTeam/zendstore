@@ -42,6 +42,16 @@ return array(
                     ),
                 ),
             ),
+        	'application-admin-dashboard' => array(
+        		'type'	  => 'Literal',
+        		'options' => array(
+        			'route'	   => '/admin',
+        			'defaults' => array(
+        				'controller' => 'Application\Controller\Admin\Dashboard',
+        				'action'	 => 'index',	
+        			),	
+        		),	
+        	),
         ),
     ),
     'service_manager' => array(
@@ -61,7 +71,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Front\Index' => 'Application\Controller\Front\IndexController'
+            'Application\Controller\Front\Index' 		=> 'Application\Controller\Front\IndexController',
+        	'Application\Controller\Admin\Dashboard' 	=> 'Application\Controller\Admin\DashboardController',
         ),
     ),
     'view_manager' => array(
