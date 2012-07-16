@@ -1,29 +1,22 @@
 <?php
 
-namespace Album\Controller\Front;
+namespace Album\Controller;
 
 use ZendStore\Controller\AbstractFrontActionController;
-
-use Album\Model\AlbumTable;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
 
 class AlbumController extends AbstractFrontActionController
 {
-    /**
-     * @var \Album\Model\AlbumTable
-     */
     protected $albumTable;
 
     public function indexAction()
     {
     	$viewModel = $this->getViewModel();
-    	$viewVars  = array(
-    		'albums' => $this->getAlbumTable()->fetchAll(),
-    	);
-    	$viewModel->setVariables($viewVars);
     	
-    	return $viewModel;
+        return $viewModel->setVariables(array(
+            'albums' => $this->getAlbumTable()->fetchAll(),
+        ));
     }
 
     public function addAction()
@@ -35,104 +28,79 @@ class AlbumController extends AbstractFrontActionController
         if ($request->isPost()) {
             $album = new Album();
             $form->setInputFilter($album->getInputFilter());
-            $form->setData($request->post());
+            $form->setData($request->getPost());
             if ($form->isValid()) {
-
-                $album->populate($form->getData());
+                $album->exchangeArray($form->getData());
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album-front-album');
-
+                return $this->redirect()->toRoute('album');
             }
         }
-        
-        $viewVars = array(
-        	'form' => $form,
-        );
-        $viewModel = $this->getViewModel();
-        $viewModel->setVariables($viewVars);
-        
-        return $viewModel;
+
+        return array('form' => $form);
     }
 
     public function editAction()
     {
-    	$viewModel = $this->getViewModel();
-        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int)$this->params('id');
         if (!$id) {
-            return $this->redirect()->toRoute('album-front-album', array('action'=>'add'));
+            return $this->redirect()->toRoute('album', array('action'=>'add'));
         }
-        
         $album = $this->getAlbumTable()->getAlbum($id);
 
         $form = new AlbumForm();
-        $form->setBindOnValidate(false);
         $form->bind($album);
-        $form->get('submit')->setAttribute('label', 'Edit');
+        $form->get('submit')->setAttribute('value', 'Edit');
         
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setData($request->post());
+            $form->setData($request->getPost());
             if ($form->isValid()) {
-                $form->bindValues();
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album-front-album');
+                return $this->redirect()->toRoute('album');
             }
         }
 
-        $viewVars = array(
-        	'id' 	=> $id,
-        	'form'	=> $form,
+        return array(
+            'id' => $id,
+            'form' => $form,
         );
-        $viewModel->setVariables($viewVars);
-        
-        return $viewModel;
     }
 
     public function deleteAction()
     {
-        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        $id = (int)$this->params('id');
         if (!$id) {
-            return $this->redirect()->toRoute('album-front-album');
+            return $this->redirect()->toRoute('album');
         }
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $del = $request->post()->get('del', 'No');
+            $del = $request->getPost()->get('del', 'No');
             if ($del == 'Yes') {
-                $id = (int)$request->post()->get('id');
+                $id = (int)$request->getPost()->get('id');
                 $this->getAlbumTable()->deleteAlbum($id);
             }
 
             // Redirect to list of albums
-            return $this->redirect()->toRoute('album-front-album');
+            return $this->redirect()->toRoute('album');
         }
 
-        $viewVars  = array(
-        	'id' 	=> $id,
-        	'album' => $this->getAlbumTable()->getAlbum($id),
+        return array(
+            'id' => $id,
+            'album' => $this->getAlbumTable()->getAlbum($id)
         );
-        $viewModel = $this->getViewModel();
-        $viewModel->setVariables($viewVars);
-        
-        return $viewModel;
-    }
-
-    public function setAlbumTable(AlbumTable $albumTable)
-    {
-        $this->albumTable = $albumTable;
-        return $this;
     }
 
     public function getAlbumTable()
     {
         if (!$this->albumTable) {
             $sm = $this->getServiceLocator();
-            $this->albumTable = $sm->get('album-table');
+            $this->albumTable = $sm->get('Album\Model\AlbumTable');
         }
         return $this->albumTable;
-    }
+    }    
 }

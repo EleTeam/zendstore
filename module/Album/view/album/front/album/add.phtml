@@ -2,29 +2,17 @@
 $title = 'Add new album';
 $this->headTitle($title);
 ?>
-<h1><?php echo $title; ?></h1>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
 
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('album-front-album', array('action' => 'add')));
-echo $this->form()->openTag($form);
-?>
-<dl class="zend_form">
-<?php echo $this->formInput($form->get('id')); ?>
-<dt><?php echo $this->formLabel($form->get('title')); ?></dt>
-<dd><?php 
-    echo $this->formInput($form->get('title'));
-    echo $this->formElementErrors($form->get('title'));
-?></dd>
-<dt><?php echo $this->formLabel($form->get('artist')); ?></dt>
-<dd><?php 
-    echo $this->formInput($form->get('artist'));
-    echo $this->formElementErrors($form->get('artist'));
-?></dd>
+$form->setAttribute('action', $this->url('album', array('action' => 'add')));
+$form->prepare();
 
-<dd><?php 
-    echo $this->formInput($form->get('submit'));
-    //echo $this->formElementErrors($form->get('submit'));
-?></dd>
-</dl>
-<?php echo $this->form()->closeTag($form); ?>
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formHidden($form->get('id')) . PHP_EOL;
+echo $this->formRow($form->get('title')) . PHP_EOL;
+echo $this->formRow($form->get('artist')) . PHP_EOL;
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag($form) . PHP_EOL;
+

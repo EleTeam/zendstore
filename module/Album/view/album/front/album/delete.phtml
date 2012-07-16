@@ -2,17 +2,17 @@
 $title = 'Delete album';
 $this->headTitle($title);
 ?>
-<h1><?php echo $title; ?></h1>
-<?php print_r($album);?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
 <p>Are you sure that you want to delete 
-  '<?php echo $album->title; ?>' by 
-  '<?php echo $album->artist; ?>'?
+  '<?php echo $this->escapeHtml($album->title); ?>' by 
+  '<?php echo $this->escapeHtml($album->artist); ?>'?
 </p>
 <?php 
-$url = $this->url('album-front-album', array('action' => 'delete', 'id'=>$this->id)); ?>
+$url = $this->url('album', array('action' => 'delete', 'id'=>$this->id)); ?>
 <form action="<?php echo $url; ?>" method="post">
 <div>
-  <input type="hidden" name="id" value="<?php echo (int)$album['id']; ?>" />
+  <input type="hidden" name="id" value="<?php echo (int)$album->id; ?>" />
   <input type="submit" name="del" value="Yes" />
   <input type="submit" name="del" value="No" />
 </div>

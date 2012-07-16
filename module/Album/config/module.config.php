@@ -2,13 +2,13 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Album\Controller\Album' => 'Album\Controller\AlbumController',
+            'Album\Controller\Front\Album' => 'Album\Controller\Front\AlbumController',
         ),
     ),
     
     'router' => array(
         'routes' => array(
-            'album' => array(
+            'album-front-album' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'    => '/album[/:action][/:id]',
@@ -17,7 +17,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Album\Controller\Album',
+                        'controller' => 'Album\Controller\Front\Album',
                         'action'     => 'index',
                     ),
                 ),
