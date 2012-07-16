@@ -7,7 +7,7 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Front\Index',
+                        'controller' => 'application\front\index',
                         'action'     => 'index',
                     ),
                 ),
@@ -16,13 +16,13 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
-            'application' => array(
+            'application-front-index' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/application',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
+                        //'__NAMESPACE__' => 'Application\Controller\Front',
+                        'controller'    => 'application\front\index',
                         'action'        => 'index',
                     ),
                 ),
@@ -42,6 +42,16 @@ return array(
                     ),
                 ),
             ),
+        	'application-admin-dashboard' => array(
+        		'type'	  => 'Literal',
+        		'options' => array(
+        			'route'	   => '/admin',
+        			'defaults' => array(
+        				'controller' => 'application\admin\dashboard',
+        				'action'	 => 'index',	
+        			),	
+        		),	
+        	),
         ),
     ),
     'service_manager' => array(
@@ -61,7 +71,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Front\Index' => 'Application\Controller\Front\IndexController'
+            'application\front\index' 		=> 'Application\Controller\Front\IndexController',
+        	'application\admin\dashboard' 	=> 'Application\Controller\Admin\DashboardController',
         ),
     ),
     'view_manager' => array(

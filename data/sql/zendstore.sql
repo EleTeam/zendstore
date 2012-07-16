@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2012 at 06:11 PM
+-- Generation Time: Jul 16, 2012 at 10:45 PM
 -- Server version: 5.5.21
 -- PHP Version: 5.3.8-ZS5.5.0
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `catalog_product` (
   `type` tinyint(3) unsigned NOT NULL,
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
   `brand` varchar(255) DEFAULT NULL,
-  `price` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `store_price` decimal(12,4) NOT NULL DEFAULT '0.0000',
   `market_price` decimal(12,4) NOT NULL DEFAULT '0.0000',
   `tags` varchar(100) DEFAULT NULL,
   `is_active` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `catalog_product` (
 -- Dumping data for table `catalog_product`
 --
 
-INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`, `brand`, `price`, `market_price`, `tags`, `is_active`, `sort_order`, `position`, `created_date`, `updated_data`) VALUES
+INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`, `brand`, `store_price`, `market_price`, `tags`, `is_active`, `sort_order`, `position`, `created_date`, `updated_data`) VALUES
 (1, 'aaaaaaaaaaaaa', 0, 0, NULL, '0.0000', '0.0000', NULL, 1, 255, 0, NULL, NULL);
 
 -- --------------------------------------------------------

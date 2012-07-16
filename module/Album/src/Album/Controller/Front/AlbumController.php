@@ -1,6 +1,6 @@
 <?php
 
-namespace Album\Controller;
+namespace Album\Controller\Front;
 
 use ZendStore\Controller\AbstractFrontActionController;
 use Album\Model\Album;
@@ -21,6 +21,8 @@ class AlbumController extends AbstractFrontActionController
 
     public function addAction()
     {
+    	$viewModel = $this->getViewModel();
+    	
         $form = new AlbumForm();
         $form->get('submit')->setAttribute('value', 'Add');
 
@@ -34,15 +36,19 @@ class AlbumController extends AbstractFrontActionController
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('album-front-album');
             }
         }
 
-        return array('form' => $form);
+        return $viewModel->setVariables(array(
+			'form' => $form,
+        ));
     }
 
     public function editAction()
     {
+    	$viewModel = $this->getViewModel();
+    	
         $id = (int)$this->params('id');
         if (!$id) {
             return $this->redirect()->toRoute('album', array('action'=>'add'));
@@ -60,21 +66,23 @@ class AlbumController extends AbstractFrontActionController
                 $this->getAlbumTable()->saveAlbum($album);
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('album-front-album');
             }
         }
 
-        return array(
+        return $viewModel->setVariables(array(
             'id' => $id,
             'form' => $form,
-        );
+        ));        
     }
 
     public function deleteAction()
     {
+    	$viewModel = $this->getViewModel();
+    	
         $id = (int)$this->params('id');
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('album-front-album');
         }
 
         $request = $this->getRequest();
@@ -86,13 +94,13 @@ class AlbumController extends AbstractFrontActionController
             }
 
             // Redirect to list of albums
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('album-front-album');
         }
 
-        return array(
+        return $viewModel->setVariables(array(
             'id' => $id,
             'album' => $this->getAlbumTable()->getAlbum($id)
-        );
+        ));
     }
 
     public function getAlbumTable()
