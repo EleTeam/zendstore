@@ -2,19 +2,19 @@
 
 namespace Album\Model;
 
-use Zend\Db\TableGateway\AbstractTableGateway,
-    Zend\Db\Adapter\Adapter,
-    Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
 
 class AlbumTable extends AbstractTableGateway
 {
-    protected $table ='album';
-    protected $tableName ='album';
+    protected $table = 'album';
 
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
-        $this->resultSetPrototype = new ResultSet(new Album);
+        $this->resultSetPrototype = new ResultSet();
+        $this->resultSetPrototype->setArrayObjectPrototype(new Album());
 
         $this->initialize();
     }
@@ -38,7 +38,6 @@ class AlbumTable extends AbstractTableGateway
 
     public function saveAlbum(Album $album)
     {
-    	//echo '<pre>';print_r($album);exit;
         $data = array(
             'artist' => $album->artist,
             'title'  => $album->title,
@@ -51,27 +50,9 @@ class AlbumTable extends AbstractTableGateway
             if ($this->getAlbum($id)) {
                 $this->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Form id does not exit');
+                throw new \Exception('Form id does not exist');
             }
         }
-    }
-
-    public function addAlbum($artist, $title)
-    {
-        $data = array(
-            'artist' => $artist,
-            'title'  => $title,
-        );
-        $this->insert($data);
-    }
-
-    public function updateAlbum($id, $artist, $title)
-    {
-        $data = array(
-            'artist' => $artist,
-            'title'  => $title,
-        );
-        $this->update($data, array('id' => $id));
     }
 
     public function deleteAlbum($id)

@@ -2,7 +2,6 @@
 
 namespace Album;
 
-use Zend\Form\View\HelperLoader as FormHelperLoader;
 use Album\Model\AlbumTable;
 
 class Module
@@ -20,23 +19,22 @@ class Module
             ),
         );
     }
-
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
-
+    
     public function getServiceConfiguration()
     {
         return array(
             'factories' => array(
-                'album-table' =>  function($sm) {
-                    $dbAdapter = $sm->get('db-adapter');
+                'Album\Model\AlbumTable' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new AlbumTable($dbAdapter);
                     return $table;
                 },
             ),
         );
-    }
+    }    
 
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
 }

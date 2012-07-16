@@ -2,17 +2,33 @@
 
 namespace Album\Model;
 
-use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-
-class Album extends AbstractRowGateway
-	implements InputFilterAwareInterface
+class Album implements InputFilterAwareInterface
 {
+    public $id;
+    public $artist;
+    public $title;
+
     protected $inputFilter;
+
+    /**
+     * Used by ResultSet to pass each database row to the entity
+     */
+    public function exchangeArray($data)
+    {
+        $this->id     = (isset($data['id'])) ? $data['id'] : null;
+        $this->artist = (isset($data['artist'])) ? $data['artist'] : null;
+        $this->title  = (isset($data['title'])) ? $data['title'] : null;
+    }
+
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
 
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
@@ -27,10 +43,10 @@ class Album extends AbstractRowGateway
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput(array(
-                'name'       => 'id',
-                'required'   => true,
-                'filters' => array(
-                    array('name'    => 'Int'),
+                'name'     => 'id',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'Int'),
                 ),
             )));
 

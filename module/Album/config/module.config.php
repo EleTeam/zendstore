@@ -1,35 +1,30 @@
 <?php
-
 return array(
-
-    // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'album\front\album' => 'Album\Controller\Front\AlbumController'
+            'Album\Controller\Album' => 'Album\Controller\AlbumController',
         ),
     ),
-
-    // Routes for this module
+    
     'router' => array(
         'routes' => array(
-            'album-front-album' => array(
+            'album' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'    => '/album[/:action][/:id]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z]+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'album\front\album',
+                        'controller' => 'Album\Controller\Album',
                         'action'     => 'index',
                     ),
                 ),
             ),
         ),
-    ),    
+    ),
 
-    // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
             'album' => __DIR__ . '/../view',
