@@ -16,12 +16,11 @@ class ProductController extends AbstractAdminActionController
 	
 	public function indexAction()
 	{
-		
-
-		
+		$productTable = $this->getProductTable();
+		$products = $productTable->getProducts();
 		$viewModel = $this->getViewModel();
 		$viewModel->setVariables(array(
-				
+			'products' => $products,
 		));
 		
 		return $viewModel;
@@ -57,36 +56,28 @@ class ProductController extends AbstractAdminActionController
 	
 	public function editAction()
 	{
-		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-		if (!$id) {
-			exit('Product not exist');
-		}
-		
-		$form 	 = new ProductForm();		
+		$id 	 = (int) $this->getEvent()->getRouteMatch()->getParam('id');
 		$product = $this->getProductTable()->getProduct($id);
+		$form	 = new ProductForm();		
+		$form->bind($product);
 		
-		$request = $this->getRequest();
-		if ($request->isPost()) {
-			$product = new Product();
-			$form->setInputFilter($product->getInputFilter());
-			$form->setData($request->post());
-			if ($form->isValid()) {
-				$formData = $form->getData();
-				$product->populate($formData);
-				$this->getProductTable()->saveProduct($product);
-		
-				// 				return $this->redirect()->toRoute('admin-catalog-product', array(
-				// 					'action'	 => 'view',
-				// 				));
-			}
+		if ($this->request->isPost()) {
+// 			$form->setInputFilter($product->getInputFilter());
+			$form->setData($this->request->getPost());
+			if (!$form->isValid()) {
+				$content = '<pre>' . print_r($form->getMessages(), true) . '</pre>';
+				$this->response->setContent($content);
+				return $this->response;
+			} 
+			
+			$this->getProductTable()->saveProduct($product);
+			return $this->redirect()->toRoute('catalog-admin-product');
 		}
 		
-		$viewVars = array(
-			'form' 	  => $form,
-			'product' => $product,
-		);
 		$viewModel = $this->getViewModel();
-		$viewModel->setVariables($viewVars);
+		$viewModel->setVariables(array(
+			'form' => $form,
+		));
 		
 		return $viewModel;		
 	}

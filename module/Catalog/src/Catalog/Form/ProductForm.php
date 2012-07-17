@@ -8,9 +8,8 @@ class ProductForm extends Form
 {
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct('product_form');
 		
-		$this->setName('product_form');
 		$this->setAttributes(array(
 			'method'  => 'post',
 			'enctype' => 'multipart/form-data',
@@ -28,7 +27,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'product_name',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Product Name',
@@ -50,7 +49,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'store_price',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Store Price',
@@ -61,7 +60,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'market_price',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Market_price',
@@ -72,7 +71,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'brand',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Brand',
@@ -83,7 +82,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'quantity',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Quantity',
@@ -94,16 +93,16 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'tags',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Tags',
 			),		
 		));
 
-		// on_shelf
+		// is_active
 		$this->add(array(
-			'name'		 => 'on_shelf',
+			'name'		 => 'is_active',
 			'attributes' => array(
 				'type'	=> 'radio',
 				'label'	=> 'On/Off shelf',
@@ -119,7 +118,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'category_id',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label' => 'Category_id ???',
@@ -130,7 +129,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'link_id',
 			'attributes' => array(
-				'type'	=> 'input',
+				'type'	=> 'text',
 			),
 			'options' => array(
 				'label'	=> 'Link_id ???',

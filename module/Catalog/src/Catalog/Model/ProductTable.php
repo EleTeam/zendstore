@@ -18,14 +18,14 @@ class ProductTable extends AbstractTableGateway
 	 */
 	protected $columns = array(
 		'product_id',		'product_name',		'type',			'quantity',			'brand',
-		'price',			'market_price',		'tags',			'on_shelf',			'sort_order',
-		'posistion',		'created_at',		'updated_at'				
+		'store_price',		'market_price',		'tags',			'is_active',		'sort_order',
+		'position',			'created_date',		'updated_date',				
 	);
 	
 	public function __construct(Adapter $adapter)
 	{
 		$this->adapter = $adapter;
-		$this->resultSetPrototype = new ResultSet(new Product());
+		$this->resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Category());
 	
 		$this->initialize();
 	}
@@ -33,7 +33,7 @@ class ProductTable extends AbstractTableGateway
 	/**
 	 * Get a product
 	 * 
-	 * @param int $productId
+	 * @param int $id
 	 * @throws Exception\UnexpectedValueException
 	 * @return Product
 	 */
@@ -41,12 +41,17 @@ class ProductTable extends AbstractTableGateway
 	{
 		$id = (int) $id;
 		$resultSet = $this->select(array('product_id' => $id));
-		$row 	   = $resultSet->current();
-		if (! $row) {
+		$product   = $resultSet->current();
+		if (! $product) {
 			throw new Exception\UnexpectedValueException("Product $id doesn't exist");
 		}
 		
-		return new Product($row->getArrayCopy());
+		return $product;
+	}
+	
+	public function getProducts()
+	{
+		return $this->select();
 	}
 	
 	/**

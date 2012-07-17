@@ -63,8 +63,28 @@
                    	</tr>
             	</thead>
             	<tbody>
-            		<tr class="even pointer">
-            		</tr>
+            		<?php foreach ($this->products as $product): ?>
+            		<tr class="even">
+	                    <td class="a-center"><input type="checkbox" class="massaction-checkbox" value="166" name="product"></td>
+						<td class="a-right"><?php echo $product->product_id; ?></td>
+						<td><?php echo $product->product_name; ?></td>
+						<td>Simple Product</td>
+                                                        <td class=" ">
+                        Cell Phones                    </td>
+                                                        <td class=" ">
+                        HTC Touch Diamond                    </td>
+                        <td class=" a-right "><?php echo $product->store_price; ?></td>
+                                                        <td class=" a-right ">
+                        849                    </td>
+                                                        <td class=" ">
+                        Catalog, Search                    </td>
+                                                        <td class=" ">
+                        Enabled                    </td>
+                                                        <td class=" ">
+                        Main Website                    </td>
+                        <td class=" last"><a href="<?php echo $this->url('catalog-admin-product', array('action' => 'edit', 'id' => $product->product_id)); ?>">Edit</a></td>
+                    </tr>
+            		<?php endforeach; ?>
             	</tbody>
 			</table>
 		</div>
