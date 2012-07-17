@@ -2,13 +2,13 @@
 
 namespace Catalog\Model;
 
-use Zend\Db\RowGateway\AbstractRowGateway,
-	Zend\InputFilter\InputFilterAwareInterface,
-	Zend\InputFilter\InputFilterInterface,
-	Zend\InputFilter\InputFilter,
-	Zend\InputFilter\Factory as InputFactory;
+use Zend\Db\RowGateway\AbstractRowGateway;
+use	Zend\InputFilter\InputFilter;
+use	Zend\InputFilter\Factory as InputFactory;
+use	Zend\InputFilter\InputFilterAwareInterface;
+use	Zend\InputFilter\InputFilterInterface;
 
-class Category extends AbstractRowGateway
+class Category extends AbstractRowGateway 
 	implements InputFilterAwareInterface
 {
 	/**
@@ -35,10 +35,24 @@ class Category extends AbstractRowGateway
 			
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'category_name',
-				'required'	 => true,					
+				'required'	 => true,
+				'filters'	 => array(
+					array('name' => 'StripTags'),
+					array('name' => 'stringTrim'),	
+				),					
+				'validators' => array(
+					array(
+						'name' 	  => 'StringLength',
+						'options' => array(
+							'encoding' 	=> 'UTF-8',
+							'min'		=> 1,
+							'max'		=> 100,	
+						),
+					),	
+				),
 			)));
 			
-			$this->setInputFilter($inputFilter);
+			$this->inputFilter = $inputFilter;
 		}	
 		
 		return $this->inputFilter;
@@ -49,7 +63,7 @@ class Category extends AbstractRowGateway
 	 */
 	public function setInputFilter(InputFilterInterface $inputFilter)
 	{
-		$this->inputFilter = $inputFilter;
+		throw new Exception\BadMethodCallException('The method is not used');
 	}
 	
 	/**

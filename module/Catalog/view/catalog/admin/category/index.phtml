@@ -17,11 +17,11 @@ $(function(){
 			],
 			"json_data": {
 				"ajax": {
-					"url": "<?php echo $this->url('catalog-admin-category', array('action' => 'list')); ?>",
-					"data": function(node){
-						return {
-							"id": node.attr ? node.attr("id").replace("node_", "") : 0
-						};
+					"url": function(node){
+						var url = "<?php echo $this->url('catalog-admin-category', array('action' => 'list')); ?>";
+						var id  = node.attr ? node.attr("id").replace("node_", "") : 0;
+						url += '/' + id;
+						return url;
 					}
 				}
 			},

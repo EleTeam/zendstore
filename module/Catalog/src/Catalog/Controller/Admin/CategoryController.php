@@ -64,9 +64,9 @@ class CategoryController extends AbstractAdminActionController
 	 */
 	public function listAction()
 	{
-		$request = $this->getRequest();
-		$id = $_REQUEST['id'];
+		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
 		$result = array();
+
 		try {
 			$categories = $this->getCategoryTable()->getCategoryChildren($id);
 			foreach ($categories as $category) {
@@ -91,8 +91,10 @@ class CategoryController extends AbstractAdminActionController
 		header("Cache-Control: no-cache, must-revalidate");
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		header("Pragma: no-cache");
-		echo json_encode($result);
-		exit;
+		
+		$response = $this->getResponse();
+		$response->setContent(json_encode($result));
+		return $response;		
 	}	
 	
 	/**
@@ -102,7 +104,7 @@ class CategoryController extends AbstractAdminActionController
 	{
 		if (!$this->categoryTable) {
 			$sm = $this->getServiceLocator();
-			$this->categoryTable = $sm->get('category-table');
+			$this->categoryTable = $sm->get('Catalog\Model\CategoryTable');
 		}
 		return $this->categoryTable;
 	}

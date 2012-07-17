@@ -16,11 +16,13 @@ class ProductController extends AbstractAdminActionController
 	
 	public function indexAction()
 	{
-		$viewModel = $this->getViewModel();
+		
 
 		
-		$viewVars = array();
-		$viewModel->setVariables($viewVars);
+		$viewModel = $this->getViewModel();
+		$viewModel->setVariables(array(
+				
+		));
 		
 		return $viewModel;
 	}
@@ -29,14 +31,13 @@ class ProductController extends AbstractAdminActionController
 	{
 		$form = new ProductForm();
 		
-		$request = $this->getRequest();
-		if ($request->isPost()) {
+		if ($this->request->isPost()) {
 			$product = new Product();
-			$form->setInputFilter($product->getInputFilter());
-			$form->setData($request->post());
+			$form->setInputFilter($product->getInputFilter())
+				 ->setData($this->request->getPost());
 			if ($form->isValid()) {
-				$formData = $form->getData();
-				$product->populate($formData);
+				$product->exchangeArray($form->getData());
+				//$product->populate($form->getData());
 				$this->getProductTable()->saveProduct($product);
 
 				exit('Added OK');
@@ -46,9 +47,10 @@ class ProductController extends AbstractAdminActionController
 			}
 		}
 
-		$viewVars  = array('form' => $form);
 		$viewModel = $this->getViewModel();
-		$viewModel->setVariables($viewVars);
+		$viewModel->setVariables(array(
+			'form' => $form
+		));
 		
 		return $viewModel;
 	}
@@ -73,7 +75,6 @@ class ProductController extends AbstractAdminActionController
 				$product->populate($formData);
 				$this->getProductTable()->saveProduct($product);
 		
-				exit('Edit OK');
 				// 				return $this->redirect()->toRoute('admin-catalog-product', array(
 				// 					'action'	 => 'view',
 				// 				));
@@ -99,7 +100,7 @@ class ProductController extends AbstractAdminActionController
 	{
 		if (!$this->productTable) {
 			$sm = $this->getServiceLocator();
-			$this->productTable = $sm->get('product-table');
+			$this->productTable = $sm->get('Catalog\Model\ProductTable');
 		}
 		return $this->productTable;
 	}

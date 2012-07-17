@@ -8,11 +8,6 @@ use Catalog\Widget\Product\ProductWidget;
 
 class Module
 {
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
-    
     public function getAutoloaderConfig()
     {
     	return array(
@@ -31,18 +26,24 @@ class Module
     {
     	return array(
     		'factories' => array(    			
-    			'category-table' => function($sm) {
-	    			$dbAdapter = $sm->get('db-adapter');
+    			'Catalog\Model\CategoryTable' => function($sm) {
+	    			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 	    			return new CategoryTable($dbAdapter);
     			},
-    			'product-table' => function($sm) {
-	    			$dbAdapter = $sm->get('db-adapter');
+    			'Catalog\Model\ProductTable' => function($sm) {
+	    			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 	    			return new ProductTable($dbAdapter);
     			},
-    			'product-widget' => function($sm) {
+    			'Catalog\Model\ProductWidget' => function($sm) {
     				return new ProductWidget();
     			},
     		),
     	);
     }
+    
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+    
 }
