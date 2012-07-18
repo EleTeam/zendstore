@@ -103,6 +103,6 @@ class CategoryTable extends AbstractTableGateway
 	 */
 	public function updateCategory(Category $category)
 	{
-		return $this->update($category->toArray(), $category->category_id);
+		return $this->update($category->toArray(), array('category_id' => $category->category_id));
 	}
 }

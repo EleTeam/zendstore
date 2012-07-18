@@ -10,6 +10,8 @@ $form->prepare();
 echo $this->form()->openTag($form);
 ?>
 <dl>
+	<?php echo $this->formInput($form->get('product_id')); ?>
+	
 	<dt><?php echo $this->formLabel($form->get('product_name')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('product_name')); ?></dt>
 	<dt><?php echo $this->formElementErrors($form->get('product_name'));?></dt>

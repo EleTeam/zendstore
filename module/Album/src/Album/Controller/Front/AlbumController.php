@@ -61,6 +61,7 @@ class AlbumController extends AbstractFrontActionController
         
         $request = $this->getRequest();
         if ($request->isPost()) {
+        	//$form->setInputFilter($album->getInputFilter());
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $this->getAlbumTable()->saveAlbum($album);

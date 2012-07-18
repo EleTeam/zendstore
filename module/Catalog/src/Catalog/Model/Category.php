@@ -60,17 +60,23 @@ class Category extends AbstractRowGateway
 	
 	/**
 	 * @see \Zend\InputFilter\InputFilterAwareInterface::setInputFilter()
+	 * @throws 
+	 */
+	
+	/**
+	 * @see Zend\InputFilter.InputFilterAwareInterface::setInputFilter()
+	 * @throws Exception\BadMethodCallException
 	 */
 	public function setInputFilter(InputFilterInterface $inputFilter)
 	{
-		throw new Exception\BadMethodCallException('The method is not used');
+		throw new Exception\BadMethodCallException('The method does not suppose to be invoke');
 	}
 	
 	/**
 	 * To array
 	 * 
 	 * @return array
-	 * @todo Working with $form->bind($row);
+	 * @todo Working with $form->bind($object);
 	 */
 	public function getArrayCopy()
 	{

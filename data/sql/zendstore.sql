@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 4.0.0-dev
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 16, 2012 at 10:45 PM
--- Server version: 5.5.21
+-- Host: localhost
+-- Generation Time: Jul 18, 2012 at 01:56 PM
+-- Server version: 5.5.18-log
 -- PHP Version: 5.3.8-ZS5.5.0
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -31,21 +31,22 @@ CREATE TABLE IF NOT EXISTS `album` (
   `artist` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`id`, `artist`, `title`) VALUES
-(1, 'The Military Wives', 'In My Dreamsaaaaaaaaaaaaaaaa'),
+(1, 'The Military Wives', 'In My Dreams111111111111111'),
 (3, 'Bruce Springsteen', 'Wrecking Ball (Deluxe)'),
 (4, 'Lana Del Rey', 'Born To Die'),
 (5, 'Gotye', 'Making Mirrors'),
 (6, 'sdf', 'sdf'),
 (9, 'asdfasdfsdf', 'sdf'),
 (11, 'abbbbb', 'aaaaaaaaaaa'),
-(12, '三地方斯蒂芬', '阿斯');
+(12, '三地方斯蒂芬', '阿斯'),
+(13, 'bbbbbb', '56876;9{"Paaaaaaa');
 
 -- --------------------------------------------------------
 
@@ -119,16 +120,16 @@ CREATE TABLE IF NOT EXISTS `catalog_product` (
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `position` tinyint(3) unsigned NOT NULL,
   `created_date` timestamp NULL DEFAULT NULL,
-  `updated_data` timestamp NULL DEFAULT NULL,
+  `updated_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `catalog_product`
 --
 
-INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`, `brand`, `store_price`, `market_price`, `tags`, `is_active`, `sort_order`, `position`, `created_date`, `updated_data`) VALUES
-(1, 'aaaaaaaaaaaaa', 0, 0, NULL, '0.0000', '0.0000', NULL, 1, 255, 0, NULL, NULL);
+INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`, `brand`, `store_price`, `market_price`, `tags`, `is_active`, `sort_order`, `position`, `created_date`, `updated_date`) VALUES
+(22, 'aaaaaaaaaaaaaaaaaaa', 0, 0, NULL, '0.0000', '0.0000', NULL, 1, 255, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 

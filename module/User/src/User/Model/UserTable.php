@@ -67,7 +67,7 @@ class UserTable extends AbstractTableGateway
 	
 	public function updateUser(User $user)
 	{
-		$this->update($user->toArray(), $user->user_id);
+		$this->update($user->toArray(), array('user_id' => $user->user_id));
 	}
 	
 }

@@ -25,7 +25,7 @@ class ProductTable extends AbstractTableGateway
 	public function __construct(Adapter $adapter)
 	{
 		$this->adapter = $adapter;
-		$this->resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Category());
+		$this->resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Product());
 	
 		$this->initialize();
 	}
@@ -88,6 +88,6 @@ class ProductTable extends AbstractTableGateway
 	 */
 	public function updateProduct(Product $product)
 	{
-		return $this->update($product->toArray(), $product->product_id);
+		return $this->update($product->toArray(), array('product_id' => $product->product_id));
 	}
 }

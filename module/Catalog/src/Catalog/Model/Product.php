@@ -35,28 +35,33 @@ class Product extends AbstractRowGateway
 			
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'product_name',
-				'required'	 => true,					
+				'required'	 => true,	
+				'filters'	 => array(
+					array('name' => 'StripTags'),
+					array('name' => 'StringTrim'),	
+				),				
 			)));
 			
-			$this->setInputFilter($inputFilter);
+			$this->inputFilter = $inputFilter;
 		}	
 		
 		return $this->inputFilter;
 	}
 	
 	/**
-	 * @see \Zend\InputFilter\InputFilterAwareInterface::setInputFilter()
+	 * @see Zend\InputFilter.InputFilterAwareInterface::setInputFilter()
+	 * @throws Exception\BadMethodCallException
 	 */
 	public function setInputFilter(InputFilterInterface $inputFilter)
 	{
-		$this->inputFilter = $inputFilter;
+		throw new Exception\BadMethodCallException('The method does not suppose to be invoke');
 	}
 	
 	/**
 	 * To array
 	 *
 	 * @return array
-	 * @todo Working with $form->bind($row);
+	 * @todo Working with $form->bind($object);
 	 */
 	public function getArrayCopy()
 	{
