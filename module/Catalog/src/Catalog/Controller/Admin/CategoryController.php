@@ -2,6 +2,9 @@
 
 namespace Catalog\Controller\Admin;
 
+
+use Zend\Json\Json;
+
 use Catalog\Model\Category;
 
 use Zend\Form\FormInterface;
@@ -23,12 +26,18 @@ class CategoryController extends AbstractAdminActionController
 		return $viewModel;
 	}	
 	
-// 	public function addAction()
-// 	{
-// 		return $this->forward()->dispatch('catalog-admin-category', array(
-// 			'action' => 'edit',
-// 			'forwardedRouteName' => 'catalog-admin-category'));		
-// 	}
+	public function addAction()
+	{
+// 		header("HTTP/1.0 200 OK");
+		header('Content-type: application/json; charset=utf-8');
+// 		header("Cache-Control: no-cache, must-revalidate");
+// 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+// 		header("Pragma: no-cache");
+		
+		$content = Json::encode($_POST);
+		$this->response->setContent($content);
+		return $this->response;
+	}
 	
 	public function editAction()
 	{

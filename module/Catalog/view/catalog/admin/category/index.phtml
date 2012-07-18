@@ -46,23 +46,22 @@ $(function(){
 				}
 			}
 		})
-		.bind("create.jstree", function(e, data){
+		.bind('create.jstree', function(e, data){
 			//console.log(e);console.log(data);
-			data.rslt.obj.each(function(){
-				$.ajax({
-					async: false,
-					type: "post",
-					url: "<?php echo $this->url('catalog-admin-category', array('action' => 'add')); ?>",
-					data: {
-						"id": this.id.replace("node_", "")
-					},
-					success: function(){
-						if(!r.status){
-							data.inst.refresh();
-						}
+			$.post(
+				"<?php echo $this->url('catalog-admin-category', array('action' => 'add')); ?>",
+				{
+					'parentId': 	data.rslt.parent.attr('id').replace('node_', ''),
+					'categoryName':	data.rslt.name
+				},
+				function(result) {
+					if(!result) {
+						$(data.rslt.obj).attr('id', 'node_' + result.id);
+					} else {
+						$.jstree.rollback(data.rlbk);
 					}
-				});
-			});
+				}
+			);
 		})
 		.bind("select_node.jstree", function(e, data){
 			var selectedObj = data.rslt.obj;
