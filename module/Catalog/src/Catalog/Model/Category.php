@@ -25,6 +25,7 @@ class Category extends AbstractRowGateway
 			$inputFilter = new InputFilter();
 			$factory	 = new InputFactory();
 			
+			// category_id
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'category_id',
 				'required'	 => true,
@@ -33,6 +34,16 @@ class Category extends AbstractRowGateway
 				),	
 			)));
 			
+			// parent_id
+			$inputFilter->add($factory->createInput(array(
+				'name'		 => 'parent_id',
+				'required'	 => true,
+				'filters'	 => array(
+					array('name' => 'Int'),	
+				),	
+			)));
+			
+			// category_name
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'category_name',
 				'required'	 => true,
@@ -52,16 +63,29 @@ class Category extends AbstractRowGateway
 				),
 			)));
 			
+			// created_date
+			$inputFilter->add($factory->createInput(array(
+				'name'		 => 'created_date',
+				'required'	 => true,
+				'filters'	 => array(
+					array('name' => 'Int'),	
+				),	
+			)));
+			
+			// updated_date
+			$inputFilter->add($factory->createInput(array(
+				'name'		 => 'updated_date',
+				'required'	 => true,
+				'filters'	 => array(
+					array('name' => 'Int'),	
+				),	
+			)));
+			
 			$this->inputFilter = $inputFilter;
 		}	
 		
 		return $this->inputFilter;
 	}
-	
-	/**
-	 * @see \Zend\InputFilter\InputFilterAwareInterface::setInputFilter()
-	 * @throws 
-	 */
 	
 	/**
 	 * @see Zend\InputFilter.InputFilterAwareInterface::setInputFilter()

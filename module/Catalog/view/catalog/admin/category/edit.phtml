@@ -12,11 +12,13 @@ $(function(){
 		var url = $('#category_form').attr('action');
 		var params = {
 			'category_id':	 $('#category_id').val(),
+			'parent_id':	 $('#parent_id').val(),
 			'category_name': $('#category_name').val(),
 			'description':   $('#description').val() 
 		};
 		$.post(url, params, function(data){
 			$("#category-edit-container").html(data);
+			$('#tree-holder').jstree('refresh');
 		});
 	});
 });
@@ -50,6 +52,7 @@ $form->prepare();
 <?php 
 echo $this->form()->openTag($form); 
 echo $this->formHidden($form->get('category_id'));
+echo $this->formHidden($form->get('parent_id'));
 ?>
 	<div class="no-display"></div>
 	<div id="category_tab_content">

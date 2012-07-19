@@ -14,3 +14,10 @@ Demo:
 			{"region_id":"3406","region_name":"\u65b0\u7586\u7ef4\u543e\u5c14\u81ea\u6cbb\u533a"}
 		]
 	}
+	
+PHP variable demo:
+	$result = array(
+		'succeed' => true,
+		'message' => '',
+		'data'	  => $data,	
+	);

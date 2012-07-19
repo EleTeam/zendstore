@@ -51,12 +51,12 @@ $(function(){
 			$.post(
 				"<?php echo $this->url('catalog-admin-category', array('action' => 'add')); ?>",
 				{
-					'parentId': 	data.rslt.parent.attr('id').replace('node_', ''),
-					'categoryName':	data.rslt.name
+					'parent_id': 		data.rslt.parent.attr('id').replace('node_', ''),
+					'category_name':	data.rslt.name
 				},
 				function(result) {
-					if(!result) {
-						$(data.rslt.obj).attr('id', 'node_' + result.id);
+					if(result.succeed) {
+						$(data.rslt.obj).attr('id', 'node_' + result.data.category_id);
 					} else {
 						$.jstree.rollback(data.rlbk);
 					}

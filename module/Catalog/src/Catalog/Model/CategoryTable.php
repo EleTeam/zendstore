@@ -77,10 +77,10 @@ class CategoryTable extends AbstractTableGateway
 	 */
 	public function saveCategory(Category $category)
 	{
-		if ($category->category_id) {
-			return $this->updateCategory($category);
-		} else {
+		if (!$category->category_id) {
 			return $this->addCategory($category);
+		} else {
+			return $this->updateCategory($category);
 		}
 	}
 	

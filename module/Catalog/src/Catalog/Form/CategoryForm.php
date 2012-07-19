@@ -29,6 +29,7 @@ class CategoryForm extends Form
 		$this->add(array(
 			'name'		 => 'parent_id',
 			'attributes' => array(
+				'id'	=> 'parent_id',
 				'type'	=> 'hidden',
 			),		
 		));

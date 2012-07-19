@@ -28,14 +28,39 @@ class CategoryController extends AbstractAdminActionController
 	
 	public function addAction()
 	{
-// 		header("HTTP/1.0 200 OK");
-		header('Content-type: application/json; charset=utf-8');
-// 		header("Cache-Control: no-cache, must-revalidate");
-// 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-// 		header("Pragma: no-cache");
+		$category = new Category();
+		$form 	  = new CategoryForm();
+		$form->bind($category);
+
+		$result = array(
+			'succeed' => false,
+			'message' => '',
+			'data'	  => '',
+		);
 		
-		$content = Json::encode($_POST);
-		$this->response->setContent($content);
+		if ($this->request->isPost()) {
+			$data = array_merge($this->request->getPost()->toArray(), array(
+				'created_date' => time(),
+				'updated_date' => time(),	
+			));
+			$form->setInputFilter($category->getInputFilter())
+				 ->setData($this->request->getPost());
+			if ($form->isValid()) {
+				$this->getCategoryTable()->saveCategory($category);
+				$result['succeed'] = true;
+				$result['data']	   = array(
+					'category_id' => $this->getCategoryTable()->getLastInsertValue()
+				);
+			}
+		}
+		
+		header("HTTP/1.0 200 OK");
+		header('Content-type: application/json; charset=utf-8');
+		header("Cache-Control: no-cache, must-revalidate");
+		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+		header("Pragma: no-cache");
+		
+		$this->response->setContent(Json::encode($result));
 		return $this->response;
 	}
 	
@@ -44,21 +69,17 @@ class CategoryController extends AbstractAdminActionController
 		$viewModel = $this->getViewModel();
 		$viewModel->setTerminal(true);
 		
-		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-		$categoryTable = $this->getCategoryTable();
-		$form = new CategoryForm();
+		$id 	  = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+		$category = $this->getCategoryTable()->getCategory($id);
+		$form 	  = new CategoryForm();
+		$form->bind($category);
 		
 		if ($this->request->isPost()) {
-			$category = new Category();
 			$form->setInputFilter($category->getInputFilter())
 				 ->setData($this->request->getPost());
 			if ($form->isValid()) {
-				$category->exchangeArray($form->getData());
-				$categoryTable->saveCategory($category);
+				$this->getCategoryTable()->saveCategory($category);
 			}
-		} else {
-			$category = $categoryTable->getCategory($id);
-			$form->bind($category);			
 		}
 		
 		$viewModel->setVariables(array(
@@ -73,8 +94,8 @@ class CategoryController extends AbstractAdminActionController
 	 */
 	public function listAction()
 	{
-		$id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-		$result = array();
+		$id   = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+		$data = array();
 
 		try {
 			$categories = $this->getCategoryTable()->getCategoryChildren($id);
@@ -87,7 +108,7 @@ class CategoryController extends AbstractAdminActionController
 						$type = 'folder';
 						break;
 				}
-				$result[] = array(
+				$data[] = array(
 					'attr' => array('id' => "node_{$category->category_id}", 'rel' => $type),
 					'data' => $category->category_name,	
 					'state' => 'closed',
@@ -101,9 +122,17 @@ class CategoryController extends AbstractAdminActionController
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		header("Pragma: no-cache");
 		
-		$response = $this->getResponse();
-		$response->setContent(json_encode($result));
-		return $response;		
+		/*** Due to jstree, can't use this format
+		$result = array(
+			'succeed' => true,
+			'message' => '',
+			'data'	  => $data,	
+		);
+		*/
+		$result = $data;
+		
+		$this->response->setContent(Json::encode($result));
+		return $this->response;		
 	}	
 	
 	/**
