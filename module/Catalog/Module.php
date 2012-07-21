@@ -2,11 +2,15 @@
 
 namespace Catalog;
 
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+
 use Catalog\Model\CategoryTable;
 use	Catalog\Model\ProductTable;
 use Catalog\Widget\Product\ProductWidget;
 
 class Module
+	implements ConfigProviderInterface, ServiceProviderInterface
 {
     public function getAutoloaderConfig()
     {
@@ -22,7 +26,7 @@ class Module
     	);
     }
 
-	public function getServiceConfiguration()
+	public function getServiceConfig()
     {
     	return array(
     		'factories' => array(    			

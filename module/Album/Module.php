@@ -2,9 +2,12 @@
 
 namespace Album;
 
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Album\Model\AlbumTable;
 
-class Module
+class Module 
+	implements ServiceProviderInterface, ConfigProviderInterface
 {
     public function getAutoloaderConfig()
     {
@@ -20,7 +23,7 @@ class Module
         );
     }
     
-    public function getServiceConfiguration()
+    public function getServiceConfig()
     {
         return array(
             'factories' => array(

@@ -1,4 +1,6 @@
 PHP, MySQL
 
 PHP:
-	Version >= PHP 5.3.0   // __invoke()  required 
+	Version: PHP 5.3.2+
+		PHP 5.3.0+  // __invoke()  required 
+		PHP 5.3.2+  // Doctrine 2 requird

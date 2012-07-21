@@ -2,6 +2,8 @@
 
 namespace Album\Controller\Front;
 
+use Album\Model\AlbumTable;
+
 use ZendStore\Controller\AbstractFrontActionController;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
@@ -104,12 +106,19 @@ class AlbumController extends AbstractFrontActionController
         ));
     }
 
+    /**
+     * Get AlbumTable
+     * 
+     * @return AlbumTable
+     */
     public function getAlbumTable()
     {
         if (!$this->albumTable) {
             $sm = $this->getServiceLocator();
+            $sm->get('Album\Model\AlbumTable');
             $this->albumTable = $sm->get('Album\Model\AlbumTable');
         }
+        
         return $this->albumTable;
     }    
 }

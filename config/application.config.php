@@ -3,6 +3,8 @@ return array(
     'modules' => array(
         'ZendStore',
     	'Application',
+    	//'DoctrineModule',
+    	//'DoctrineORMModule',
     	'Demo',
     	'Album',
     	'Catalog',
