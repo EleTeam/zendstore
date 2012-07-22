@@ -2,22 +2,25 @@
 
 namespace Album\Controller\Front;
 
-use Album\Model\AlbumTable;
-
 use ZendStore\Controller\AbstractFrontActionController;
-use Album\Model\Album;
+use Doctrine\ORM\EntityManager;
 use Album\Form\AlbumForm;
+use Album\Entity\Album;
 
 class AlbumController extends AbstractFrontActionController
 {
-    protected $albumTable;
+	/**
+	 * @var EntityManager
+	 */
+    protected $em;
 
     public function indexAction()
     {
     	$viewModel = $this->getViewModel();
-    	
+    	$em = $this->getEntityManager();
+
         return $viewModel->setVariables(array(
-            'albums' => $this->getAlbumTable()->fetchAll(),
+            'albums' => $this->getEntityManager()->getRepository('Album\Entity\Album')->findAll(),
         ));
     }
 
@@ -107,18 +110,23 @@ class AlbumController extends AbstractFrontActionController
     }
 
     /**
-     * Get AlbumTable
+     * Get entity manager
      * 
-     * @return AlbumTable
+     * @return EntityManager
      */
-    public function getAlbumTable()
+    public function getEntityManager()
     {
-        if (!$this->albumTable) {
+        if (is_null($this->em)) {
             $sm = $this->getServiceLocator();
-            $sm->get('Album\Model\AlbumTable');
-            $this->albumTable = $sm->get('Album\Model\AlbumTable');
+            $this->em = $sm->get('doctrine.entitymanager.orm_default');
         }
         
-        return $this->albumTable;
+        return $this->em;
     }    
+    
+    public function setEntityManager(EntityManager $em)
+    {
+    	$this->em = $em;	
+    }
+    
 }
