@@ -29,12 +29,16 @@ class ProductController extends AbstractAdminActionController
 	{
 		$product = new Product();
 		$form 	 = new ProductForm();
+		$form->bind($product);
 		
 		if ($this->request->isPost()) {
+			$data = array_merge($this->request->getPost()->toArray(), array(
+				'created_date' => time(),
+				'updated_date' => time(), 	
+			));
 			$form->setInputFilter($product->getInputFilter())
-				 ->setData($this->request->getPost());
+				 ->setData($data);
 			if ($form->isValid()) {
-				$product->exchangeArray($form->getData());
 				$this->getProductTable()->saveProduct($product);
 				return $this->redirect()->toRoute('catalog-admin-product');
 			}
