@@ -1,6 +1,6 @@
 <?php
 
-namespace ZendStore;
+namespace Doctrine;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;

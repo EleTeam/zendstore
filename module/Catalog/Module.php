@@ -2,16 +2,22 @@
 
 namespace Catalog;
 
-use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
 use Catalog\Model\CategoryTable;
 use	Catalog\Model\ProductTable;
 use Catalog\Widget\Product\ProductWidget;
 
 class Module
-	implements ConfigProviderInterface, ServiceProviderInterface
+	implements ConfigProviderInterface, AutoloaderProviderInterface, ServiceProviderInterface
 {
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+    
     public function getAutoloaderConfig()
     {
     	return array(
@@ -43,11 +49,6 @@ class Module
     			},
     		),
     	);
-    }
-    
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
     }
     
 }
