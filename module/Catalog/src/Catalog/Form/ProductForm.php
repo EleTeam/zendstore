@@ -19,6 +19,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'product_id',
 			'attributes' => array(
+				'id'	=> 'product_id',
 				'type'	=> 'hidden',	
 			),		
 		));
@@ -27,6 +28,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'product_name',
 			'attributes' => array(
+				'id'	=> 'product_name',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -38,6 +40,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'description',
 			'attributes' => array(
+				'id'	=> 'description',
 				'type'	=> 'textarea',
 			),
 			'options' => array(

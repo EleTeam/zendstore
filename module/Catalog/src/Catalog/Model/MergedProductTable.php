@@ -22,9 +22,12 @@ class MergedProductTable extends AbstractMergedTable
 		// Save Product
 		$product	  = new Product();
 		$productTable = new ProductTable($this->adapter);
-		$product->exchangeArray($mergedProduct->toArray());
+		$product->getInputFilter()->setData($mergedProduct->toArray());
+		if ($product->getInputFilter()->isValid()) {
+			$product->exchangeArray($product->getInputFilter()->getValues());			
+		}
 		$productTable->saveProduct($product);
-		
+		echo '<pre>';print_r($product);exit;		
 		// Save ProductDescription
 		$productDescription 	 = new ProductDescription();
 		$productDescriptionTable = new ProductDescriptionTable($this->adapter);
