@@ -48,7 +48,7 @@ class Module
 	    			$adapter = $sm->get('Zend\Db\Adapter\Adapter');
 	    			return new ProductTable($adapter);
     			},
-    			'Catalog\Model\MergedProduct' => function($sm) {
+    			'Catalog\Model\MergedProductTable' => function($sm) {
     				$adapter = $sm->get('Zend\Db\Adapter\Adapter');
     				return new MergedProductTable($adapter);
     			},
