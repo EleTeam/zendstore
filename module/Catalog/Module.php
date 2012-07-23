@@ -2,6 +2,10 @@
 
 namespace Catalog;
 
+use Catalog\Model\MergedProductTable;
+
+use Catalog\Model\MergedProduct;
+
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
@@ -35,14 +39,18 @@ class Module
 	public function getServiceConfig()
     {
     	return array(
-    		'factories' => array(    			
+    		'factories' => array(
     			'Catalog\Model\CategoryTable' => function($sm) {
-	    			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-	    			return new CategoryTable($dbAdapter);
+	    			$adapter = $sm->get('Zend\Db\Adapter\Adapter');
+	    			return new CategoryTable($adapter);
     			},
     			'Catalog\Model\ProductTable' => function($sm) {
-	    			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-	    			return new ProductTable($dbAdapter);
+	    			$adapter = $sm->get('Zend\Db\Adapter\Adapter');
+	    			return new ProductTable($adapter);
+    			},
+    			'Catalog\Model\MergedProduct' => function($sm) {
+    				$adapter = $sm->get('Zend\Db\Adapter\Adapter');
+    				return new MergedProductTable($adapter);
     			},
     			'Catalog\Model\ProductWidget' => function($sm) {
     				return new ProductWidget();
