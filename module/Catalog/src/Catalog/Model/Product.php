@@ -39,8 +39,8 @@ class Product extends AbstractRowGateway
 				'name'		 => 'product_name',
 				'required'	 => true,	
 				'filters'	 => array(
+					array('name' => 'StringTrim'),
 					array('name' => 'StripTags'),
-					array('name' => 'StringTrim'),	
 				),				
 			)));			
 				

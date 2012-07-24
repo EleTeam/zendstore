@@ -67,12 +67,12 @@ class ProductController extends AbstractAdminActionController
 		$form->bind($product);
 		
 		if ($this->request->isPost()) {
-			$form->setInputFilter($product->getInputFilter())
-				 ->setData($this->request->getPost());
-			if ($form->isValid()) { 
+			$form->setData($this->request->getPost());
+			if ($form->setInputFilter($product->getInputFilter()) && $form->isValid()) { 
 				$this->getProductTable()->saveProduct($product);
 				return $this->redirect()->toRoute('catalog-admin-product');
 			}
+			//echo '<pre>';print_r($form->getMessages());exit;
 		}
 		
 		$viewModel = $this->getViewModel();

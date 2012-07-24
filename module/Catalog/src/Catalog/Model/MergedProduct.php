@@ -2,12 +2,12 @@
 
 namespace Catalog\Model;
 
-use ZendStore\Model\AbstractMergedModel;
+use ZendStore\Model\AbstractMergedEntity;
 
-class MergedProduct extends AbstractMergedModel
+class MergedProduct extends AbstractMergedEntity
 {
 	/**
-	 * @see AbstractMergedModel::$data
+	 * @see AbstractMergedEntity::$data
 	 */
 	protected $data = array(
 		'product_id'			=> null,
