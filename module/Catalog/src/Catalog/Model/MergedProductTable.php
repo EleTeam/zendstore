@@ -8,7 +8,8 @@ class MergedProductTable extends AbstractMergedTable
 {
 	public function getMergedProduct()
 	{
-		
+		$this->sql->select()
+				  ->from($this->getJoinedTable('ProductTable')->getTable());	
 	}
 	
 	/**
@@ -40,6 +41,17 @@ class MergedProductTable extends AbstractMergedTable
 	public function deleteMergedProduct()
 	{
 	
+	}
+	
+	/**
+	 * @see AbstractMergedTable::_initializeJoinedTables()
+	 */
+	protected function _initializeJoinedTables()
+	{
+		$this->joinedTables = array(
+			'ProductTable' 				=> new ProductTable($this->adapter),
+			'ProductDescriptionTable'	=> new ProductDescriptionTable($this->adapter),
+		);
 	}
 
 }
