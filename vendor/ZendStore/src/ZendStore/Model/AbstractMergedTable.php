@@ -9,7 +9,6 @@ use Zend\Db\Sql\Sql;
  * A merged table would contain multiple tables 
  */
 abstract class AbstractMergedTable
-	implements \ArrayAccess, \Countable
 {
 	/**
 	 * @var bool
@@ -21,10 +20,6 @@ abstract class AbstractMergedTable
 	 */
 	protected $adapter;
 	
-	/**
-	 * @var Sql
-	 */
-	protected $sql;
 	/**
 	 * @var Sql
 	 */

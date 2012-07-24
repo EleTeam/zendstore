@@ -29,6 +29,7 @@ $this->headTitle($title);
 			<?php
 				$form = $this->form;
 				echo $this->form()->openTag($form);
+				echo $this->formInput($form->get('product_id'));
 			?>
 			<div id="product_info_tabs_group7_content">
 				<div class="entry-edit">
