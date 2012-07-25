@@ -81,7 +81,6 @@ abstract class AbstractMergedTable implements MergedTableInterface
 
 	/**
 	 * @see MergedTableInterface::setJoinedTable()
-	 * @return 
 	 */
 	public function setJoinedTable($name, TableGatewayInterface $table) 
 	{

@@ -25,6 +25,15 @@ class ProductDescription extends AbstractRowGateway
 			$inputFilter = new InputFilter();
 			$factory	 = new InputFactory();
 			
+			// description_id
+			$inputFilter->add($factory->createInput(array(
+				'name'		 => 'description_id',
+				'required'	 => true,
+				'filters'	 => array(
+					array('name' => 'Int'),	
+				),	
+			)));
+			
 			// product_id
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'product_id',
@@ -34,33 +43,15 @@ class ProductDescription extends AbstractRowGateway
 				),	
 			)));
 			
-			// product_name
+			// description
 			$inputFilter->add($factory->createInput(array(
-				'name'		 => 'product_name',
+				'name'		 => 'description',
 				'required'	 => true,	
 				'filters'	 => array(
 					array('name' => 'StripTags'),
 					array('name' => 'StringTrim'),	
 				),				
-			)));			
-				
-			// created_date
-			$inputFilter->add($factory->createInput(array(
-				'name'		 => 'created_date',
-				'required'	 => true,
-				'filters'	 => array(
-					array('name' => 'Int'),	
-				),	
-			)));
-			
-			// updated_date
-			$inputFilter->add($factory->createInput(array(
-				'name'		 => 'updated_date',
-				//'required'	 => true,
-				'filters'	 => array(
-					array('name' => 'Int'),	
-				),	
-			)));
+			)));		
 			
 			$this->inputFilter = $inputFilter;
 		}	

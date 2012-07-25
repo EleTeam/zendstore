@@ -3,10 +3,7 @@
 namespace Catalog\Controller\Admin;
 
 use ZendStore\Controller\AbstractAdminActionController;
-use	Catalog\Model\ProductTable;
-use	Catalog\Model\Product;
-use Catalog\Model\MergedProduct;
-use Catalog\Model\MergedProductTable;
+use Catalog\Model\ProductMergedRow;
 use	Catalog\Form\ProductForm;
 
 class ProductController extends AbstractAdminActionController
@@ -15,18 +12,23 @@ class ProductController extends AbstractAdminActionController
 	 * @var ProductTable
 	 */
 	protected $productTable;
+
+	/**
+	 * @var ProductDescriptionTable
+	 */
+	protected $productDescriptionTable;
 	
 	/**
-	 * @var MergedProductTable
+	 * @var ProductMergedTable
 	 */
-	protected $mergedProductTable;
+	protected $productMergedTable;
 	
 	public function indexAction()
 	{
-		$products = $this->getProductTable()->getProducts();
+		$productMergedRows = $this->getProductMergedTable()->getProductMergedRows(); 
 		$viewModel = $this->getViewModel();
 		$viewModel->setVariables(array(
-			'products' => $products,
+			'products' => $productMergedRows,
 		));
 		
 		return $viewModel;
@@ -34,8 +36,8 @@ class ProductController extends AbstractAdminActionController
 	
 	public function addAction()
 	{
-		$mergedProduct = new MergedProduct();
-		$form 	 = new ProductForm();
+		$productMergedRow = new ProductMergedRow();
+		$form = new ProductForm();
 		//$form->bind($mergedProduct);
 		
 		if ($this->request->isPost()) {
@@ -43,8 +45,8 @@ class ProductController extends AbstractAdminActionController
 				'created_date' => time(),
 				'updated_date' => time(), 	
 			));
-			$mergedProduct->exchangeArray($data);
-			$this->getMergedProductTable()->saveMergedProduct($mergedProduct);
+			$productMergedRow->exchangeArray($data);
+			$this->getProductMergedTable()->saveProductMerged($productMergedRow);
 			return $this->redirect()->toRoute('catalog-admin-product');
 // 			$form->setInputFilter($inputFilter)
 // 				 ->setData($data);
@@ -64,16 +66,20 @@ class ProductController extends AbstractAdminActionController
 	
 	public function editAction()
 	{
-		$id 	 = $this->getEvent()->getRouteMatch()->getParam('id');
-		$product = $this->getProductTable()->getProduct($id);
-		$form	 = new ProductForm();		
-		$form->bind($product);
+		$id		 	 	  = $this->getEvent()->getRouteMatch()->getParam('id');
+		$productMergedRow = $this->getProductMergedTable()->getProductMergedRow($id);
+		//$productMergedRow = new ProductMergedRow();
+		$form		 	  = new ProductForm();		
+		$form->bind($productMergedRow);
 		
 		if ($this->request->isPost()) {
 			$form->setData($this->request->getPost());
-			if ($form->setInputFilter($product->getInputFilter()) && $form->isValid()) { 
-				$this->getProductTable()->saveProduct($product);
-				return $this->redirect()->toRoute('catalog-admin-product');
+			$form->setInputFilter($productMergedRow->getJoinedRow('Product')->getInputFilter());
+			
+			if ($form->setInputFilter($productMergedRow->getJoinedRow('Product')->getInputFilter()) && $form->isValid()
+				&& $form->setInputFilter($productMergedRow->getJoinedRow('ProductDescription')->getInputFilter()) && $form->isValid()) {
+				$this->getProductMergedTable()->saveProductMergedRow($productMergedRow);
+				//return $this->redirect()->toRoute('catalog-admin-product');
 			}
 			//echo '<pre>';print_r($form->getMessages());exit;
 		}
@@ -86,10 +92,7 @@ class ProductController extends AbstractAdminActionController
 		return $viewModel;		
 	}
 	
-	
 	/**
-	 * Get ProductTable
-	 *
 	 * @return ProductTable
 	 */
 	public function getProductTable()
@@ -100,18 +103,28 @@ class ProductController extends AbstractAdminActionController
 		}
 		return $this->productTable;
 	}
+
+	/**
+	 * @return ProductDescriptionTable
+	 */
+	public function getProductDescriptionTable()
+	{
+		if (! $this->productDescriptionTable instanceof ProductDescriptionTable) {
+			$sm = $this->getServiceLocator();
+			$this->productDescriptionTable = $sm->get('Catalog\Model\ProductDescriptionTable');
+		}
+		return $this->productDescriptionTable;
+	}
 	
 	/**
-	 * Get MergedProductTable
-	 * 
-	 * @return MergedProductTable
+	 * @return ProductMergedTable
 	 */
-	public function getMergedProductTable()
+	public function getProductMergedTable()
 	{
-		if (! $this->mergedProductTable instanceof MergedProductTable) {
+		if (! $this->productMergedTable instanceof ProductMergedTable) {
 			$sm = $this->getServiceLocator();
-			$this->mergedProductTable = $sm->get('Catalog\Model\MergedProductTable');
+			$this->productMergedTable = $sm->get('Catalog\Model\ProductMergedTable');
 		}
-		return $this->mergedProductTable;
+		return $this->productMergedTable;
 	}
 }

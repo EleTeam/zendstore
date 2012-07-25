@@ -16,6 +16,10 @@ echo $this->form()->openTag($form);
 	<dt><?php echo $this->formInput($form->get('product_name')); ?></dt>
 	<dt><?php echo $this->formElementErrors($form->get('product_name'));?></dt>
 	
+	<dt><?php echo $this->formLabel($form->get('description')); ?></dt>
+	<dt><?php echo $this->formTextarea($form->get('description')); ?></dt>
+	<dt><?php echo $this->formElementErrors($form->get('description'));?></dt>
+	
 	<dt><?php echo $this->formLabel($form->get('store_price')); ?></dt>
 	<dt><?php echo $this->formInput($form->get('store_price')); ?></dt>
 	<dt><?php echo $this->formElementErrors($form->get('store_price'));?></dt>
