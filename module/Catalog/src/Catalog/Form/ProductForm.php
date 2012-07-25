@@ -15,6 +15,7 @@ class ProductForm extends Form
 			'enctype' => 'multipart/form-data',
 		));
 		
+		/*** product table's columns ***/
 		// product_id
 		$this->add(array(
 			'name'		 => 'product_id',
@@ -33,18 +34,6 @@ class ProductForm extends Form
 			),
 			'options' => array(
 				'label'	=> 'Product Name',
-			),		
-		));		
-			
-		// description
-		$this->add(array(
-			'name'		 => 'description',
-			'attributes' => array(
-				'id'	=> 'description',
-				'type'	=> 'textarea',
-			),
-			'options' => array(
-				'label'	=> 'Description',
 			),		
 		));		
 			
@@ -70,17 +59,6 @@ class ProductForm extends Form
 			),		
 		));
 
-		// brand
-		$this->add(array(
-			'name'		 => 'brand',
-			'attributes' => array(
-				'type'	=> 'text',
-			),
-			'options' => array(
-				'label'	=> 'Brand',
-			),		
-		));
-
 		// quantity
 		$this->add(array(
 			'name'		 => 'quantity',
@@ -92,16 +70,27 @@ class ProductForm extends Form
 			),		
 		));
 
-		// tags
+		// brand
 		$this->add(array(
-			'name'		 => 'tags',
+			'name'		 => 'brand',
 			'attributes' => array(
 				'type'	=> 'text',
 			),
 			'options' => array(
-				'label'	=> 'Tags',
+				'label'	=> 'Brand',
 			),		
 		));
+			
+		// type
+		$this->add(array(
+			'name'		 => 'type',
+			'attributes' => array(
+				'type'	=> 'text',
+			),
+			'options' => array(
+				'label'	=> 'Product Type',
+			),		
+		));	
 
 		// is_active
 		$this->add(array(
@@ -117,6 +106,30 @@ class ProductForm extends Form
 			)		
 		));
 
+		// tags
+		$this->add(array(
+			'name'		 => 'tags',
+			'attributes' => array(
+				'type'	=> 'text',
+			),
+			'options' => array(
+				'label'	=> 'Tags',
+			),		
+		));
+			
+		/*** product_description table's columns ***/
+		// description
+		$this->add(array(
+			'name'		 => 'description',
+			'attributes' => array(
+				'id'	=> 'description',
+				'type'	=> 'textarea',
+			),
+			'options' => array(
+				'label'	=> 'Description',
+			),		
+		));
+
 		// category_id
 		$this->add(array(
 			'name'		 => 'category_id',
@@ -128,6 +141,7 @@ class ProductForm extends Form
 			),		
 		));
 		
+		/*** product_link table's columns ***/
 		// link_id
 		$this->add(array(
 			'name'		 => 'link_id',
@@ -139,6 +153,7 @@ class ProductForm extends Form
 			),	
 		));
 		
+		/*** Submit buttons ***/
 		// submit
 		$this->add(array(
 			'name'		 => 'submit',
@@ -156,5 +171,12 @@ class ProductForm extends Form
 				'value'	=> 'Reset',
 			),	
 		));
+		
+		$this->_initializeInputFilter();
+	}
+	
+	public function _initializeInputFilter()
+	{
+		
 	}
 }

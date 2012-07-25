@@ -17,9 +17,9 @@ class ProductTable extends AbstractTableGateway
 	 * @var array
 	 */
 	protected $columns = array(
-		'product_id',		'product_name',		'type',			'quantity',			'brand',
-		'store_price',		'market_price',		'tags',			'is_active',		'sort_order',
-		'position',			'created_date',		'updated_date',				
+		'product_id',		'product_name',		'store_price',		'market_price',		'quantity',			'brand',
+		'type',				'is_active',		'sort_order',		'position',			'tags',				'created_date',
+		'updated_date',				
 	);
 	
 	public function __construct(Adapter $adapter)
