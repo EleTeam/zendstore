@@ -40,9 +40,9 @@ class Product extends AbstractRowGateway
 				'required'	 => true,	
 				'filters'	 => array(
 					array('name' => 'StringTrim'),
-					array('name' => 'StripTags'),
+					array('name' => 'StripTags'),	
 				),				
-			)));	
+			)));		
 				
 			// store_price
 			$inputFilter->add($factory->createInput(array(
@@ -57,8 +57,8 @@ class Product extends AbstractRowGateway
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'market_price',
 				'required'	 => false,	
-				'filters'	 => array(
-					array('name' => 'market_price'),
+				'validators'	 => array(
+					array('name' => 'Float'),
 				),				
 			)));
 				

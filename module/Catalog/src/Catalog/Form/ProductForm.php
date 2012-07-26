@@ -3,6 +3,9 @@
 namespace Catalog\Form;
 
 use Zend\Form\Form;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Factory as InputFactory;
+use Catalog\Model\ProductMergedRow;
 
 class ProductForm extends Form
 {
@@ -175,8 +178,22 @@ class ProductForm extends Form
 		$this->_initializeInputFilter();
 	}
 	
-	public function _initializeInputFilter()
+	protected function _initializeInputFilter()
 	{
+		$mergedRow	= new ProductMergedRow();
+		$pFilter	= $mergedRow->getJoinedRow('Product')->getInputFilter();
+		$pdFilter	= $mergedRow->getJoinedRow('ProductDescription')->getInputFilter();
 		
+		$inputFilter = new InputFilter();
+		$factory	 = new InputFactory();
+				
+		$inputFilter->add($pFilter->get('product_id'));
+		$inputFilter->add($pFilter->get('product_name'));
+		$inputFilter->add($pFilter->get('store_price'));
+		$inputFilter->add($pFilter->get('market_price'));
+		$inputFilter->add($pdFilter->get('description'));
+		
+		$this->filter = $inputFilter;
 	}
+	
 }

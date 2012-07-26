@@ -2,11 +2,11 @@
 
 namespace Catalog\Model;
 
-use Zend\Db\RowGateway\AbstractRowGateway,
-	Zend\InputFilter\InputFilterAwareInterface,
-	Zend\InputFilter\InputFilterInterface,
-	Zend\InputFilter\InputFilter,
-	Zend\InputFilter\Factory as InputFactory;
+use Zend\Db\RowGateway\AbstractRowGateway;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Factory as InputFactory;
 
 class ProductDescription extends AbstractRowGateway
 	implements InputFilterAwareInterface
@@ -48,8 +48,8 @@ class ProductDescription extends AbstractRowGateway
 				'name'		 => 'description',
 				'required'	 => true,	
 				'filters'	 => array(
-					array('name' => 'StripTags'),
-					array('name' => 'StringTrim'),	
+					array('name' => 'StringTrim'),
+					array('name' => 'StripTags'),	
 				),				
 			)));		
 			

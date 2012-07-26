@@ -68,20 +68,21 @@ class ProductController extends AbstractAdminActionController
 	{
 		$id		 	 	  = $this->getEvent()->getRouteMatch()->getParam('id');
 		$productMergedRow = $this->getProductMergedTable()->getProductMergedRow($id);
-		//$productMergedRow = new ProductMergedRow();
 		$form		 	  = new ProductForm();		
 		$form->bind($productMergedRow);
 		
 		if ($this->request->isPost()) {
 			$form->setData($this->request->getPost());
-			$form->setInputFilter($productMergedRow->getJoinedRow('Product')->getInputFilter());
-			
-			if ($form->setInputFilter($productMergedRow->getJoinedRow('Product')->getInputFilter()) && $form->isValid()
-				&& $form->setInputFilter($productMergedRow->getJoinedRow('ProductDescription')->getInputFilter()) && $form->isValid()) {
+			echo '<pre>';
+			$form->isValid();
+			print_r($form->getData());exit;
+			if ($form->isValid()) {
+				echo '<pre>';
+				print_r($productMergedRow);exit;
 				$this->getProductMergedTable()->saveProductMergedRow($productMergedRow);
 				//return $this->redirect()->toRoute('catalog-admin-product');
 			}
-			//echo '<pre>';print_r($form->getMessages());exit;
+			echo '<pre>';print_r($form->getMessages());exit;
 		}
 		
 		$viewModel = $this->getViewModel();
