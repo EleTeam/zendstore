@@ -2,11 +2,11 @@
 
 namespace Catalog\Model;
 
-use Zend\Db\TableGateway\AbstractTableGateway,
-	Zend\Db\Adapter\Adapter,
-	Zend\Db\ResultSet\ResultSet;
+use ZendStore\Model\AbstractTable;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
 
-class ProductDescriptionTable extends AbstractTableGateway
+class ProductDescriptionTable extends AbstractTable
 {
 	/**
 	 * @var string
@@ -31,37 +31,41 @@ class ProductDescriptionTable extends AbstractTableGateway
 	/**
 	 * Add or update a product's description
 	 * 
-	 * @param ProductDescription $droductDescription
+	 * @param ProductDescription $productDescription
 	 * @return int
 	 */
-	public function saveProductDescription(ProductDescription $droductDescription)
+	public function saveProductDescription(ProductDescription $productDescription)
 	{
-		if ($droductDescription->description_id) {
-			return $this->updateProductDescription($droductDescription);
+		if ($productDescription->description_id) {
+			return $this->updateProductDescription($productDescription);
 		} else {
-			return $this->addProductDescription($droductDescription);
+			return $this->addProductDescription($productDescription);
 		}
 	}
 	
 	/**
 	 * Add a product description
 	 * 
-	 * @param ProductDescription $droductDescription
+	 * @param ProductDescription $productDescription
 	 * @return int
 	 */
-	public function addProductDescription(ProductDescription $droductDescription)
+	public function addProductDescription(ProductDescription $productDescription)
 	{
-		return $this->insert($droductDescription->toArray());
+		return $this->insert($productDescription->toArray());
 	}
 	
 	/**
 	 * Update a product description
 	 * 
-	 * @param ProductDescription $droductDescription
+	 * @param ProductDescription $productDescription
 	 * @return int
 	 */
-	public function updateProductDescription(ProductDescription $droductDescription)
+	public function updateProductDescription(ProductDescription $productDescription)
 	{
-		return $this->update($droductDescription->toArray(), array('description_id' => $droductDescription->description_id));
+		return $this->update($productDescription->toArray(), 
+					array(
+						'description_id' => $productDescription->description_id, 
+						'product_id' 	 => $productDescription->product_id
+					));
 	}
 }

@@ -25,7 +25,7 @@ class ProductMergedTable
 		$select = $this->sql->select()
 			->from("$pt")
 			->columns(array("*"))
-			->join($pdt, "$pt.product_id = $pdt.product_id", array('description'), Select::JOIN_LEFT)
+			->join($pdt, "$pt.product_id = $pdt.product_id", array('description_id', 'description'), Select::JOIN_LEFT)
 			->order("$pt.product_id DESC")
 			->where("$pt.product_id = $id");
 		
@@ -39,7 +39,7 @@ class ProductMergedTable
 		
 		return $resultSet->current();
 	}	
-	
+	  
 	/**
 	 * Get merged products
 	 * 
@@ -64,7 +64,7 @@ class ProductMergedTable
 	}
 	
 	/**
-	 * Save merged model
+	 * Save merged row
 	 * 
 	 * @param ProductMergedRow $productMergedRow
 	 * @return bool
@@ -72,17 +72,16 @@ class ProductMergedTable
 	public function saveProductMergedRow(ProductMergedRow $productMergedRow)
 	{
 		// Save Product
-		$product = new Product();
-		$product->setData($productMergedRow->toArray());
+		$product 	  = new Product();
 		$productTable = new ProductTable($this->adapter);
-		$product->setData($productMergedRow->toArray());
+		$product->exchangeArray($productTable->filterByColumns($productMergedRow->toArray()));
 		$productTable->saveProduct($product);
 				
 		// Save ProductDescription
 		$productDescription 	 = new ProductDescription();
 		$productDescriptionTable = new ProductDescriptionTable($this->adapter);
-		$productDescription->exchangeArray($mergedProduct->toArray());
-		$productDescriptionTable->saveProductDescription($droductDescription);
+		$productDescription->exchangeArray($productDescriptionTable->filterByColumns($productMergedRow->toArray()));
+		$productDescriptionTable->saveProductDescription($productDescription);
 		
 		return true;
 	}

@@ -2,13 +2,17 @@
 
 namespace Catalog\Model;
 
-use Zend\Db\RowGateway\AbstractRowGateway;
+use Zend\Di\Di;
+
+use Zend\Db\Adapter\Adapter;
+
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
+use ZendStore\Model\AbstractRow;
 
-class Product extends AbstractRowGateway
+class Product extends AbstractRow
 	implements InputFilterAwareInterface
 {
 	/**
@@ -111,7 +115,7 @@ class Product extends AbstractRowGateway
 				
 			// position
 			$inputFilter->add($factory->createInput(array(
-				'name'		 => 'product_name',
+				'name'		 => 'position',
 				'required'	 => false,	
 				'filters'	 => array(
 					array('name' => 'Int'),
@@ -160,15 +164,5 @@ class Product extends AbstractRowGateway
 	{
 		throw new Exception\BadMethodCallException('The method does not suppose to be invoke');
 	}
-	
-	/**
-	 * To array
-	 *
-	 * @return array
-	 * @todo Working with $form->bind($object);
-	 */
-	public function getArrayCopy()
-	{
-		return $this->toArray();
-	}
+
 }

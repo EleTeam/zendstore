@@ -73,16 +73,10 @@ class ProductController extends AbstractAdminActionController
 		
 		if ($this->request->isPost()) {
 			$form->setData($this->request->getPost());
-			echo '<pre>';
-			$form->isValid();
-			print_r($form->getData());exit;
 			if ($form->isValid()) {
-				echo '<pre>';
-				print_r($productMergedRow);exit;
 				$this->getProductMergedTable()->saveProductMergedRow($productMergedRow);
 				//return $this->redirect()->toRoute('catalog-admin-product');
 			}
-			echo '<pre>';print_r($form->getMessages());exit;
 		}
 		
 		$viewModel = $this->getViewModel();

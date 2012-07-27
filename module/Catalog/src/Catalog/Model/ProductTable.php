@@ -2,11 +2,11 @@
 
 namespace Catalog\Model;
 
-use Zend\Db\TableGateway\AbstractTableGateway,
-	Zend\Db\Adapter\Adapter,
-	Zend\Db\ResultSet\ResultSet;
+use ZendStore\Model\AbstractTable;
+use Zend\Db\Adapter\Adapter;
+use	Zend\Db\ResultSet\ResultSet;
 
-class ProductTable extends AbstractTableGateway
+class ProductTable extends AbstractTable
 {
 	/**
 	 * @var string

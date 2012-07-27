@@ -121,6 +121,16 @@ class ProductForm extends Form
 		));
 			
 		/*** product_description table's columns ***/
+
+		// description_id
+		$this->add(array(
+			'name'		 => 'description_id',
+			'attributes' => array(
+				'id'	=> 'description_id',
+				'type'	=> 'hidden',
+			),
+		));
+		
 		// description
 		$this->add(array(
 			'name'		 => 'description',
@@ -187,10 +197,13 @@ class ProductForm extends Form
 		$inputFilter = new InputFilter();
 		$factory	 = new InputFactory();
 				
+		/*** product table's columns ***/
 		$inputFilter->add($pFilter->get('product_id'));
 		$inputFilter->add($pFilter->get('product_name'));
 		$inputFilter->add($pFilter->get('store_price'));
 		$inputFilter->add($pFilter->get('market_price'));
+		/*** product_description table's columns ***/
+		$inputFilter->add($pdFilter->get('description_id'));
 		$inputFilter->add($pdFilter->get('description'));
 		
 		$this->filter = $inputFilter;
