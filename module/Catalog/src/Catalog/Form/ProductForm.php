@@ -5,7 +5,7 @@ namespace Catalog\Form;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
-use Catalog\Model\ProductMergedRow;
+use Catalog\Model\ProductJoinedRow;
 
 class ProductForm extends Form
 {
@@ -190,7 +190,7 @@ class ProductForm extends Form
 	
 	protected function _initializeInputFilter()
 	{
-		$mergedRow	= new ProductMergedRow();
+		$mergedRow	= new ProductJoinedRow();
 		$pFilter	= $mergedRow->getJoinedRow('Product')->getInputFilter();
 		$pdFilter	= $mergedRow->getJoinedRow('ProductDescription')->getInputFilter();
 		

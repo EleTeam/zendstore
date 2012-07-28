@@ -3,7 +3,7 @@
 namespace Catalog\Controller\Admin;
 
 use ZendStore\Controller\AbstractAdminActionController;
-use Catalog\Model\ProductMergedRow;
+use Catalog\Model\ProductJoinedRow;
 use	Catalog\Form\ProductForm;
 
 class ProductController extends AbstractAdminActionController
@@ -19,16 +19,16 @@ class ProductController extends AbstractAdminActionController
 	protected $productDescriptionTable;
 	
 	/**
-	 * @var ProductMergedTable
+	 * @var ProductJoinedTable
 	 */
-	protected $productMergedTable;
+	protected $productJoinedTable;
 	
 	public function indexAction()
 	{
-		$productMergedRows = $this->getProductMergedTable()->getProductMergedRows(); 
+		$productJoinedRows = $this->getProductJoinedTable()->getProductJoinedRows(); 
 		$viewModel = $this->getViewModel();
 		$viewModel->setVariables(array(
-			'products' => $productMergedRows,
+			'products' => $productJoinedRows,
 		));
 		
 		return $viewModel;
@@ -36,7 +36,7 @@ class ProductController extends AbstractAdminActionController
 	
 	public function addAction()
 	{
-		$productMergedRow = new ProductMergedRow();
+		$productJoinedRow = new ProductJoinedRow();
 		$form = new ProductForm();
 		//$form->bind($mergedProduct);
 		
@@ -45,8 +45,8 @@ class ProductController extends AbstractAdminActionController
 				'created_date' => time(),
 				'updated_date' => time(), 	
 			));
-			$productMergedRow->exchangeArray($data);
-			$this->getProductMergedTable()->saveProductMerged($productMergedRow);
+			$productJoinedRow->exchangeArray($data);
+			$this->getProductJoinedTable()->saveProductJoined($productJoinedRow);
 			return $this->redirect()->toRoute('catalog-admin-product');
 // 			$form->setInputFilter($inputFilter)
 // 				 ->setData($data);
@@ -67,14 +67,18 @@ class ProductController extends AbstractAdminActionController
 	public function editAction()
 	{
 		$id		 	 	  = $this->getEvent()->getRouteMatch()->getParam('id');
-		$productMergedRow = $this->getProductMergedTable()->getProductMergedRow($id);
-		$form		 	  = new ProductForm();		
-		$form->bind($productMergedRow);
+		$form		 	  = new ProductForm();
+		if ($id) { // Edit
+			$productJoinedRow = $this->getProductJoinedTable()->getProductJoinedRow($id);
+			$form->bind($productJoinedRow);
+		} else {
+			$productJoinedRow = new ProductJoinedRow();
+		}
 		
 		if ($this->request->isPost()) {
 			$form->setData($this->request->getPost());
 			if ($form->isValid()) {
-				$this->getProductMergedTable()->saveProductMergedRow($productMergedRow);
+				$this->getProductJoinedTable()->saveProductJoinedRow($productJoinedRow);
 				//return $this->redirect()->toRoute('catalog-admin-product');
 			}
 		}
@@ -112,14 +116,14 @@ class ProductController extends AbstractAdminActionController
 	}
 	
 	/**
-	 * @return ProductMergedTable
+	 * @return ProductJoinedTable
 	 */
-	public function getProductMergedTable()
+	public function getProductJoinedTable()
 	{
-		if (! $this->productMergedTable instanceof ProductMergedTable) {
+		if (! $this->productJoinedTable instanceof ProductJoinedTable) {
 			$sm = $this->getServiceLocator();
-			$this->productMergedTable = $sm->get('Catalog\Model\ProductMergedTable');
+			$this->productJoinedTable = $sm->get('Catalog\Model\ProductJoinedTable');
 		}
-		return $this->productMergedTable;
+		return $this->productJoinedTable;
 	}
 }

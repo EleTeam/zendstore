@@ -1,0 +1,5 @@
+#. Database name must be lower case and seperated words by underscore.
+
+#. Database name format: MODULE_*_*
+
+#. "joined" is resolved to database name.

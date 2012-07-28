@@ -2,9 +2,9 @@
 
 namespace Catalog;
 
-use Catalog\Model\ProductMergedTable;
+use Catalog\Model\ProductJoinedTable;
 
-use Catalog\Model\ProductMerged;
+use Catalog\Model\ProductJoined;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -53,9 +53,9 @@ class Module
 	    			$adapter = $sm->get('Zend\Db\Adapter\Adapter');
 	    			return new DescriptionTable($adapter);
     			},
-    			'Catalog\Model\ProductMergedTable' => function($sm) {
+    			'Catalog\Model\ProductJoinedTable' => function($sm) {
     				$adapter = $sm->get('Zend\Db\Adapter\Adapter');
-    				return new ProductMergedTable($adapter);
+    				return new ProductJoinedTable($adapter);
     			},
     			'Catalog\Model\ProductWidget' => function($sm) {
     				return new ProductWidget();

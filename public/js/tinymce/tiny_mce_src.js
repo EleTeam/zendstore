@@ -1099,7 +1099,7 @@ tinymce.util.Quirks = function(editor) {
 	}
 
 	function cleanupStylesWhenDeleting() {
-		function removeMergedFormatSpans(isDelete) {
+		function removeJoinedFormatSpans(isDelete) {
 			var rng, blockElm, node, clonedSpan;
 
 			rng = selection.getRng();
@@ -1149,11 +1149,11 @@ tinymce.util.Quirks = function(editor) {
 			isDelete = e.keyCode == DELETE;
 			if (!e.isDefaultPrevented() && (isDelete || e.keyCode == BACKSPACE) && !VK.modifierPressed(e)) {
 				e.preventDefault();
-				removeMergedFormatSpans(isDelete);
+				removeJoinedFormatSpans(isDelete);
 			}
 		});
 
-		editor.addCommand('Delete', function() {removeMergedFormatSpans();});
+		editor.addCommand('Delete', function() {removeJoinedFormatSpans();});
 	};
 	
 	function emptyEditorWhenDeleting() {

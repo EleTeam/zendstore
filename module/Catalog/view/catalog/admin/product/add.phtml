@@ -23,13 +23,20 @@ $this->headTitle($title);
 		<div class="main-col-inner">
 			<div id="messages"></div>
 			<div class="content-header">
-				<h3 class="icon-head head-products">New Product (Default)</h3>
+				<h3 class="icon-head head-products">
+					<?php if ($form->get('product_id')->getValue()): ?>
+					New Product (Default)
+					<?php else: ?>
+					Edit Product
+					<?php endif; ?>
+				</h3>
 			</div>
 			<!-- Product form -->
 			<?php
 				$form = $this->form;
 				echo $this->form()->openTag($form);
-				echo $this->formInput($form->get('product_id'));
+				echo $this->formHidden($form->get('product_id'));
+				echo $this->formHidden($form->get('description_id'));
 			?>
 			<div id="product_info_tabs_group7_content">
 				<div class="entry-edit">

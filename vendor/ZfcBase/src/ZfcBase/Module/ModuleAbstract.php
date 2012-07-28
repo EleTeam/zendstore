@@ -25,7 +25,7 @@ abstract class ModuleAbstract implements
         $instance = $this;//TODO this will no be needed in PHP 5.4
         $events->attach('bootstrap', 'bootstrap', function($e) use ($instance, $moduleManager) {
             $app = $e->getParam('application');
-            $instance->setMergedConfig($e->getParam('config'));
+            $instance->setJoinedConfig($e->getParam('config'));
             $instance->bootstrap($moduleManager, $app);
         });
     }
@@ -53,16 +53,16 @@ abstract class ModuleAbstract implements
         return include $this->getDir() . '/config/module.config.php';
     }
     
-    public function getMergedConfig() {
+    public function getJoinedConfig() {
         return $this->mergedConfig;
     }
     
-    public function setMergedConfig($mergedConfig) {
+    public function setJoinedConfig($mergedConfig) {
         $this->mergedConfig = $mergedConfig;
     }
     
     public function getOptions($namespace = 'options') {
-        $config = $this->getMergedConfig();
+        $config = $this->getJoinedConfig();
         if(empty($config[$this->getNamespace()][$namespace])) {
             return array();
         }

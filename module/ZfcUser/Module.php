@@ -54,7 +54,7 @@ class Module implements
 
     public function modulesLoaded($e)
     {
-        $config = $e->getConfigListener()->getMergedConfig();
+        $config = $e->getConfigListener()->getJoinedConfig();
         static::$options = $config['zfcuser'];
     }
 

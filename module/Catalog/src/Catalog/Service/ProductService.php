@@ -3,22 +3,22 @@
 namespace Catalog\Service;
 
 use ZendStore\Service\AbstractModelService;
-use Catalog\Model\ProductMerged;
+use Catalog\Model\ProductJoined;
 
 class ProductService
 	extends AbstractModelService 
 {
-	public function getProductMerged()
+	public function getProductJoined()
 	{
 		
 	}
 	
-	public function saveProductMerged(ProductMerged $product)
+	public function saveProductJoined(ProductJoined $product)
 	{
 		
 	}
 	
-	public function deleteProductMerged()
+	public function deleteProductJoined()
 	{
 		
 	}
