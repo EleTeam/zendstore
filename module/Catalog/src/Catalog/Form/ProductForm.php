@@ -190,9 +190,9 @@ class ProductForm extends Form
 	
 	protected function _initializeInputFilter()
 	{
-		$mergedRow	= new ProductJoinedRow();
-		$pFilter	= $mergedRow->getJoinedRow('Product')->getInputFilter();
-		$pdFilter	= $mergedRow->getJoinedRow('ProductDescription')->getInputFilter();
+		$joinedRow	= new ProductJoinedRow();
+		$pFilter	= $joinedRow->getJoinedRow('Product')->getInputFilter();
+		$pdFilter	= $joinedRow->getJoinedRow('ProductDescription')->getInputFilter();
 		
 		$inputFilter = new InputFilter();
 		$factory	 = new InputFactory();

@@ -28,19 +28,19 @@ var defaultBorderWidth = "thin;medium;thick";
 var defaultListType = "disc;circle;square;decimal;lower-roman;upper-roman;lower-alpha;upper-alpha;none";
 
 function aggregateStyles(allStyles) {
-	var mergedStyles = {};
+	var joinedStyles = {};
 
 	tinymce.each(allStyles, function(style) {
 		if (style !== '') {
 			var parsedStyles = tinyMCEPopup.editor.dom.parseStyle(style);
 			for (var name in parsedStyles) {
 				if (parsedStyles.hasOwnProperty(name)) {
-					if (mergedStyles[name] === undefined) {
-						mergedStyles[name] = parsedStyles[name];
+					if (joinedStyles[name] === undefined) {
+						joinedStyles[name] = parsedStyles[name];
 					}
 					else if (name === 'text-decoration') {
-						if (mergedStyles[name].indexOf(parsedStyles[name]) === -1) {
-							mergedStyles[name] = mergedStyles[name] +' '+ parsedStyles[name];
+						if (joinedStyles[name].indexOf(parsedStyles[name]) === -1) {
+							joinedStyles[name] = joinedStyles[name] +' '+ parsedStyles[name];
 						}
 					}
 				}
@@ -48,7 +48,7 @@ function aggregateStyles(allStyles) {
 		}
 	});
 
-  return mergedStyles;
+  return joinedStyles;
 }
 
 var applyActionIsInsert;

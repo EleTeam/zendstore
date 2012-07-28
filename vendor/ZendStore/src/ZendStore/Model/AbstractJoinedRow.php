@@ -7,7 +7,7 @@ use Zend\Db\Sql\Sql;
 use Zend\Db\RowGateway\RowGatewayInterface;
 
 /**
- * A merged row would contain multiple entities 
+ * A joined row would contain multiple entities 
  */
 abstract class AbstractJoinedRow
 	implements JoinedRowInterface, \ArrayAccess, \Countable

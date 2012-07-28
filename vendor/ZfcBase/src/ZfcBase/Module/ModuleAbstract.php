@@ -14,7 +14,7 @@ abstract class ModuleAbstract implements
     AutoloaderProviderInterface, 
     LocatorRegisteredInterface
 {
-    protected $mergedConfig;
+    protected $joinedConfig;
     
     abstract public function getDir();
     abstract public function getNamespace();
@@ -54,11 +54,11 @@ abstract class ModuleAbstract implements
     }
     
     public function getJoinedConfig() {
-        return $this->mergedConfig;
+        return $this->joinedConfig;
     }
     
-    public function setJoinedConfig($mergedConfig) {
-        $this->mergedConfig = $mergedConfig;
+    public function setJoinedConfig($joinedConfig) {
+        $this->joinedConfig = $joinedConfig;
     }
     
     public function getOptions($namespace = 'options') {

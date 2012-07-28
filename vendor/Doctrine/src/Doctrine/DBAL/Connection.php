@@ -491,7 +491,7 @@ class Connection implements DriverConnection
      * @param string $tableName The name of the table to update.
      * @param array $data
      * @param array $identifier The update criteria. An associative array containing column-value pairs.
-     * @param array $types Types of the merged $data and $identifier arrays in that order.
+     * @param array $types Types of the joined $data and $identifier arrays in that order.
      * @return integer The number of affected rows.
      */
     public function update($tableName, array $data, array $identifier, array $types = array())

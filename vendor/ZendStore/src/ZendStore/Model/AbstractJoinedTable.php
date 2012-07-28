@@ -8,7 +8,7 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
 
 /**
- * A merged table would contain multiple tables 
+ * A joined table would contain multiple tables 
  */
 abstract class AbstractJoinedTable implements JoinedTableInterface
 {

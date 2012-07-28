@@ -660,7 +660,7 @@
 			}
 
 			function convertListItemToParagraph(element) {
-				var child, nextChild, mergedElement, splitLast;
+				var child, nextChild, joinedElement, splitLast;
 				if (tinymce.inArray(applied, element) !== -1) {
 					return;
 				}
@@ -671,8 +671,8 @@
 				// Push the original element we have from the selection, not the renamed one.
 				applied.push(element);
 				element = dom.rename(element, 'p');
-				mergedElement = attemptMergeWithAdjacent(element, false, ed.settings.force_br_newlines);
-				if (mergedElement === element) {
+				joinedElement = attemptMergeWithAdjacent(element, false, ed.settings.force_br_newlines);
+				if (joinedElement === element) {
 					// Now split out any block elements that can't be contained within a P.
 					// Manually iterate to ensure we handle modifications correctly (doesn't work with tinymce.each)
 					child = element.firstChild;

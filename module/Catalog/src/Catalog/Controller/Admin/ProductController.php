@@ -38,7 +38,7 @@ class ProductController extends AbstractAdminActionController
 	{
 		$productJoinedRow = new ProductJoinedRow();
 		$form = new ProductForm();
-		//$form->bind($mergedProduct);
+		//$form->bind($joinedProduct);
 		
 		if ($this->request->isPost()) {
 			$data = array_merge($this->request->getPost()->toArray(), array(

@@ -1111,7 +1111,7 @@ tinymce.util.Quirks = function(editor) {
 			if (isDelete)
 				blockElm = dom.getNext(blockElm, dom.isBlock);
 
-			// Locate root span element and clone it since it would otherwise get merged by the "apple-style-span" on delete/backspace
+			// Locate root span element and clone it since it would otherwise get joined by the "apple-style-span" on delete/backspace
 			if (blockElm) {
 				node = blockElm.firstChild;
 

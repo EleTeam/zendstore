@@ -10,7 +10,7 @@ class ProductJoinedTable
 	extends AbstractJoinedTable
 {
 	/**
-	 * Get merged product
+	 * Get joined product
 	 * 
 	 * @param int $id product id
 	 * @return ProductJoinedRow
@@ -34,14 +34,14 @@ class ProductJoinedTable
 		$resultSet->initialize($statement->execute());
 		
 		if (! $resultSet->count()) {
-			throw new Exception\InvalidArgumentException("Not found merged product: $id");
+			throw new Exception\InvalidArgumentException("Not found joined product: $id");
 		}
 		
 		return $resultSet->current();
 	}	
 	  
 	/**
-	 * Get merged products
+	 * Get joined products
 	 * 
 	 * @return ResultSet contains ProductJoinedRow
 	 */
@@ -64,7 +64,7 @@ class ProductJoinedTable
 	}
 	
 	/**
-	 * Save merged row
+	 * Save joined row
 	 * 
 	 * @param ProductJoinedRow $productJoinedRow
 	 * @return bool
