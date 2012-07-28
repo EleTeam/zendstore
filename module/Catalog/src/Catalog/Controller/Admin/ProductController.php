@@ -66,20 +66,21 @@ class ProductController extends AbstractAdminActionController
 	
 	public function editAction()
 	{
-		$id		 	 	  = $this->getEvent()->getRouteMatch()->getParam('id');
-		$form		 	  = new ProductForm();
-		if ($id) { // Edit
-			$productJoinedRow = $this->getProductJoinedTable()->getProductJoinedRow($id);
-			$form->bind($productJoinedRow);
-		} else {
+		$id = $this->getEvent()->getRouteMatch()->getParam('id');
+		if ($id) { 	// Add
 			$productJoinedRow = new ProductJoinedRow();
+		} else {	// Edit
+			$productJoinedRow = $this->getProductJoinedTable()->getProductJoinedRow($id);			
 		}
+		
+		$form = new ProductForm();
+		$form->bind($productJoinedRow);
 		
 		if ($this->request->isPost()) {
 			$form->setData($this->request->getPost());
 			if ($form->isValid()) {
 				$this->getProductJoinedTable()->saveProductJoinedRow($productJoinedRow);
-				//return $this->redirect()->toRoute('catalog-admin-product');
+				return $this->redirect()->toRoute('catalog-admin-product');
 			}
 		}
 		
