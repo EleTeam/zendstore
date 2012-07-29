@@ -4,7 +4,7 @@ namespace Catalog\Controller\Admin;
 
 use ZendStore\Controller\AbstractAdminActionController;
 use Catalog\Model\ProductJoinedRow;
-use	Catalog\Form\ProductForm;
+use	Catalog\Form\Admin\ProductForm;
 
 class ProductController extends AbstractAdminActionController
 {
@@ -67,7 +67,7 @@ class ProductController extends AbstractAdminActionController
 	public function editAction()
 	{
 		$id = $this->getEvent()->getRouteMatch()->getParam('id');
-		if ($id) { 	// Add
+		if (! $id) { 	// Add
 			$productJoinedRow = new ProductJoinedRow();
 		} else {	// Edit
 			$productJoinedRow = $this->getProductJoinedTable()->getProductJoinedRow($id);			

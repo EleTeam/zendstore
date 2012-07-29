@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalog\Form;
+namespace Catalog\Form\Admin;
 
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;

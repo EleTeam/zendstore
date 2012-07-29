@@ -46,7 +46,8 @@ $this->headTitle($title);
 									</td>
 									<td class="value">
 							        	<input id="product_name" class="required-entry input-text" name="product_name" value="" type="text">
-							        </td>
+							       		<?php echo $this->formInput($form->get('product_name')); ?> 
+							       </td>
 								</tr>
 								<tr>
 									<td class="label">

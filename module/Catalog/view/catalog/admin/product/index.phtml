@@ -82,7 +82,10 @@
                         Enabled                    </td>
                                                         <td class=" ">
                         Main Website                    </td>
-                        <td class=" last"><a href="<?php echo $this->url('catalog-admin-product', array('action' => 'edit', 'id' => $product->product_id)); ?>">Edit</a></td>
+                        <td class=" last">
+                        	<a href="<?php echo $this->url('catalog-admin-product', array('action' => 'edit', 'id' => $product->product_id)); ?>">Edit</a>
+ 							<a href="">&nbsp;Delete</a>                       	
+                      	</td>
                     </tr>
             		<?php endforeach; ?>
             	</tbody>
