@@ -30,7 +30,7 @@
 	                <col width="70">
 	                <col width="70">
 	                <col width="100">
-	                <col width="50">
+	                <col width="80">
 				</colgroup>
 				<thead>
                 	<tr class="headings">
@@ -83,8 +83,8 @@
                                                         <td class=" ">
                         Main Website                    </td>
                         <td class=" last">
-                        	<a href="<?php echo $this->url('catalog-admin-product', array('action' => 'edit', 'id' => $product->product_id)); ?>">Edit</a>
- 							<a href="">&nbsp;Delete</a>                       	
+                        	<a href="<?php echo $this->url('catalog-admin-product', array('action' => 'edit', 'id' => $product->product_id)); ?>">Edit</a>&nbsp;&nbsp;
+ 							<a href="<?php echo $this->url('catalog-admin-product', array('action' => 'delete', 'id' => $product->product_id)); ?>">Delete</a>                       	
                       	</td>
                     </tr>
             		<?php endforeach; ?>

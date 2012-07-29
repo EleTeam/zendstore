@@ -68,4 +68,16 @@ class ProductDescriptionTable extends AbstractTable
 						'product_id' 	 => $productDescription->product_id
 					));
 	}
+	
+	/**
+	 * Delete a product description
+	 *
+	 * @param int $id Product id
+	 * @return int
+	 */
+	public function deleteProductDescriptionByProductId($id)
+	{
+		$id = (int) $id;
+		return $this->delete(array('product_id' => $id));
+	}
 }

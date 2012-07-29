@@ -86,9 +86,19 @@ class ProductJoinedTable
 		return true;
 	}
 	
-	public function deleteProductJoinedRow()
+	/**
+	 * Delete a joined product
+	 * 
+	 * @param int $id Product id
+	 * @return bool
+	 */
+	public function deleteProductJoinedRow($id)
 	{
-	
+		$id = (int) $id;
+		$this->getJoinedTable('ProductTable')->deleteProduct($id);
+		$this->getJoinedTable('ProductDescriptionTable')->deleteProductDescriptionByProductId($id);
+		
+		return true;
 	}
 	
 	/**

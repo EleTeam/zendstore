@@ -29,7 +29,7 @@ $this->headTitle($title);
 			<?php
 				$form = $this->form;
 				echo $this->form()->openTag($form);
-				echo $this->formHidden($form->get('product_id'));
+				echo $this->formInput($form->get('product_id'));
 				echo $this->formHidden($form->get('description_id'));
 			?>
 			<div id="product_info_tabs_group7_content">
@@ -42,20 +42,54 @@ $this->headTitle($title);
 							<table class="form-list" cellspacing="0"><tbody>
 								<tr>
 									<td class="label">
-										<?php echo $this->formLabel($form->get('product_name'), 'Product Name <span class="required">*</span>'); ?></span>
+										<?php echo $this->formLabel($form->get('product_name'), $form->get('product_name')->getOption('label') . '&nbsp;<span class="required">*</span>'); ?></span>
 									</td>
 									<td class="value">
-							        	<input id="product_name" class="required-entry input-text" name="product_name" value="" type="text">
 							       		<?php echo $this->formInput($form->get('product_name')); ?> 
 							       </td>
 								</tr>
+								<tr>
+									<td></td>
+									<td><?php echo $this->formElementErrors($form->get('product_name')); ?></td>
+								</tr>								
+								
+								<tr>
+									<td class="label">
+										<?php echo $this->formLabel($form->get('store_price'), $form->get('store_price')->getOption('label') . '&nbsp;<span class="required">*</span>'); ?></span>
+									</td>
+									<td class="value">
+							       		<?php echo $this->formInput($form->get('store_price')); ?> 
+							       </td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><?php echo $this->formElementErrors($form->get('store_price')); ?></td>
+								</tr>								
+								
+								<tr>
+									<td class="label">
+										<?php echo $this->formLabel($form->get('market_price'), $form->get('market_price')->getOption('label')); ?></span>
+									</td>
+									<td class="value">
+							       		<?php echo $this->formInput($form->get('market_price')); ?> 
+							       </td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><?php echo $this->formElementErrors($form->get('market_price')); ?></td>
+								</tr>
+								
 								<tr>
 									<td class="label">
 										<?php echo $this->formLabel($form->get('description')); ?>
 									</td>
 									<td class="value">
-										<textarea id="description" class="required-entry textarea" name="description"></textarea>
+										<?php echo $this->formTextarea($form->get('description')); ?>
 									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><?php echo $this->formElementErrors($form->get('description')); ?></td>
 								</tr>
 							</tbody></table>
 						</div>

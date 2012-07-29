@@ -46,7 +46,7 @@ class ProductDescription extends AbstractRowGateway
 			// description
 			$inputFilter->add($factory->createInput(array(
 				'name'		 => 'description',
-				'required'	 => true,	
+				'required'	 => false,	
 				'filters'	 => array(
 					array('name' => 'StringTrim'),
 					array('name' => 'StripTags'),	

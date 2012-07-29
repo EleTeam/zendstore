@@ -81,6 +81,9 @@ class ProductController extends AbstractAdminActionController
 			if ($form->isValid()) {
 				$this->getProductJoinedTable()->saveProductJoinedRow($productJoinedRow);
 				return $this->redirect()->toRoute('catalog-admin-product');
+			} else {
+				echo '<pre>';
+				print_r($form->getMessages());
 			}
 		}
 		
@@ -90,6 +93,13 @@ class ProductController extends AbstractAdminActionController
 		));
 		
 		return $viewModel;		
+	}
+	
+	public function deleteAction()
+	{
+		$id = $this->getEvent()->getRouteMatch()->getParam('id');
+		$this->getProductJoinedTable()->deleteProductJoinedRow($id);
+		return $this->redirect()->toRoute('catalog-admin-product');
 	}
 	
 	/**

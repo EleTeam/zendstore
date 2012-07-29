@@ -90,4 +90,15 @@ class ProductTable extends AbstractTable
 	{
 		return $this->update($product->toArray(), array('product_id' => $product->product_id));
 	}
+	
+	/**
+	 * Delete a product
+	 * 
+	 * @param int $id
+	 * @return int
+	 */
+	public function deleteProduct($id)
+	{
+		return $this->delete($id);
+	}
 }

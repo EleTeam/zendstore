@@ -24,7 +24,7 @@ class ProductForm extends Form
 			'name'		 => 'product_id',
 			'attributes' => array(
 				'id'	=> 'product_id',
-				'type'	=> 'hidden',	
+				'type'	=> 'text',	
 			),		
 		));
 			
@@ -33,6 +33,7 @@ class ProductForm extends Form
 			'name'		 => 'product_name',
 			'attributes' => array(
 				'id'	=> 'product_name',
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -44,6 +45,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'store_price',
 			'attributes' => array(
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -55,10 +57,11 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'market_price',
 			'attributes' => array(
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
-				'label'	=> 'Market_price',
+				'label'	=> 'Market Price',
 			),		
 		));
 
@@ -66,6 +69,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'quantity',
 			'attributes' => array(
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -77,6 +81,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'brand',
 			'attributes' => array(
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -88,6 +93,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'type',
 			'attributes' => array(
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -113,6 +119,7 @@ class ProductForm extends Form
 		$this->add(array(
 			'name'		 => 'tags',
 			'attributes' => array(
+				'class' => 'input-text',
 				'type'	=> 'text',
 			),
 			'options' => array(
@@ -136,6 +143,7 @@ class ProductForm extends Form
 			'name'		 => 'description',
 			'attributes' => array(
 				'id'	=> 'description',
+				'class' => 'textarea',
 				'type'	=> 'textarea',
 			),
 			'options' => array(
