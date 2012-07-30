@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 18, 2012 at 01:56 PM
+-- Generation Time: Jul 30, 2012 at 09:21 AM
 -- Server version: 5.5.18-log
 -- PHP Version: 5.3.8-ZS5.5.0
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `catalog_category` (
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `catalog_category`
@@ -72,9 +72,11 @@ CREATE TABLE IF NOT EXISTS `catalog_category` (
 
 INSERT INTO `catalog_category` (`category_id`, `category_name`, `parent_id`, `is_active`, `sort_order`, `type`, `created_date`, `updated_date`) VALUES
 (1, 'ROOT', 0, 1, 255, 1, '2012-07-08 04:20:33', '2012-07-08 04:20:33'),
-(2, 'Shirt', 1, 1, 255, 1, '2012-07-08 04:26:25', '2012-07-08 04:26:25'),
 (3, 'Eletronic', 1, 1, 255, 1, '2012-07-08 09:50:16', '2012-07-08 09:50:16'),
-(4, 'Computer', 3, 1, 255, 1, '2012-07-08 09:50:54', '2012-07-08 09:50:54');
+(23, 'iPhone', 3, 1, 255, 1, NULL, NULL),
+(24, 'Computer', 3, 1, 255, 1, NULL, NULL),
+(25, 'Shirt', 1, 1, 255, 1, NULL, NULL),
+(26, 'T-Shirt', 25, 1, 255, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -110,26 +112,29 @@ CREATE TABLE IF NOT EXISTS `catalog_category_product` (
 CREATE TABLE IF NOT EXISTS `catalog_product` (
   `product_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_name` varchar(255) NOT NULL,
-  `type` tinyint(3) unsigned NOT NULL,
+  `store_price` float unsigned NOT NULL DEFAULT '0',
+  `market_price` float unsigned DEFAULT NULL,
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
   `brand` varchar(255) DEFAULT NULL,
-  `store_price` decimal(12,4) NOT NULL DEFAULT '0.0000',
-  `market_price` decimal(12,4) NOT NULL DEFAULT '0.0000',
-  `tags` varchar(100) DEFAULT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
   `is_active` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `position` tinyint(3) unsigned NOT NULL,
+  `tags` varchar(100) DEFAULT NULL,
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `catalog_product`
 --
 
-INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`, `brand`, `store_price`, `market_price`, `tags`, `is_active`, `sort_order`, `position`, `created_date`, `updated_date`) VALUES
-(22, 'aaaaaaaaaaaaaaaaaaa', 0, 0, NULL, '0.0000', '0.0000', NULL, 1, 255, 0, NULL, NULL);
+INSERT INTO `catalog_product` (`product_id`, `product_name`, `store_price`, `market_price`, `quantity`, `brand`, `type`, `is_active`, `sort_order`, `position`, `tags`, `created_date`, `updated_date`) VALUES
+(22, 'dddddddddd', 0, 0, 0, NULL, 0, 1, 255, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(23, 'bbbbbbbbb', 0, 0, 0, NULL, 0, 1, 255, 0, NULL, NULL, NULL),
+(24, '111111111', 0, 0, 0, NULL, 0, 1, 255, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(25, 'edit', 24234, 0, 0, NULL, 0, 1, 255, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -139,10 +144,24 @@ INSERT INTO `catalog_product` (`product_id`, `product_name`, `type`, `quantity`,
 
 CREATE TABLE IF NOT EXISTS `catalog_product_description` (
   `description_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `description` text,
   `product_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`description_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `description` text,
+  PRIMARY KEY (`description_id`),
+  UNIQUE KEY `description_id` (`description_id`),
+  UNIQUE KEY `product_id_2` (`product_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `catalog_product_description`
+--
+
+INSERT INTO `catalog_product_description` (`description_id`, `product_id`, `description`) VALUES
+(7, 24, 'aaaaaaaaa2342asdf'),
+(10, 22, 'sdfdsfsdf'),
+(12, 23, 'ssdfsf'),
+(13, 0, ''),
+(14, 25, '');
 
 -- --------------------------------------------------------
 
