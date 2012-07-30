@@ -36,10 +36,10 @@ class ProductDescriptionTable extends AbstractTable
 	 */
 	public function saveProductDescription(ProductDescription $productDescription)
 	{
-		if ($productDescription->description_id) {
-			return $this->updateProductDescription($productDescription);
-		} else {
+		if (empty($productDescription->description_id)) {
 			return $this->addProductDescription($productDescription);
+		} else {
+			return $this->updateProductDescription($productDescription);
 		}
 	}
 	

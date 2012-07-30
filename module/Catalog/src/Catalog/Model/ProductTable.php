@@ -62,10 +62,10 @@ class ProductTable extends AbstractTable
 	 */
 	public function saveProduct(Product $product)
 	{
-		if ($product->product_id) {
-			return $this->updateProduct($product);
-		} else {
+		if (empty($product->product_id)) {
 			return $this->addProduct($product);
+		} else {
+			return $this->updateProduct($product);
 		}
 	}
 	

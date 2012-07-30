@@ -24,7 +24,7 @@ class ProductForm extends Form
 			'name'		 => 'product_id',
 			'attributes' => array(
 				'id'	=> 'product_id',
-				'type'	=> 'text',	
+				'type'	=> 'hidden',	
 			),		
 		));
 			

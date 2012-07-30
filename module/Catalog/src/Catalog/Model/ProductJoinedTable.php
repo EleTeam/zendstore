@@ -67,7 +67,7 @@ class ProductJoinedTable
 	 * Save joined row
 	 * 
 	 * @param ProductJoinedRow $productJoinedRow
-	 * @return bool
+	 * @return void
 	 */
 	public function saveProductJoinedRow(ProductJoinedRow $productJoinedRow)
 	{
@@ -76,29 +76,28 @@ class ProductJoinedTable
 		$productTable = new ProductTable($this->adapter);
 		$product->exchangeArray($productTable->filterByColumns($productJoinedRow->toArray()));
 		$productTable->saveProduct($product);
+		if ($productId = $productTable->getLastInsertValue()) { // Add product
+			$productJoinedRow->product_id = $productId;
+		}
 				
 		// Save ProductDescription
 		$productDescription 	 = new ProductDescription();
 		$productDescriptionTable = new ProductDescriptionTable($this->adapter);
 		$productDescription->exchangeArray($productDescriptionTable->filterByColumns($productJoinedRow->toArray()));
 		$productDescriptionTable->saveProductDescription($productDescription);
-		
-		return true;
 	}
 	
 	/**
 	 * Delete a joined product
 	 * 
 	 * @param int $id Product id
-	 * @return bool
+	 * @return void
 	 */
 	public function deleteProductJoinedRow($id)
 	{
 		$id = (int) $id;
 		$this->getJoinedTable('ProductTable')->deleteProduct($id);
 		$this->getJoinedTable('ProductDescriptionTable')->deleteProductDescriptionByProductId($id);
-		
-		return true;
 	}
 	
 	/**
